@@ -1,8 +1,15 @@
 import * as React from "react";
 import getUserData from "../../actions/thunks/getUserData";
+import postUserData from "../../actions/thunks/postUserData";
+
 export class UserCard extends React.Component {
-  handleClick = () => {
+
+  handleGet = () => {
     getUserData();
+  };
+
+  handlePost = () => {
+    postUserData();
   };
   render() {
     return (
@@ -10,7 +17,8 @@ export class UserCard extends React.Component {
         <h1>User Card </h1>
         <h2>User's picture></h2>
         <h3>User's information</h3>
-        <button onClick={this.handleClick}>Click Me</button>
+        <button onClick={this.handleGet}>Get Data</button>
+        <button onClick={this.handlePost}>Post Me</button>
       </>
     );
   }
