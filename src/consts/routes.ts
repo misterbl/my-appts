@@ -1,5 +1,6 @@
 const routes = {
-  INDEX: "/card"
+  INDEX: "/",
+  CARD: "/card"
 };
 
 export default routes;
