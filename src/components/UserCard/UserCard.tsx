@@ -1,11 +1,28 @@
 import * as React from "react";
-import getUserData from "../../actions/thunks/getUserData";
+// import getUserData from "../../actions/thunks/getUserData";
 import postUserData from "../../actions/thunks/postUserData";
 import Axios from "axios";
 
 export class UserCard extends React.Component {
-  handleGet = () => {
-    getUserData();
+  handleGet = async () => {
+    // getUserData();
+
+    // const option = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/graphql" },
+    //   body: query
+    // };
+    const query = `{
+      books {
+        title
+      }
+    }`;
+    const res = await Axios.create({
+      baseURL: "http://localhost:4000/graphql",
+      headers: { "Content-Type": "application/graphql" }
+    }).post("", query);
+    const json = await res;
+    console.log(json);
   };
   handlePost = () => {
     postUserData();
