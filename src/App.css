@@ -1,12 +1,11 @@
+@import './styles/components/UserCard.css';
+
 .app {
-  background-color: #d8fff0;
-  text-align: center;
+  background-color: #fcfcfc;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
+
 
 .App-header {
   background-color: #282c34;
@@ -19,10 +18,14 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.font-green {
+  color: #478e66
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

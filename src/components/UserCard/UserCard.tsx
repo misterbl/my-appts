@@ -1,4 +1,5 @@
 import * as React from "react";
+import {FormattedMessage} from 'react-intl';
 // import getUserData from "../../actions/thunks/getUserData";
 import postUserData from "../../actions/thunks/postUserData";
 import Axios from "axios";
@@ -60,11 +61,22 @@ export class UserCard extends React.Component {
   render() {
     return (
       <>
-        <h1>User Card </h1>
-        <h2>User's picture></h2>
-        <h3>User's information</h3>
-        <button onClick={this.handleGet}>Get Data</button>
-        <button onClick={this.handleSubmit}>Post Me</button>
+      <header className="user-card-header"><span>Matilde</span></header>
+      <div className="user-card-details">
+        <div className="user-avatar"/>
+        <div className="flex-column">
+        <strong className="font-green">Matilde</strong>
+        <div className="font-green">Cannes</div>
+        <div className="font-green">2 enfants</div>
+        </div>
+        {/* <button onClick={this.handleGet}>Get Data</button>
+        <button onClick={this.handleSubmit}>Post Me</button> */}
+        </div>
+        <FormattedMessage id="app.title"
+                          defaultMessage="Welcome to {what}"
+                          description="Welcome header on app main page"
+                          values={{ what: 'react-intl' }}/>
+        <footer className="user-card-footer">Footer</footer>
       </>
     );
   }
