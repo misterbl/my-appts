@@ -9,9 +9,7 @@ export interface IState {books: [] | null};
 export const saveBooks = (
   state: IState['books'] = null,
   action: AnyAction,
-): IState['books'] => {
-  console.log("reducer");
-  
+): IState['books'] => { 
   switch (action.type) {
     case 'SAVE_BOOKS':
       return action.data;

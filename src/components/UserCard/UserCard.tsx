@@ -1,26 +1,14 @@
 import * as React from "react";
 import {FormattedMessage} from 'react-intl';
 import { bindActionCreators, AnyAction, Dispatch } from 'redux';
-
 import {connect} from 'react-redux';
 import {IState} from '../../reducers/apiReducers';
 import * as apiActions from '../../actions/apiActions';
-// import getUserData from "../../actions/thunks/getUserData";
-// import postUserData from "../../actions/thunks/postUserData";
 import * as apiThunk from '../../actions/thunks/apiThunk';
-import Axios from "axios";
 
 
 export class UserCard extends React.Component {
   handleGet = () => {
-    
-    // getUserData();
-
-    // const option = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/graphql" },
-    //   body: query
-    // };
  // @ts-ignore
     const query = `{
       books {
@@ -30,11 +18,9 @@ export class UserCard extends React.Component {
     // @ts-ignore
    this.props.apiThunk.postBooks(query);
   };
-  // handlePost = () => {
-  //   postUserData();
-  // };
 
-  async handleSubmit() {
+
+   handleSubmit = () => {
     const query = `mutation {
       addBook (title: "new title", author: "new author") {
         _id
@@ -42,25 +28,8 @@ export class UserCard extends React.Component {
         author
       }
     }`;
-
-    // const option = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/graphql" },
-    //   body: query
-    // };
-
-    const res = await Axios.create({
-      baseURL: "http://localhost:4000/graphql",
-      headers: { "Content-Type": "application/graphql" }
-    }).post("", query);
-    const json = await res;
-    console.log(json);
-
-    // const newBook = json.data.addBook;
-    // const books = this.state.books;
-    // const newBooks = books.concat(newBook);
-
-    // this.setState({ books: newBooks });
+// @ts-ignore
+    this.props.apiThunk.postBooks(query);
   }
 
   render() {    

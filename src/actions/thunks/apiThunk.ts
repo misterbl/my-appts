@@ -20,7 +20,6 @@ export const postBooks = (query: any) => async (dispatch: any) => {
         throw new Error("couldn't get books");
       }
       const json = await response;
-      console.log(json)
       dispatch(saveBooks(json))
    
   } catch (error) {
