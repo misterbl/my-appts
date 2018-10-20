@@ -45,7 +45,7 @@ export class UserCard extends React.Component {
         </div>
         </div>
         <div className="m10 mt30 pb60">
-        <h3>Looking for occational care</h3>
+        <h3>Looking for occasional care</h3>
         <p>All about me. {lipsum}</p>
         {/* <button onClick={this.handleGet}>Get Data</button>
         <button onClick={this.handleSubmit}>Post Me</button> */}
