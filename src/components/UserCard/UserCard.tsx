@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {IState} from '../../reducers/apiReducers';
 import * as apiActions from '../../actions/apiActions';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-
+const lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 export class UserCard extends React.Component {
   handleGet = () => {
@@ -35,7 +35,7 @@ export class UserCard extends React.Component {
   render() {    
     return (
       <>
-      <header className="user-card-header"><span>Matilde</span></header>
+      <header className="user-card-header"><p className="mt12">Matilde</p></header>
       <div className="user-card-details">
         <div className="user-avatar"/>
         <div className="flex-column">
@@ -43,26 +43,33 @@ export class UserCard extends React.Component {
         <div className="font-green">Cannes</div>
         <div className="font-green">2 enfants</div>
         </div>
-        <button onClick={this.handleGet}>Get Data</button>
-        <button onClick={this.handleSubmit}>Post Me</button>
         </div>
-        <FormattedMessage id="app.title"
-                          defaultMessage="Welcome to {what}"
-                          description="Welcome header on app main page"
-                          values={{ what: 'react-intl' }}/>
-        <footer className="user-card-footer">Footer</footer>
+        <div className="m10 mt30 pb60">
+        <h3>Looking for occational care</h3>
+        <p>All about me. {lipsum}</p>
+        {/* <button onClick={this.handleGet}>Get Data</button>
+        <button onClick={this.handleSubmit}>Post Me</button> */}
+        <p><FormattedMessage id="general|content|numberKids"
+                          // defaultMessage="Welcome to {what}"
+                          // description="Welcome header on app main page"
+                          // values={{ what: 'react-intl' }}
+                          />: 2</p>
+
+        <p>Emile, 4 ans. Ecole Victor Hugo, Cannes</p>
+        <p>Aurelie, 11 ans. College Pompidou, Cannes</p>
+        <p><FormattedMessage id="general|content|location"/></p>
+        </div>
+        <footer className="user-card-footer">
+        <div className="flex-column ml10">
+          <span >Exchange</span>
+          <span>Money</span>
+        </div>
+        <button className="mr10 cta-button" >Contact</button>
+        </footer>
       </>
     );
   }
 }
-
-// const mapStateToProps = (state: any) => {
-//   console.log(state); // state
-// }
-
-// function mapDispatchToProps(dispatch: any) {
-//   return { actions: bindActionCreators(actionCreators, dispatch) }
-// }
 
 export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
