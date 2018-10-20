@@ -1,11 +1,19 @@
 import * as React from "react";
 import {FormattedMessage} from 'react-intl';
+import { bindActionCreators, AnyAction, Dispatch } from 'redux';
+
+import {connect} from 'react-redux';
+import {IState} from '../../reducers/apiReducers';
+import * as apiActions from '../../actions/apiActions';
 // import getUserData from "../../actions/thunks/getUserData";
-import postUserData from "../../actions/thunks/postUserData";
+// import postUserData from "../../actions/thunks/postUserData";
+import * as apiThunk from '../../actions/thunks/apiThunk';
 import Axios from "axios";
 
+
 export class UserCard extends React.Component {
-  handleGet = async () => {
+  handleGet = () => {
+    
     // getUserData();
 
     // const option = {
@@ -13,21 +21,18 @@ export class UserCard extends React.Component {
     //   headers: { "Content-Type": "application/graphql" },
     //   body: query
     // };
+ // @ts-ignore
     const query = `{
       books {
         title
       }
     }`;
-    const res = await Axios.create({
-      baseURL: "http://localhost:4000/graphql",
-      headers: { "Content-Type": "application/graphql" }
-    }).post("", query);
-    const json = await res;
-    console.log(json);
+    // @ts-ignore
+   this.props.apiThunk.postBooks(query);
   };
-  handlePost = () => {
-    postUserData();
-  };
+  // handlePost = () => {
+  //   postUserData();
+  // };
 
   async handleSubmit() {
     const query = `mutation {
@@ -58,7 +63,7 @@ export class UserCard extends React.Component {
     // this.setState({ books: newBooks });
   }
 
-  render() {
+  render() {    
     return (
       <>
       <header className="user-card-header"><span>Matilde</span></header>
@@ -69,8 +74,8 @@ export class UserCard extends React.Component {
         <div className="font-green">Cannes</div>
         <div className="font-green">2 enfants</div>
         </div>
-        {/* <button onClick={this.handleGet}>Get Data</button>
-        <button onClick={this.handleSubmit}>Post Me</button> */}
+        <button onClick={this.handleGet}>Get Data</button>
+        <button onClick={this.handleSubmit}>Post Me</button>
         </div>
         <FormattedMessage id="app.title"
                           defaultMessage="Welcome to {what}"
@@ -82,4 +87,21 @@ export class UserCard extends React.Component {
   }
 }
 
-export default UserCard;
+// const mapStateToProps = (state: any) => {
+//   console.log(state); // state
+// }
+
+// function mapDispatchToProps(dispatch: any) {
+//   return { actions: bindActionCreators(actionCreators, dispatch) }
+// }
+
+export const mapDispatchToProps = (
+  dispatch: Dispatch<AnyAction>,
+) => ({
+  apiActions: bindActionCreators(apiActions, dispatch),
+  apiThunk: bindActionCreators(apiThunk, dispatch),
+});
+export const mapStateToProps = (
+  state: IState,
+) => ({});
+export default connect(mapStateToProps, mapDispatchToProps)(UserCard);

@@ -9,12 +9,12 @@ import * as messages_fr from "./consts/i18n/fr";
 import * as messages_en from "./consts/i18n/en";
 import history from "./history";
 import ROUTES from "./consts/routes";
-import store from "./configureStore";
+import configureStore from "./configureStore";
 import UserCard from "./components/UserCard";
 import Home from "./containers/Home";
 import "./App.css";
 
-console.log(messages_en)
+const store = configureStore({}, history);
 const messages = {
   'fr': messages_fr,
   'en': messages_en
