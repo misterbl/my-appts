@@ -5,7 +5,8 @@
     "no-console": false,
     "member-access": false,
     "jsx-boolean-value": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "jsx-no-lambda": false
     
   },
   "linterOptions": {
