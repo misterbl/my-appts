@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
+
 const config = {
     apiKey: "AIzaSyAUFtb8M2Pzfgpn48-F736NVgKlCcc2haQ",
     authDomain: "kidappi-app.firebaseapp.com",
@@ -15,7 +16,9 @@ const config = {
   }
 
   const auth = firebase.auth();
-
+  auth.useDeviceLanguage();
+  const provider = new firebase.auth.FacebookAuthProvider()
 export {
   auth,
+  provider,
 };

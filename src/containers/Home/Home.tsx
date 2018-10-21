@@ -39,6 +39,9 @@ export class Home extends React.Component {
     event.preventDefault();
   }
 
+  faceBookLogin = () => {
+    auth.doFacebookSignIn();
+  }
   
   render() {
     const {
@@ -56,6 +59,9 @@ export class Home extends React.Component {
     return (
       <>
         <div>Home</div>
+        <button onClick={this.faceBookLogin}>
+          Login with Facebook
+        </button>
         <form onSubmit={this.onSubmit}>
         <input
           value={username}
