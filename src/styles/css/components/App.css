@@ -1,11 +1,12 @@
-@import './styles/components/UserCard.css';
-
 .app {
   background-color: #fcfcfc;
   height: 100vh;
 }
 
-
+.green-background {
+  background-color: #478e66;
+  height: 100vh;
+}
 
 .App-header {
   background-color: #282c34;
@@ -19,12 +20,25 @@
 }
 
 .font-green {
-  color: #478e66
+  color: #478e66;
+}
+
+.font-white {
+  color: #fff;
+}
+
+.flex {
+  display: flex;
 }
 
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.space-around {
+  display: flex;
+  justify-content: space-around;
 }
 
 .ml10 {
@@ -58,6 +72,7 @@
 .pl10 {
   padding-left: 10px;
 }
+
 .pb60 {
   padding-bottom: 60px;
 }
@@ -72,6 +87,11 @@
   height: 45px;
   display: inline;
 }
+
+.text-center {
+  text-align: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -80,3 +100,5 @@
     transform: rotate(360deg);
   }
 }
+
+/*# sourceMappingURL=App.css.map */

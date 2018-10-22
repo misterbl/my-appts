@@ -1,0 +1,16 @@
+.signin-register input {
+  background: transparent;
+  border-right: none;
+  background: transparent;
+  border-bottom: 1px solid #fcfcfc;
+  border-top: none;
+  border-left: none;
+}
+.signin-register input:focus {
+  border-bottom: 2px solid #fcfcfc;
+}
+.signin-register input::placeholder {
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=Signin.css.map */

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateTeamForm matches the snapshot 1`] = `
+<form
+  className="jg-space-mtmd"
+  onSubmit={[Function]}
+>
+  <div
+    className="jg-input-wrapper jg-space-mbmd"
+  >
+    <div
+      className="create-team__input"
+    >
+      <label
+        className="jg-h4 jg-display-b jg-space-mbxs"
+        htmlFor="jg-tc-create-team-input"
+      >
+        <FormattedMessage
+          id="content|createteam|teamName"
+          values={Object {}}
+        />
+      </label>
+      <textarea
+        className="jg-form-control create-team__form "
+        id="jg-tc-create-team-input"
+        name="teamName"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        value="teamName"
+      />
+      <CharacterCount
+        maxLength={100}
+        value="teamName"
+      >
+        [Function]
+      </CharacterCount>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-6"
+    >
+      <button
+        className="jg-btn jg-space-mbmd"
+        disabled={false}
+        id="jg-tc-create-team-continue-button"
+        type="submit"
+      >
+        <FormattedMessage
+          id="content|createteam|button"
+          values={Object {}}
+        />
+      </button>
+    </div>
+  </div>
+</form>
+`;

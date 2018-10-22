@@ -1,6 +1,8 @@
 /* tslint:disable */
 module.exports = {
-    "app.title": "Welcome to react-intl",
-    "general|content|numberKids": "Number of children",
-    "general|content|location": "Location",
-}
+  'general|or': 'or',
+  'general|button|signin': 'Sign in',
+  'general|button|register': 'Register',
+  'general|content|numberKids': 'Number of children',
+  'general|content|location': 'Location',
+};
