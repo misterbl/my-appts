@@ -1,16 +1,23 @@
 .signin-register {
+  margin: 20px;
   input {
     background: transparent;
     border-right: none;
     background: transparent;
-    border-bottom: 1px solid #fcfcfc;
+    border-bottom: 1px solid #78dba3;
     border-top: none;
     border-left: none;
+    outline: none;
+    margin-bottom: 30px;
   }
   input:focus {
     border-bottom: 2px solid #fcfcfc;
   }
   input::placeholder {
     color: #ffffff;
+  }
+  button {
+    background-color: #043566 !important;
+    border: none;
   }
 }
