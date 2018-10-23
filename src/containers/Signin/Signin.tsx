@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import { auth } from '../../firebase';
+import { auth } from '../../firebase';
 import { FormattedMessage } from 'react-intl';
 
 const INITIAL_STATE = {
@@ -21,27 +21,27 @@ export class Register extends React.Component {
     this.state = { ...INITIAL_STATE };
   }
   onSubmit = (event: any) => {
-    // const {
-    //   // @ts-ignore
-    //   email,
-    //   // @ts-ignore
-    //   passwordOne,
-    // } = this.state;
+    const {
+      // @ts-ignore
+      email,
+      // @ts-ignore
+      passwordOne,
+    } = this.state;
 
-    // auth
-    //   .doCreateUserWithEmailAndPassword(email, passwordOne)
-    //   .then(authUser => {
-    //     this.setState({ ...INITIAL_STATE });
-    //   })
-    //   .catch(error => {
-    //     this.setState(byPropKey('error', error));
-    //   });
+    auth
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        this.setState({ ...INITIAL_STATE });
+      })
+      .catch(error => {
+        this.setState(byPropKey('error', error));
+      });
 
     event.preventDefault();
   };
 
   faceBookLogin = () => {
-    // auth.doFacebookSignIn();
+    auth.doFacebookSignIn();
   };
 
   render() {
