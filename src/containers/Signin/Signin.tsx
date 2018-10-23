@@ -45,6 +45,11 @@ export class SignIn extends React.Component {
     auth.doFacebookSignIn();
   };
 
+  signOut = () => {
+    console.log(auth.doSignOut());
+
+    auth.doSignOut();
+  };
   render() {
     // @ts-ignore
     const { formatMessage } = this.props.intl;
@@ -65,8 +70,18 @@ export class SignIn extends React.Component {
 
     return (
       <div className="green-background flex-column">
-        <button onClick={this.faceBookLogin}>Login with Facebook</button>
-        <span className="font-white">
+        <div className="pt90 text-center">
+          <div
+            className="fb-login-button"
+            data-max-rows="1"
+            data-size="large"
+            data-button-type="continue_with"
+            data-show-faces="false"
+            data-auto-logout-link="false"
+            data-use-continue-as="false"
+          />
+        </div>
+        <span className="font-white text-center mt30">
           <FormattedMessage id="general|or" />
         </span>
         <form className="signin-register flex-column" onSubmit={this.onSubmit}>
