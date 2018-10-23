@@ -112,19 +112,28 @@
   margin-top: 100px;
 }
 
+.signin-register {
+  margin: 20px;
+}
 .signin-register input {
   background: transparent;
   border-right: none;
   background: transparent;
-  border-bottom: 1px solid #fcfcfc;
+  border-bottom: 1px solid #78dba3;
   border-top: none;
   border-left: none;
+  outline: none;
+  margin-bottom: 30px;
 }
 .signin-register input:focus {
   border-bottom: 2px solid #fcfcfc;
 }
 .signin-register input::placeholder {
   color: #ffffff;
+}
+.signin-register button {
+  background-color: #043566 !important;
+  border: none;
 }
 
 .user-card-header {

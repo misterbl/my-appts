@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { auth } from '../../firebase';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 
 const INITIAL_STATE = {
-  username: '',
+  firstname: '',
+  lastname: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -14,7 +15,7 @@ const byPropKey = (propertyName: any, value: any) => () => ({
   [propertyName]: value,
 });
 
-export class Register extends React.Component {
+export class SignIn extends React.Component {
   constructor(props: any) {
     super(props);
 
@@ -45,9 +46,13 @@ export class Register extends React.Component {
   };
 
   render() {
+    // @ts-ignore
+    const { formatMessage } = this.props.intl;
     const {
       // @ts-ignore
-      username,
+      firstname,
+      // @ts-ignore
+      lastname,
       // @ts-ignore
       email,
       // @ts-ignore
@@ -57,28 +62,40 @@ export class Register extends React.Component {
       // @ts-ignore
       error,
     } = this.state;
+
     return (
-      <div className="green-background">
+      <div className="green-background flex-column">
         <button onClick={this.faceBookLogin}>Login with Facebook</button>
         <span className="font-white">
           <FormattedMessage id="general|or" />
         </span>
-        <form className="signin-register" onSubmit={this.onSubmit}>
-          <input
-            value={username}
-            onChange={event =>
-              this.setState(byPropKey('username', event.target.value))
-            }
-            type="text"
-            placeholder="Full Name"
-          />
+        <form className="signin-register flex-column" onSubmit={this.onSubmit}>
           <input
             value={email}
             onChange={event =>
               this.setState(byPropKey('email', event.target.value))
             }
             type="text"
-            placeholder="Email Address"
+            // @ts-ignore
+            placeholder={formatMessage({ id: 'general|placeholder|email' })}
+          />
+          <input
+            value={firstname}
+            onChange={event =>
+              this.setState(byPropKey('firstname', event.target.value))
+            }
+            type="text"
+            // @ts-ignore
+            placeholder={formatMessage({ id: 'general|placeholder|firstname' })}
+          />
+          <input
+            value={lastname}
+            onChange={event =>
+              this.setState(byPropKey('lastname', event.target.value))
+            }
+            type="text"
+            // @ts-ignore
+            placeholder={formatMessage({ id: 'general|placeholder|lastname' })}
           />
           <input
             value={passwordOne}
@@ -86,7 +103,8 @@ export class Register extends React.Component {
               this.setState(byPropKey('passwordOne', event.target.value))
             }
             type="password"
-            placeholder="Password"
+            // @ts-ignore
+            placeholder={formatMessage({ id: 'general|placeholder|password' })}
           />
           <input
             value={passwordTwo}
@@ -94,10 +112,13 @@ export class Register extends React.Component {
               this.setState(byPropKey('passwordTwo', event.target.value))
             }
             type="password"
-            placeholder="Confirm Password"
+            // @ts-ignore
+            placeholder={formatMessage({
+              id: 'general|placeholder|confirmpassword',
+            })}
           />
-          <button type="submit">
-            <FormattedMessage id="general|button|signin" />
+          <button className="cta-button" type="submit">
+            <FormattedMessage id="general|button|next" />
           </button>
 
           {error && <p>{error.message}</p>}
@@ -107,4 +128,4 @@ export class Register extends React.Component {
   }
 }
 
-export default Register;
+export default injectIntl(SignIn);
