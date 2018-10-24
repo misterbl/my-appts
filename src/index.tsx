@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { addLocaleData, IntlProvider } from 'react-intl';
 import * as locale_en from 'react-intl/locale-data/en';
 import * as locale_fr from 'react-intl/locale-data/fr';
+import { ConnectedRouter } from 'connected-react-router';
 import * as messages_fr from './consts/i18n/fr';
 import * as messages_en from './consts/i18n/en';
 import history from './history';
@@ -26,7 +27,9 @@ addLocaleData([...locale_en, ...locale_fr]);
 ReactDOM.render(
   <Provider store={store}>
     <IntlProvider locale={language} messages={messages[language]}>
+    <ConnectedRouter history={history}>
       <App />
+      </ConnectedRouter>
     </IntlProvider>
   </Provider>,
   document.getElementById('root'),

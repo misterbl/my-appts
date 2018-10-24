@@ -1,9 +1,10 @@
 import * as React from 'react';
 // import { Formik, Form } from 'formik';
 // import { auth } from '../../firebase';
-import { injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router';
-import { IDashBoardComponent } from './DashBoard.d';
+import MessageIcon from '../../styles/assets/messageIcon'
+import { IDashBoardComponent } from './AppFooter.d';
 // import ROUTES from '../../consts/routes';
 
 export class DashBoard extends React.Component<IDashBoardComponent> {
@@ -12,11 +13,10 @@ export class DashBoard extends React.Component<IDashBoardComponent> {
     // const { formatMessage } = this.props.intl;
 
     return (
-      <div className="flex flex-column vh-100">
-        
-        <span className="white tc mt2">
-          <FormattedMessage id="general|or" />
-        </span>
+      <div className="flex absolute bottom-0 mb2">
+       <span>APP FOOTER</span> 
+      <MessageIcon/>
+
 
       </div>
     );
