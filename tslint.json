@@ -13,10 +13,11 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js",
       "results/coverage/lcov-report/*.js",
       "results/coverage/*.js",
       "test/deploy/helpers/*.js",
-      "test/*.js"
+      "test/*js"
     ]
   }
 }

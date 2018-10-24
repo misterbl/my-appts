@@ -18,7 +18,7 @@ export class Home extends React.Component<
     console.log(this.props.history.push);
 
     return (
-      <div className="text-center">
+      <div className="tc">
         <img
           className="home-logo"
           src={require('../../assets/kidappi-logo.png')}
