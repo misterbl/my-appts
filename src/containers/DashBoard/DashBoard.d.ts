@@ -2,11 +2,12 @@ import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 
-export interface ISignInFormData {
+export interface IDashBoardFormData {
   email?: string;
-  password?: string;
+  passwordOne?: string;
+  passwordTwo?: string;
 }
 
-export type ISignInComponent = FormikProps<ISignInFormData> &
+export type IDashBoardComponent = FormikProps<IDashBoardFormData> &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

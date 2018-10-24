@@ -91,6 +91,13 @@
     transform: rotate(360deg);
   }
 }
+.facebook-button {
+  background-image: url('../assets/facebook-logo.png');
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}
+
 .signin-register {
   margin: 20px;
 }
@@ -128,7 +135,7 @@
 }
 
 .user-avatar {
-  background-image: url("https://static.makeuseof.com/wp-content/uploads/2015/11/perfect-profile-picture-all-about-face.jpg");
+  background-image: url('https://static.makeuseof.com/wp-content/uploads/2015/11/perfect-profile-picture-all-about-face.jpg');
   width: 60px;
   height: 60px;
   -webkit-border-radius: 60px;
@@ -162,13 +169,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,31 +1,29 @@
 import { AnyAction } from 'redux';
-// import { IAppState } from '../types/state.d';
+import { IAppState } from '../types/state.d';
 // import { apiActionTypes } from '../actions/actionTypes';
 
-// type State = IAppState['api'];
-export interface IState {books: [] | null};
+type State = IAppState['api'];
 
+// export const saveBooks = (
+//   state: State['books'] = null,
+//   action: AnyAction,
+// ): State['books'] => {
+//   switch (action.type) {
+//     case 'SAVE_BOOKS':
+//       return action.data;
+//     default:
+//       return state;
+//   }
+// };
 
-export const saveBooks = (
-  state: IState['books'] = null,
+export const saveUserData = (
+  state: State['userData'] = null,
   action: AnyAction,
-): IState['books'] => { 
+): State['userData'] => {
   switch (action.type) {
-    case 'SAVE_BOOKS':
+    case 'SAVE_USER_DATA':
       return action.data;
     default:
       return state;
   }
 };
-
-// export const teamData = (
-//   state: State['teamData'] = null,
-//   action: AnyAction,
-// ): State['teamData'] => {
-//   switch (action.type) {
-//     case apiActionTypes.SAVE_TEAM_ID:
-//       return action.teamId;
-//     default:
-//       return state;
-//   }
-// };

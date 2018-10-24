@@ -6,31 +6,13 @@ import { withRouter } from 'react-router';
 import { ISignInComponent } from './SignIn.d';
 import ROUTES from '../../consts/routes';
 
-// const INITIAL_STATE = {
-//   firstname: '',
-//   lastname: '',
-//   email: '',
-//   passwordOne: '',
-//   passwordTwo: '',
-//   error: null,
-// };
-
-// const byPropKey = (propertyName: any, value: any) => () => ({
-//   [propertyName]: value,
-// });
-
 export class SignIn extends React.Component<ISignInComponent> {
-  // constructor(props: any) {
-  //   super(props);
-
-  //   this.state = { ...INITIAL_STATE };
-  // }
   onSubmit = (event: any) => {
-    const { email, passwordOne } = event;
+    const { email, password } = event;
     auth
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doSignInWithEmailAndPassword(email, password)
       .then(authUser => {
-        // TODO set the state with user data
+        this.props.history.push(ROUTES.DASHBOARD);
       })
       .catch(error => {
         console.log(error);
@@ -38,34 +20,20 @@ export class SignIn extends React.Component<ISignInComponent> {
   };
 
   faceBookLogin = () => {
-    // await auth.doFacebookSignIn();
-    console.log('done');
-
+    auth.doFacebookSignIn();
     this.props.history.push(ROUTES.DASHBOARD);
   };
 
   signOut = () => {
-    console.log(auth.doSignOut());
-
     auth.doSignOut();
   };
   render() {
-    console.log(this);
-
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="bg-light-green flex flex-column vh-100">
-        <div
-          onClick={this.faceBookLogin}
-          className="fb-login-button pt5 tc"
-          data-max-rows="1"
-          data-size="large"
-          data-button-type="continue_with"
-          data-show-faces="false"
-          data-auto-logout-link="false"
-          data-use-continue-as="false"
-        />
+      <div className="flex flex-column vh-100">
+        <button onClick={this.signOut}>Logout</button>
+        <button onClick={this.faceBookLogin} className="facebook-button" />
         <span className="white tc mt2">
           <FormattedMessage id="general|or" />
         </span>
@@ -73,10 +41,7 @@ export class SignIn extends React.Component<ISignInComponent> {
         <Formik
           initialValues={{
             email: '',
-            firstName: '',
-            lastName: '',
-            passwordOne: '',
-            passwordTwo: '',
+            password: '',
           }}
           onSubmit={this.onSubmit}
         >
@@ -92,52 +57,16 @@ export class SignIn extends React.Component<ISignInComponent> {
                   id: 'general|placeholder|email',
                 })}
               />
-              <label htmlFor="firstname" />
+              <label htmlFor="password" />
               <input
-                value={values.firstName}
-                name="firstName"
+                value={values.password}
+                name="password"
                 onChange={event =>
-                  setFieldValue('firstName', event.target.value)
-                }
-                type="text"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|firstname',
-                })}
-              />
-              <label htmlFor="lastname" />
-              <input
-                value={values.lastName}
-                name="lastName"
-                onChange={event =>
-                  setFieldValue('lastName', event.target.value)
-                }
-                type="text"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|lastname',
-                })}
-              />
-              <label htmlFor="passwordOne" />
-              <input
-                value={values.passwordOne}
-                name="passwordOne"
-                onChange={event =>
-                  setFieldValue('passwordOne', event.target.value)
+                  setFieldValue('password', event.target.value)
                 }
                 type="password"
                 placeholder={formatMessage({
                   id: 'general|placeholder|password',
-                })}
-              />
-              <label htmlFor="passwordTwo" />
-              <input
-                value={values.passwordTwo}
-                name="passwordTwo"
-                onChange={event =>
-                  setFieldValue('passwordTwo', event.target.value)
-                }
-                type="password"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|confirmpassword',
                 })}
               />
               <button
@@ -157,5 +86,5 @@ export class SignIn extends React.Component<ISignInComponent> {
   }
 }
 
-const injectIntlSignin = injectIntl(SignIn);
-export default withRouter(injectIntlSignin);
+const injectIntlSignIn = injectIntl(SignIn);
+export default withRouter(injectIntlSignIn);

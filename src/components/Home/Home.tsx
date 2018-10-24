@@ -8,20 +8,18 @@ export class Home extends React.Component<
   RouteComponentProps<any, StaticContext>
 > {
   pushToSignIn = () => {
-    this.props.history.push('/signin');
+    this.props.history.push(ROUTES.SIGN_IN);
   };
 
   pushToRegister = () => {
-    this.props.history.push(ROUTES.SIGN_IN);
+    this.props.history.push(ROUTES.REGISTER);
   };
   render() {
-    console.log(this.props.history.push);
-
     return (
       <div className="tc">
         <img
           className="mt6 w-30"
-          src={require('../../assets/kidappi-logo.png')}
+          src={require('../../styles/assets/kidappi-logo.png')}
         />
         <div className="flex justify-around absolute w-100 bottom-2 mb4 ">
           <button

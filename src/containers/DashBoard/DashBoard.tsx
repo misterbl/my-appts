@@ -3,10 +3,10 @@ import { Formik, Form } from 'formik';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router';
-import { IRegisterComponent } from './Register.d';
+import { IDashBoardComponent } from './DashBoard.d';
 import ROUTES from '../../consts/routes';
 
-export class Register extends React.Component<IRegisterComponent> {
+export class DashBoard extends React.Component<IDashBoardComponent> {
   onSubmit = (event: any) => {
     const { email, passwordOne } = event;
     auth
@@ -99,5 +99,5 @@ export class Register extends React.Component<IRegisterComponent> {
   }
 }
 
-const injectIntlRegister = injectIntl(Register);
-export default withRouter(injectIntlRegister);
+const injectIntlDashBoard = injectIntl(DashBoard);
+export default withRouter(injectIntlDashBoard);

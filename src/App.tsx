@@ -1,49 +1,65 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
+import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { addLocaleData, IntlProvider } from 'react-intl';
-import * as locale_en from 'react-intl/locale-data/en';
-import * as locale_fr from 'react-intl/locale-data/fr';
-import * as messages_fr from './consts/i18n/fr';
-import * as messages_en from './consts/i18n/en';
+import {
+  IAppComponent,
+  IAppComponentDispatchToProps,
+  IAppComponentMapStateToProps,
+} from './App.d';
+import { apiActions } from './actions';
+import * as firebase from 'firebase/app';
 import history from './history';
 import ROUTES from './consts/routes';
-import configureStore from './configureStore';
 import UserCard from './components/UserCard';
 import Home from './components/Home';
 import SignIn from './containers/SignIn';
-// import Register from './containers/Register';
+import Register from './containers/Register';
+import DashBoard from './containers/DashBoard';
+import { getUserData } from './selectors/apiSelectors';
+import { IAppState } from './types/state';
 
-const store = configureStore({}, history);
-const messages = {
-  fr: messages_fr,
-  en: messages_en,
-};
-const language = navigator.language.split(/[-_]/)[0];
-
-addLocaleData([...locale_en, ...locale_fr]);
-
-class App extends React.Component {
+class App extends React.Component<IAppComponent> {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.props.apiActions.saveUserData(user);
+    });
+  }
   render() {
+    const { user } = this.props;
+    console.log(user);
+
     return (
       <div className="bg-white-10 vh-100">
-        <IntlProvider locale={language} messages={messages[language]}>
-          <Provider store={store}>
-            <ConnectedRouter history={history}>
-              <Switch>
-                <Route path={ROUTES.INDEX} component={Home} exact />
-                <Route path={ROUTES.SIGN_IN} component={SignIn} />
-                <Route path={ROUTES.DASHBOARD} component={UserCard} />
-                {/* <Route path={ROUTES.REGISTER} component={Register} /> */}
-                <Route path={ROUTES.CARD} component={UserCard} />
-              </Switch>
-            </ConnectedRouter>
-          </Provider>
-        </IntlProvider>
+        <ConnectedRouter history={history}>
+          <Switch>
+            <Route path={ROUTES.INDEX} component={Home} exact />
+            <Route path={ROUTES.SIGN_IN} component={SignIn} />
+            <Route path={ROUTES.DASHBOARD} component={DashBoard} />
+            <Route path={ROUTES.REGISTER} component={Register} />
+            <Route path={ROUTES.CARD} component={UserCard} />
+          </Switch>
+        </ConnectedRouter>
+        {user && <footer>Footer</footer>}
       </div>
     );
   }
 }
 
-export default App;
+export const mapDispatchToProps = (
+  dispatch: Dispatch<AnyAction>,
+): IAppComponentDispatchToProps => ({
+  apiActions: bindActionCreators(apiActions, dispatch),
+  // apiThunk: bindActionCreators(apiThunk, dispatch),
+});
+export const mapStateToProps = (
+  state: IAppState,
+): IAppComponentMapStateToProps => ({
+  user: getUserData(state),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
