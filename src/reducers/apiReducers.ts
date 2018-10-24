@@ -16,7 +16,7 @@ type State = IAppState['api'];
 //   }
 // };
 
-export const saveUserData = (
+export const userData = (
   state: State['userData'] = null,
   action: AnyAction,
 ): State['userData'] => {
