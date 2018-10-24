@@ -61,6 +61,10 @@
   margin-top: 30px;
 }
 
+.mt90 {
+  margin-top: 90px;
+}
+
 .mt12 {
   margin-top: 12px;
 }
@@ -71,6 +75,10 @@
 
 .pl10 {
   padding-left: 10px;
+}
+
+.pt90 {
+  padding-top: 90px;
 }
 
 .pb60 {
@@ -86,6 +94,10 @@
   text-transform: uppercase;
   height: 45px;
   display: inline;
+}
+
+.fb-button {
+  margin-top: 90px !important;
 }
 
 .text-center {

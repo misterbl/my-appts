@@ -8,7 +8,6 @@
     "object-literal-sort-keys": false,
     "jsx-no-lambda": false,
     "only-arrow-functions": false
-    
   },
   "linterOptions": {
     "exclude": [

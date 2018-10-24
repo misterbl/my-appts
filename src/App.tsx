@@ -34,6 +34,7 @@ class App extends React.Component {
               <Switch>
                 <Route path={ROUTES.INDEX} component={Home} exact />
                 <Route path={ROUTES.SIGN_IN} component={Signin} />
+                <Route path={ROUTES.DASHBOARD} component={UserCard} />
                 {/* <Route path={ROUTES.REGISTER} component={Register} /> */}
                 <Route path={ROUTES.CARD} component={UserCard} />
               </Switch>

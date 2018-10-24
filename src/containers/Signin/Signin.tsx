@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import { withRouter, RouteComponentProps, StaticContext } from 'react-router';
+import ROUTES from '../../consts/routes';
 
 const INITIAL_STATE = {
   firstname: '',
@@ -15,7 +17,9 @@ const byPropKey = (propertyName: any, value: any) => () => ({
   [propertyName]: value,
 });
 
-export class SignIn extends React.Component {
+export class SignIn extends React.Component<
+  RouteComponentProps<any, StaticContext>
+> {
   constructor(props: any) {
     super(props);
 
@@ -42,9 +46,17 @@ export class SignIn extends React.Component {
   };
 
   faceBookLogin = () => {
-    auth.doFacebookSignIn();
+    // await auth.doFacebookSignIn();
+    console.log('done');
+
+    this.props.history.push(ROUTES.DASHBOARD);
   };
 
+  signOut = () => {
+    console.log(auth.doSignOut());
+
+    auth.doSignOut();
+  };
   render() {
     // @ts-ignore
     const { formatMessage } = this.props.intl;
@@ -64,9 +76,18 @@ export class SignIn extends React.Component {
     } = this.state;
 
     return (
-      <div className="green-background flex-column">
-        <button onClick={this.faceBookLogin}>Login with Facebook</button>
-        <span className="font-white">
+      <div className="green-background  flex-column">
+        <div
+          onClick={this.faceBookLogin}
+          className="fb-login-button pt90 text-center"
+          data-max-rows="1"
+          data-size="large"
+          data-button-type="continue_with"
+          data-show-faces="false"
+          data-auto-logout-link="false"
+          data-use-continue-as="false"
+        />
+        <span className="font-white text-center mt30">
           <FormattedMessage id="general|or" />
         </span>
         <form className="signin-register flex-column" onSubmit={this.onSubmit}>
@@ -128,4 +149,6 @@ export class SignIn extends React.Component {
   }
 }
 
-export default injectIntl(SignIn);
+const injectIntlSignin = injectIntl(SignIn);
+// @ts-ignore
+export default withRouter(injectIntlSignin);
