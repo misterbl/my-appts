@@ -1,48 +1,40 @@
 import * as React from 'react';
+import { Formik, Form } from 'formik';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { withRouter, RouteComponentProps, StaticContext } from 'react-router';
+import { withRouter } from 'react-router';
+import { ISignInComponent } from './SignIn.d';
 import ROUTES from '../../consts/routes';
 
-const INITIAL_STATE = {
-  firstname: '',
-  lastname: '',
-  email: '',
-  passwordOne: '',
-  passwordTwo: '',
-  error: null,
-};
+// const INITIAL_STATE = {
+//   firstname: '',
+//   lastname: '',
+//   email: '',
+//   passwordOne: '',
+//   passwordTwo: '',
+//   error: null,
+// };
 
-const byPropKey = (propertyName: any, value: any) => () => ({
-  [propertyName]: value,
-});
+// const byPropKey = (propertyName: any, value: any) => () => ({
+//   [propertyName]: value,
+// });
 
-export class SignIn extends React.Component<
-  RouteComponentProps<any, StaticContext>
-> {
-  constructor(props: any) {
-    super(props);
+export class SignIn extends React.Component<ISignInComponent> {
+  // constructor(props: any) {
+  //   super(props);
 
-    this.state = { ...INITIAL_STATE };
-  }
+  //   this.state = { ...INITIAL_STATE };
+  // }
   onSubmit = (event: any) => {
-    const {
-      // @ts-ignore
-      email,
-      // @ts-ignore
-      passwordOne,
-    } = this.state;
-
+    const { email, passwordOne } = event;
     auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        this.setState({ ...INITIAL_STATE });
+        // TODO set the state with user data
       })
       .catch(error => {
-        this.setState(byPropKey('error', error));
+        console.log(error);
       });
-
-    event.preventDefault();
   };
 
   faceBookLogin = () => {
@@ -58,28 +50,15 @@ export class SignIn extends React.Component<
     auth.doSignOut();
   };
   render() {
-    // @ts-ignore
+    console.log(this);
+
     const { formatMessage } = this.props.intl;
-    const {
-      // @ts-ignore
-      firstname,
-      // @ts-ignore
-      lastname,
-      // @ts-ignore
-      email,
-      // @ts-ignore
-      passwordOne,
-      // @ts-ignore
-      passwordTwo,
-      // @ts-ignore
-      error,
-    } = this.state;
 
     return (
-      <div className="green-background  flex-column">
+      <div className="bg-light-green flex flex-column vh-100">
         <div
           onClick={this.faceBookLogin}
-          className="fb-login-button pt90 text-center"
+          className="fb-login-button pt5 tc"
           data-max-rows="1"
           data-size="large"
           data-button-type="continue_with"
@@ -87,68 +66,96 @@ export class SignIn extends React.Component<
           data-auto-logout-link="false"
           data-use-continue-as="false"
         />
-        <span className="font-white text-center mt30">
+        <span className="white tc mt2">
           <FormattedMessage id="general|or" />
         </span>
-        <form className="signin-register flex-column" onSubmit={this.onSubmit}>
-          <input
-            value={email}
-            onChange={event =>
-              this.setState(byPropKey('email', event.target.value))
-            }
-            type="text"
-            // @ts-ignore
-            placeholder={formatMessage({ id: 'general|placeholder|email' })}
-          />
-          <input
-            value={firstname}
-            onChange={event =>
-              this.setState(byPropKey('firstname', event.target.value))
-            }
-            type="text"
-            // @ts-ignore
-            placeholder={formatMessage({ id: 'general|placeholder|firstname' })}
-          />
-          <input
-            value={lastname}
-            onChange={event =>
-              this.setState(byPropKey('lastname', event.target.value))
-            }
-            type="text"
-            // @ts-ignore
-            placeholder={formatMessage({ id: 'general|placeholder|lastname' })}
-          />
-          <input
-            value={passwordOne}
-            onChange={event =>
-              this.setState(byPropKey('passwordOne', event.target.value))
-            }
-            type="password"
-            // @ts-ignore
-            placeholder={formatMessage({ id: 'general|placeholder|password' })}
-          />
-          <input
-            value={passwordTwo}
-            onChange={event =>
-              this.setState(byPropKey('passwordTwo', event.target.value))
-            }
-            type="password"
-            // @ts-ignore
-            placeholder={formatMessage({
-              id: 'general|placeholder|confirmpassword',
-            })}
-          />
-          <button className="cta-button" type="submit">
-            <FormattedMessage id="general|button|next" />
-          </button>
 
-          {error && <p>{error.message}</p>}
-        </form>
+        <Formik
+          initialValues={{
+            email: '',
+            firstName: '',
+            lastName: '',
+            passwordOne: '',
+            passwordTwo: '',
+          }}
+          onSubmit={this.onSubmit}
+        >
+          {({ values, isSubmitting, setFieldValue }) => (
+            <Form className="signin-register flex flex-column">
+              <label htmlFor="email" />
+              <input
+                value={values.email}
+                name="email"
+                onChange={event => setFieldValue('email', event.target.value)}
+                type="text"
+                placeholder={formatMessage({
+                  id: 'general|placeholder|email',
+                })}
+              />
+              <label htmlFor="firstname" />
+              <input
+                value={values.firstName}
+                name="firstName"
+                onChange={event =>
+                  setFieldValue('firstName', event.target.value)
+                }
+                type="text"
+                placeholder={formatMessage({
+                  id: 'general|placeholder|firstname',
+                })}
+              />
+              <label htmlFor="lastname" />
+              <input
+                value={values.lastName}
+                name="lastName"
+                onChange={event =>
+                  setFieldValue('lastName', event.target.value)
+                }
+                type="text"
+                placeholder={formatMessage({
+                  id: 'general|placeholder|lastname',
+                })}
+              />
+              <label htmlFor="passwordOne" />
+              <input
+                value={values.passwordOne}
+                name="passwordOne"
+                onChange={event =>
+                  setFieldValue('passwordOne', event.target.value)
+                }
+                type="password"
+                placeholder={formatMessage({
+                  id: 'general|placeholder|password',
+                })}
+              />
+              <label htmlFor="passwordTwo" />
+              <input
+                value={values.passwordTwo}
+                name="passwordTwo"
+                onChange={event =>
+                  setFieldValue('passwordTwo', event.target.value)
+                }
+                type="password"
+                placeholder={formatMessage({
+                  id: 'general|placeholder|confirmpassword',
+                })}
+              />
+              <button
+                className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                <FormattedMessage id="general|button|next" />
+              </button>
+
+              {/* {error && <p>{error.message}</p>} */}
+            </Form>
+          )}
+        </Formik>
       </div>
     );
   }
 }
 
 const injectIntlSignin = injectIntl(SignIn);
-// @ts-ignore
 export default withRouter(injectIntlSignin);

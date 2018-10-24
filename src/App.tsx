@@ -12,7 +12,7 @@ import ROUTES from './consts/routes';
 import configureStore from './configureStore';
 import UserCard from './components/UserCard';
 import Home from './components/Home';
-import Signin from './containers/Signin';
+import SignIn from './containers/SignIn';
 // import Register from './containers/Register';
 
 const store = configureStore({}, history);
@@ -27,13 +27,13 @@ addLocaleData([...locale_en, ...locale_fr]);
 class App extends React.Component {
   render() {
     return (
-      <div className="app">
+      <div className="bg-white-10 vh-100">
         <IntlProvider locale={language} messages={messages[language]}>
           <Provider store={store}>
             <ConnectedRouter history={history}>
               <Switch>
                 <Route path={ROUTES.INDEX} component={Home} exact />
-                <Route path={ROUTES.SIGN_IN} component={Signin} />
+                <Route path={ROUTES.SIGN_IN} component={SignIn} />
                 <Route path={ROUTES.DASHBOARD} component={UserCard} />
                 {/* <Route path={ROUTES.REGISTER} component={Register} /> */}
                 <Route path={ROUTES.CARD} component={UserCard} />

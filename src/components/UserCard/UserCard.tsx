@@ -40,7 +40,7 @@ export class UserCard extends React.Component {
         </header>
         <div className="user-card-details">
           <div className="user-avatar" />
-          <div className="flex-column">
+          <div className=" flex flex-column">
             <strong className="font-green">Matilde</strong>
             <div className="font-green">Cannes</div>
             <div className="font-green">2 enfants</div>
@@ -68,11 +68,13 @@ export class UserCard extends React.Component {
           </p>
         </div>
         <footer className="user-card-footer">
-          <div className="flex-column ml10">
+          <div className=" flex flex-column ml10">
             <span>Exchange</span>
             <span>Money</span>
           </div>
-          <button className="mr10 cta-button">Contact</button>
+          <button className="mr2 bg-green white fw7 ph3 ttc di pv3 bn-ns">
+            Contact
+          </button>
         </footer>
       </>
     );

@@ -20,14 +20,20 @@ export class Home extends React.Component<
     return (
       <div className="tc">
         <img
-          className="home-logo"
+          className="mt6 w-30"
           src={require('../../assets/kidappi-logo.png')}
         />
-        <div className="space-around register-signin">
-          <button onClick={this.pushToSignIn} className="cta-button">
+        <div className="flex justify-around absolute w-100 bottom-2 mb4 ">
+          <button
+            onClick={this.pushToSignIn}
+            className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
+          >
             <FormattedMessage id="general|button|signin" />
           </button>
-          <button onClick={this.pushToRegister} className="cta-button">
+          <button
+            onClick={this.pushToRegister}
+            className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
+          >
             <FormattedMessage id="general|button|register" />
           </button>
         </div>
