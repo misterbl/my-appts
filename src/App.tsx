@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 import {
@@ -15,33 +15,51 @@ import Home from './components/Home';
 import SignIn from './containers/SignIn';
 import Register from './containers/Register';
 import DashBoard from './containers/DashBoard';
-import AppFooter from './containers/AppFooter/'
+import AppFooter from './containers/AppFooter/';
 import { getUserData } from './selectors/apiSelectors';
 import { IAppState } from './types/state';
 
 class App extends React.Component<IAppComponent> {
+  shortName: string = '';
+  constructor(props: IAppComponent) {
+    super(props);
+    firebase.auth().onAuthStateChanged(user => {
+      user
+        ? this.props.apiActions.saveUserData(user)
+        : this.props.history.push(ROUTES.INDEX);
+    });
+  }
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       this.props.apiActions.saveUserData(user);
     });
   }
   render() {
-    const { user } = this.props;
-    console.log(user);
+    const {
+      user,
+      history: {
+        location: { pathname },
+      },
+    } = this.props;
 
     return (
- 
       <div className="bg-white-10 vh-100">
-          <Switch>
-            <Route path={ROUTES.INDEX} component={Home} exact />
-            <Route path={ROUTES.SIGN_IN} component={SignIn} />
-            <Route path={ROUTES.DASHBOARD} component={DashBoard} />
-            <Route path={ROUTES.REGISTER} component={Register} />
-            <Route path={ROUTES.CARD} component={UserCard} />
-          </Switch>
-          {user && <AppFooter />}
+        <Switch>
+          <Route path={ROUTES.INDEX} component={Home} exact />
+          <Route path={ROUTES.SIGN_IN} component={SignIn} />
+          <Route path={ROUTES.DASHBOARD} component={DashBoard} />
+          <Route path={ROUTES.REGISTER} component={Register} />
+          <Route path={ROUTES.CARD} component={UserCard} />
+          <Route path={ROUTES.INBOX} component={UserCard} />
+          <Route path={ROUTES.SEARCH} component={UserCard} />
+          <Route path={ROUTES.FAVOURITE} component={UserCard} />
+        </Switch>
+        {user &&
+          pathname !== ROUTES.INDEX &&
+          pathname !== ROUTES.SIGN_IN &&
+          pathname !== ROUTES.REGISTER && <AppFooter />}
       </div>
-      
     );
   }
 }
@@ -58,7 +76,9 @@ export const mapStateToProps = (
   user: getUserData(state),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(App),
+);

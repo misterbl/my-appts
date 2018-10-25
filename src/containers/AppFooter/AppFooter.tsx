@@ -1,27 +1,62 @@
 import * as React from 'react';
-// import { Formik, Form } from 'formik';
-// import { auth } from '../../firebase';
-import { injectIntl } from 'react-intl';
-import { withRouter } from 'react-router';
-import MessageIcon from '../../styles/assets/messageIcon'
-import { IDashBoardComponent } from './AppFooter.d';
-// import ROUTES from '../../consts/routes';
+import { injectIntl, FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router-dom';
+import ROUTES from '../../consts/routes';
+import {
+  MessageIcon,
+  HomeIcon,
+  StarIcon,
+  SearchIcon,
+} from '../../styles/assets';
+import { IAppFooterComponent } from './AppFooter.d';
+import Svg from '../../components/Svg';
 
-export class DashBoard extends React.Component<IDashBoardComponent> {
-  
+export class AppFooter extends React.Component<IAppFooterComponent> {
+  state = { clicked: '' };
+  iconList = [
+    { icon: MessageIcon, route: ROUTES.INBOX, name: 'inbox' },
+    { icon: HomeIcon, route: ROUTES.DASHBOARD, name: 'dashboard' },
+    { icon: StarIcon, route: ROUTES.FAVOURITE, name: 'favourite' },
+    { icon: SearchIcon, route: ROUTES.SEARCH, name: 'search' },
+  ];
+
+  clickedAction = (route: string) => {
+    this.setState({ clicked: route });
+  };
+
+  pushToPage = (route: string) => {
+    this.clickedAction(route);
+    this.props.history.push(route);
+  };
+
+  filled = (route: string) => {
+    if (this.state.clicked === route) {
+      return '#ff6300';
+    } else {
+      return undefined;
+    }
+  };
+
+  mapIcons = (list: any) => {
+    return list.map((element: any) => (
+      <Svg
+        Icon={element.icon}
+        name={<FormattedMessage id={`content|appfooter|${element.name}`} />}
+        handleClick={() => this.pushToPage(element.route)}
+        fill={this.filled(element.route)}
+        key={element.route}
+      />
+    ));
+  };
+
   render() {
-    // const { formatMessage } = this.props.intl;
-
     return (
-      <div className="flex absolute bottom-0 mb2">
-       <span>APP FOOTER</span> 
-      <MessageIcon/>
-
-
+      <div className="flex justify-around absolute w-100 bottom-0 mb2">
+        {this.mapIcons(this.iconList)}
       </div>
     );
   }
 }
 
-const injectIntlDashBoard = injectIntl(DashBoard);
-export default withRouter(injectIntlDashBoard);
+const injectIntlAppFooter = injectIntl(AppFooter);
+export default withRouter(injectIntlAppFooter);

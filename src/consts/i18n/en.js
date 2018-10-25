@@ -11,4 +11,8 @@ module.exports = {
   'general|button|register': 'Register',
   'general|content|numberKids': 'Number of children',
   'general|content|location': 'Location',
+  'content|appfooter|inbox': 'Inbox',
+  'content|appfooter|dashboard': 'Dashboard',
+  'content|appfooter|favourite': 'Favourite',
+  'content|appfooter|search': 'Search',
 };

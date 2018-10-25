@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Formik, Form } from 'formik';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { IRegisterComponent } from './Register.d';
 import ROUTES from '../../consts/routes';
 

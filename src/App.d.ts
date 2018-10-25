@@ -14,6 +14,7 @@ export interface IAppComponentMapStateToProps {
 }
 
 export type IAppComponent = IAppComponentDispatchToProps &
-  IAppComponentMapStateToProps;
+  IAppComponentMapStateToProps &
+  RouteComponentProps<any, StaticContext>;
 //   InjectedIntlProps &
-//   RouteComponentProps<IRouteComponentProps, StaticContext>;
+//
