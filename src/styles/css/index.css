@@ -1,106 +1,27 @@
-.green-background {
-  background-color: #478e66;
-  height: 100vh;
+.profile-form input {
+  background: transparent;
+  border-right: none;
+  background: transparent;
+  border-bottom: 1px solid #EEEEEE;
+  border-top: none;
+  border-left: none;
+  outline: none;
+  margin-bottom: 30px;
+}
+.profile-form input:focus {
+  border-bottom: 2px solid #555555;
+}
+.profile-form input::placeholder {
+  color: #555555;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.font-green {
-  color: #478e66;
-}
-
-.font-white {
-  color: #fff;
-}
-
-.flex {
-  display: flex;
-}
-
-.space-around {
-  display: flex;
-  justify-content: space-around;
-}
-
-.ml10 {
-  margin-left: 10px;
-}
-
-.mr10 {
-  margin-right: 10px;
-}
-
-.mt10 {
-  margin-top: 10px;
-}
-
-.m10 {
-  margin: 10px;
-}
-
-.mt30 {
-  margin-top: 30px;
-}
-
-.mt90 {
-  margin-top: 90px;
-}
-
-.mt12 {
-  margin-top: 12px;
-}
-
-.pr10 {
-  padding-right: 10px;
-}
-
-.pl10 {
-  padding-left: 10px;
-}
-
-.pt90 {
-  padding-top: 90px;
-}
-
-.pb60 {
-  padding-bottom: 60px;
-}
-
-.fb-button {
-  margin-top: 90px !important;
-}
-
-.text-center {
-  text-align: center;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .facebook-button {
-  background-image: url('../assets/facebook-logo.png');
+  background-image: url("../assets/facebook-logo.png");
   background-size: cover;
   width: 80px;
   height: 80px;
 }
 
-.signin-register {
-  margin: 20px;
-}
 .signin-register input {
   background: transparent;
   border-right: none;
@@ -135,7 +56,7 @@
 }
 
 .user-avatar {
-  background-image: url('https://static.makeuseof.com/wp-content/uploads/2015/11/perfect-profile-picture-all-about-face.jpg');
+  background-image: url("https://static.makeuseof.com/wp-content/uploads/2015/11/perfect-profile-picture-all-about-face.jpg");
   width: 60px;
   height: 60px;
   -webkit-border-radius: 60px;
@@ -169,16 +90,13 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,3 +1,4 @@
+import { IProfileFormFormData } from './../ProfileForm/ProfileForm.d';
 import { IAppState } from './../../types/state.d';
 import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
@@ -13,5 +14,5 @@ export interface IAccountMapStateToProps {
   user: IAppState['api']['userData'];
 }
 export type IAccountComponent = IAccountMapStateToProps &
-  InjectedIntlProps &
+  InjectedIntlProps & FormikProps<IProfileFormFormData> &
   RouteComponentProps<any, StaticContext>;

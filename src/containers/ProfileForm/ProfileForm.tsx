@@ -8,7 +8,7 @@ import { IProfileFormComponent } from './ProfileForm.d';
 
 export class ProfileForm extends React.Component<IProfileFormComponent> {
   onSubmit = (event: any) => {
-    // const { firstName, lastName, address, profileTitle, profileText, children, availabilities } = event;
+    // const { firstName, lastName, address, profileTitle, profileDescription, children, availabilities } = event;
     // auth
     //   .doCreateUserWithEmailAndPassword(email, passwordOne)
     // //   .then(authUser => {
@@ -43,7 +43,7 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
           onSubmit={this.onSubmit}
         >
           {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="signin-register flex flex-column">
+            <Form className="profile-form mh4 flex flex-column">
               <label htmlFor="firstName" />
               <input
                 value={values.firstName}
@@ -63,7 +63,7 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
                 }
                 type="password"
                 placeholder={formatMessage({
-                  id: 'general|placeholder|password',
+                  id: 'general|placeholder|lastName',
                 })}
               />
               <label htmlFor="address" />
@@ -91,13 +91,13 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
               />
               <input
                 value={values.profileText}
-                name="profileText"
+                name="profileDescription"
                 onChange={event =>
-                  setFieldValue('profileText', event.target.value)
+                  setFieldValue('profileDescription', event.target.value)
                 }
                 type="password"
                 placeholder={formatMessage({
-                  id: 'general|placeholder|profileText',
+                  id: 'general|placeholder|profileDescription',
                 })}
               />
               <input

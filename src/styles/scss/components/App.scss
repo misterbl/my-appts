@@ -1,89 +1,19 @@
-.green-background {
-  background-color: #478e66;
-  height: 100vh;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.font-green {
-  color: #478e66;
-}
-
-.font-white {
-  color: #fff;
-}
-
-.flex {
-  display: flex;
-}
-
-.space-around {
-  display: flex;
-  justify-content: space-around;
-}
-.ml10 {
-  margin-left: 10px;
-}
-
-.mr10 {
-  margin-right: 10px;
-}
-
-.mt10 {
-  margin-top: 10px;
-}
-
-.m10 {
-  margin: 10px;
-}
-
-.mt30 {
-  margin-top: 30px;
-}
-
-.mt90 {
-  margin-top: 90px;
-}
-.mt12 {
-  margin-top: 12px;
-}
-
-.pr10 {
-  padding-right: 10px;
-}
-
-.pl10 {
-  padding-left: 10px;
-}
-
-.pt90 {
-  padding-top: 90px;
-}
-.pb60 {
-  padding-bottom: 60px;
-}
-
-.fb-button {
-  margin-top: 90px !important;
-}
-.text-center {
-  text-align: center;
-}
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.profile-form {
+  input {
+    background: transparent;
+    border-right: none;
+    background: transparent;
+    border-bottom: 1px solid #EEEEEE;
+    border-top: none;
+    border-left: none;
+    outline: none;
+    margin-bottom: 30px;
   }
-  to {
-    transform: rotate(360deg);
+  input:focus {
+    border-bottom: 2px solid #555555;
+  }
+  input::placeholder {
+    color: #555555;
   }
 }
 

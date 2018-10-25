@@ -16,4 +16,11 @@ module.exports = {
   'content|appfooter|favourite': 'Favourite',
   'content|appfooter|search': 'Search',
   'content|appfooter|account': 'Account',
+  'general|placeholder|firstName': 'First Name',
+  'general|placeholder|lastName': 'Last Name',
+  'general|placeholder|address': 'Address',
+  'general|placeholder|profileTitle': 'Title',
+  'general|placeholder|profileDescription': 'Description',
+  'general|placeholder|children': 'Children',
+  'general|placeholder|availabilities': 'Availabilities'
 };
