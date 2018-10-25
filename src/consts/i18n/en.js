@@ -15,4 +15,5 @@ module.exports = {
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',
   'content|appfooter|search': 'Search',
+  'content|appfooter|account': 'Account',
 };

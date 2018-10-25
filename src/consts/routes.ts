@@ -7,6 +7,7 @@ const routes = {
   INBOX: './inbox',
   FAVOURITE: './favourite',
   SEARCH: './search',
+  ACCOUNT: './account',
 };
 
 export default routes;

@@ -10,11 +10,12 @@ import {
 import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
 import ROUTES from './consts/routes';
-import UserCard from './components/UserCard';
+// import UserCard from './components/UserCard';
 import Home from './components/Home';
 import SignIn from './containers/SignIn';
 import Register from './containers/Register';
 import DashBoard from './containers/DashBoard';
+import Account from './containers/Account/Account';
 import AppFooter from './containers/AppFooter/';
 import { getUserData } from './selectors/apiSelectors';
 import { IAppState } from './types/state';
@@ -50,15 +51,17 @@ class App extends React.Component<IAppComponent> {
           <Route path={ROUTES.SIGN_IN} component={SignIn} />
           <Route path={ROUTES.DASHBOARD} component={DashBoard} />
           <Route path={ROUTES.REGISTER} component={Register} />
-          <Route path={ROUTES.CARD} component={UserCard} />
-          <Route path={ROUTES.INBOX} component={UserCard} />
+          <Route path={ROUTES.CARD} component={Account} />
+          {/* <Route path={ROUTES.INBOX} component={UserCard} />
           <Route path={ROUTES.SEARCH} component={UserCard} />
-          <Route path={ROUTES.FAVOURITE} component={UserCard} />
+          <Route path={ROUTES.FAVOURITE} component={UserCard} /> */}
+          <Route path={ROUTES.ACCOUNT} component={Account} />
         </Switch>
         {user &&
           pathname !== ROUTES.INDEX &&
           pathname !== ROUTES.SIGN_IN &&
-          pathname !== ROUTES.REGISTER && <AppFooter />}
+          pathname !== ROUTES.REGISTER &&
+          pathname !== ROUTES.CARD && <AppFooter />}
       </div>
     );
   }

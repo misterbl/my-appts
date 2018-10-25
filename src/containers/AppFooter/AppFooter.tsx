@@ -7,6 +7,7 @@ import {
   HomeIcon,
   StarIcon,
   SearchIcon,
+  AccountIcon,
 } from '../../styles/assets';
 import { IAppFooterComponent } from './AppFooter.d';
 import Svg from '../../components/Svg';
@@ -18,6 +19,7 @@ export class AppFooter extends React.Component<IAppFooterComponent> {
     { icon: HomeIcon, route: ROUTES.DASHBOARD, name: 'dashboard' },
     { icon: StarIcon, route: ROUTES.FAVOURITE, name: 'favourite' },
     { icon: SearchIcon, route: ROUTES.SEARCH, name: 'search' },
+    { icon: AccountIcon, route: ROUTES.ACCOUNT, name: 'account' },
   ];
 
   clickedAction = (route: string) => {
@@ -51,7 +53,7 @@ export class AppFooter extends React.Component<IAppFooterComponent> {
 
   render() {
     return (
-      <div className="flex justify-around absolute w-100 bottom-0 mb2">
+      <div className="flex justify-around absolute w-100 bottom-0 pv2 ph3 shadow-5">
         {this.mapIcons(this.iconList)}
       </div>
     );

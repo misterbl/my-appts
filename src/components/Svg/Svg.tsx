@@ -6,8 +6,8 @@ const Svg = ({
   name = '',
   handleClick,
   fill = '#555555',
-  width = '20pt',
-  height = '20pt',
+  width = '15pt',
+  height = '15pt',
 }: ISvg) => (
   <div onClick={handleClick} className="flex flex-column items-center">
     <Icon fill={fill} width={width} height={height} />

@@ -1,5 +1,5 @@
 export interface IAppState {
   api: {
-    userData: {} | null;
+    userData: {photoURL: string} | null;
   };
 }
