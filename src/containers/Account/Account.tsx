@@ -13,32 +13,35 @@ import ProfileForm from '../ProfileForm/ProfileForm';
 export class Account extends React.Component<IAccountComponent> {
   render() {
     // const { formatMessage } = this.props.intl;
-    console.log(this.props.user);
-    console.log("hello");
 
-    const { user } = this.props
+    const { user } = this.props;
     return (
       <>
         <div className="flex pt4 ml4">
-          <img className="br-100 h3 w3" src={user ? user.photoURL : ''} alt="user's profile" />
-          <strong className='self-center ml3' >Matilde</strong>
+          <img
+            className="br-100 h3 w3"
+            src={user ? user.photoURL : ''}
+            alt="user's profile"
+          />
+          <strong className="self-center ml3">Name</strong>
         </div>
         {/* 
   // @ts-ignore */}
         <ProfileForm />
-
       </>
     );
   }
 }
 
-export const mapStateToProps = (
-  state: IAppState,
-): IAccountMapStateToProps => ({
+export const mapStateToProps = (state: IAppState): IAccountMapStateToProps => ({
   user: getUserData(state),
 });
 
-
 const injectIntlAccount = injectIntl(Account);
 
-export default withRouter(connect(mapStateToProps, null)(injectIntlAccount));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null,
+  )(injectIntlAccount),
+);
