@@ -6,7 +6,7 @@ import { InjectedIntlProps } from 'react-intl';
 
 export interface IAppComponentDispatchToProps {
   apiActions: ActionCreatorsMapObject;
-  //   apiThunk: ActionCreatorsMapObject;
+  apiThunk: ActionCreatorsMapObject;
 }
 
 export interface IAppComponentMapStateToProps {

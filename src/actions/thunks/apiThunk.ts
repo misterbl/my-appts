@@ -1,4 +1,4 @@
-// import { saveBooks } from '../actionCreators/apiActions';
+import { saveUserData } from './../actionCreators/apiActions';
 // import makeRequest from '@jg/http-client';
 // import { httpActions, apiActions } from '..';
 // import { REQUEST, ROUTES, ERROR_MESSAGES } from '../../consts';
@@ -9,7 +9,6 @@
 import Axios from 'axios';
 
 export const postUserData = (query: any) => async (dispatch: any) => {
-  console.log('posting');
 
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
@@ -18,13 +17,48 @@ export const postUserData = (query: any) => async (dispatch: any) => {
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
-      throw new Error("couldn't get books");
+      throw new Error("couldn't save user");
+    }
+    const json = await response;
+    dispatch(saveUserData(json.data.data.addUser));
+  } catch (error) {
+    throw new Error("couldn't save User");
+  }
+};
+
+export const updateUser = (query: any) => async (dispatch: any) => {
+  //   const resourceName = REQUEST.GET_FRP_DATA;
+  try {
+    const response = await Axios.create({
+      baseURL: 'http://localhost:4000/graphql',
+      headers: { 'Content-Type': 'application/graphql' },
+    }).post('', query);
+    if (response && response.status === 404) {
+      throw new Error("couldn't save user");
     }
     const json = await response;
     console.log(json);
 
-    // dispatch(saveBooks(json));
+    dispatch(saveUserData(json.data.data.updateUser));
   } catch (error) {
     throw new Error("couldn't save User");
+  }
+};
+export const getUserData = (query: any) => async (dispatch: any) => {
+  //   const resourceName = REQUEST.GET_FRP_DATA;
+  try {
+    const response = await Axios.create({
+      baseURL: 'http://localhost:4000/graphql',
+      headers: { 'Content-Type': 'application/graphql' },
+    }).post('', query);
+    if (response && response.status === 404) {
+      throw new Error("couldn't get user");
+    }
+    const json = await response;
+
+
+    dispatch(saveUserData(json.data.data.getUser));
+  } catch (error) {
+    throw new Error("couldn't get User");
   }
 };

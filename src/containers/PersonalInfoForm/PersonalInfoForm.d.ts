@@ -1,3 +1,4 @@
+import { IAppState } from 'src/types/state';
 import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
@@ -13,7 +14,11 @@ export interface IProfileFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;
 }
 
+export interface IProfileFormMapStateToProps {
+  user: IAppState['api']['userData'];
+}
+
 export type IPersonalInfoFormComponent = FormikProps<IPersonalInfoFormData> &
-  IProfileFormDispatchToProps &
+  IProfileFormDispatchToProps & IProfileFormMapStateToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

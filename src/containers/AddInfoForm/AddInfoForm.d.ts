@@ -1,3 +1,4 @@
+import { IAppState } from 'src/types/state';
 import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
@@ -13,11 +14,15 @@ export interface IAddInfoFormFormData {
   availabilities: string;
 }
 
-export interface IAddInfoFormsDispatchToProps {
+export interface IAddInfoFormMapStateToProps {
+  user: IAppState['api']['userData'];
+}
+
+export interface IAddInfoFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;
 }
 
 export type IAddInfoFormComponent = FormikProps<IAddInfoFormFormData> &
-  IAddInfoFormsDispatchToProps &
+  IAddInfoFormDispatchToProps & IAddInfoFormMapStateToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

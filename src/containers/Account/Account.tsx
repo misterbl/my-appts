@@ -7,8 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { IAccountComponent, IAccountMapStateToProps } from './Account.d';
 import { getUserData } from '../../selectors/apiSelectors';
 import { IAppState } from 'src/types/state';
-import ProfileForm from '../ProfileForm/ProfileForm';
-// import ROUTES from '../../consts/routes';
+import ROUTES from '../../consts/routes';
 
 export class Account extends React.Component<IAccountComponent> {
   render() {
@@ -25,9 +24,12 @@ export class Account extends React.Component<IAccountComponent> {
           />
           <strong className="self-center ml3">Name</strong>
         </div>
-        {/* 
-  // @ts-ignore */}
-        <ProfileForm />
+
+        <div>Account</div>
+        <button onClick={() => { this.props.history.push(ROUTES.USER_DETAILS) }} >
+          Edit Account
+        </button>
+
       </>
     );
   }

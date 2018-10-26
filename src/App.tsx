@@ -18,16 +18,32 @@ import DashBoard from './containers/DashBoard';
 import Account from './containers/Account/Account';
 import AppFooter from './containers/AppFooter/';
 import { getUserData } from './selectors/apiSelectors';
+import * as apiThunk from './actions/thunks/apiThunk';
 import { IAppState } from './types/state';
+import UserCard from './components/UserCard/UserCard';
+import PersonalInfoForm from './containers/PersonalInfoForm/PersonalInfoForm';
+import AddInfoForm from './containers/AddInfoForm/AddInfoForm';
 
 class App extends React.Component<IAppComponent> {
   shortName: string = '';
   constructor(props: IAppComponent) {
     super(props);
     firebase.auth().onAuthStateChanged(user => {
-      user
-        ? this.props.apiActions.saveUserData(user)
-        : this.props.history.push(ROUTES.INDEX);
+      if (user) {
+        const query = `mutation {
+          getUser (email: "${user.email}") {
+            _id
+            firstName
+            lastName
+            email
+            address
+            profileTitle
+            profileDescription
+          }
+        }`;
+        return this.props.apiThunk.getUserData(query)
+      }
+      this.props.history.push(ROUTES.INDEX);
     });
   }
 
@@ -51,11 +67,13 @@ class App extends React.Component<IAppComponent> {
           <Route path={ROUTES.SIGN_IN} component={SignIn} />
           <Route path={ROUTES.DASHBOARD} component={DashBoard} />
           <Route path={ROUTES.REGISTER} component={Register} />
-          <Route path={ROUTES.CARD} component={Account} />
-          {/* <Route path={ROUTES.INBOX} component={UserCard} />
+          <Route path={ROUTES.CARD} component={UserCard} />
+          <Route path={ROUTES.INBOX} component={UserCard} />
           <Route path={ROUTES.SEARCH} component={UserCard} />
-          <Route path={ROUTES.FAVOURITE} component={UserCard} /> */}
+          <Route path={ROUTES.FAVOURITE} component={UserCard} />
           <Route path={ROUTES.ACCOUNT} component={Account} />
+          <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
+          <Route path={ROUTES.AD_DETAILS} component={AddInfoForm} />
         </Switch>
         {user &&
           pathname !== ROUTES.INDEX &&
@@ -71,7 +89,7 @@ export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
 ): IAppComponentDispatchToProps => ({
   apiActions: bindActionCreators(apiActions, dispatch),
-  // apiThunk: bindActionCreators(apiThunk, dispatch),
+  apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 export const mapStateToProps = (
   state: IAppState,

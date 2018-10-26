@@ -2,24 +2,29 @@ import * as React from 'react';
 import { Formik, Form } from 'formik';
 import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { connect } from 'react-redux';
-
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import {
   IPersonalInfoFormComponent,
   IProfileFormDispatchToProps,
+  IProfileFormMapStateToProps,
 } from './PersonalInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
+import { IAppState } from 'src/types/state';
+import { getUserData } from 'src/selectors/apiSelectors';
 
-// import ROUTES from '../../consts/routes';
+import ROUTES from '../../consts/routes';
 
 export class PersonalInfoForm extends React.Component<
   IPersonalInfoFormComponent
-> {
+  > {
   onSubmit = (event: any) => {
     const { firstName, lastName, address } = event;
+    // @ts-ignore
+    const { _id } = this.props.user
     const query = `mutation {
-      updateUser (firstName: "${firstName}", lastName: "${lastName}", address: "${address}") {
+      updateUser (_id: "${_id}" firstName: "${firstName}", lastName: "${lastName}", address: "${address}") {
+        _id
         firstName
         lastName
         address
@@ -27,24 +32,33 @@ export class PersonalInfoForm extends React.Component<
         profileDescription
       }
     }`;
-    this.props.apiThunk.postUserData(query);
+    this.props.apiThunk.updateUser(query);
+    this.props.history.push(ROUTES.AD_DETAILS)
   };
 
   labelColor = (input: string) => (input.length === 0 ? 'white' : 'moon-gray');
 
   render() {
-    const { formatMessage } = this.props.intl;
+    const { user, intl: { formatMessage } } = this.props;
 
     return (
       <div className="flex flex-column">
+        <div className="flex pt4 ml4">
+          <img
+            className="br-100 h3 w3"
+            src={user ? user.photoURL : ''}
+            alt="user's profile"
+          />
+          <strong className="self-center ml3">Personnal Details</strong>
+        </div>
         <span className="white tc mt2">
           <FormattedMessage id="general|or" />
         </span>
         <Formik
           initialValues={{
-            firstName: '',
-            lastName: '',
-            address: '',
+            firstName: user && user.firstName,
+            lastName: user && user.lastName,
+            address: user && user.address,
           }}
           onSubmit={this.onSubmit}
         >
@@ -100,12 +114,6 @@ export class PersonalInfoForm extends React.Component<
                   id: 'general|placeholder|address',
                 })}
               />
-              <label
-                className={`${this.labelColor(values.profileTitle)} f6`}
-                htmlFor="profileTitle"
-              >
-                <FormattedMessage id="general|placeholder|profileTitle" />
-              </label>
               <button
                 className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
                 type="submit"
@@ -122,6 +130,11 @@ export class PersonalInfoForm extends React.Component<
   }
 }
 
+
+export const mapStateToProps = (state: IAppState): IProfileFormMapStateToProps => ({
+  user: getUserData(state),
+});
+
 export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
 ): IProfileFormDispatchToProps => ({
@@ -131,7 +144,7 @@ export const mapDispatchToProps = (
 const injectIntlPersonalInfoForm = injectIntl(PersonalInfoForm);
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   )(injectIntlPersonalInfoForm),
 );

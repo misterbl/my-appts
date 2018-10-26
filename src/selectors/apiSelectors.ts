@@ -5,5 +5,5 @@ export const apiSelector = (state: IAppState) => state.api;
 
 export const getUserData = createSelector(
   apiSelector,
-  api => api && api.userData,
+  api => api && api.userData && api.userData,
 );

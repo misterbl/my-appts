@@ -7,17 +7,22 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import {
   IAddInfoFormComponent,
-  IAddInfoFormsDispatchToProps,
+  IAddInfoFormDispatchToProps,
+  IAddInfoFormMapStateToProps
 } from './AddInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
+import { IAppState } from 'src/types/state';
+import { getUserData } from 'src/selectors/apiSelectors';
 
-// import ROUTES from '../../consts/routes';
+import ROUTES from '../../consts/routes';
 
 export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
-  onSubmit = (event: any) => {
+  onSubmit = async (event: any) => {
     const { profileTitle, profileDescription } = event;
+    // @ts-ignore
+    const { _id } = this.props.user
     const query = `mutation {
-      updateUser (profileTitle: "${profileTitle}", profileDescription: "${profileDescription}") {
+      updateUser (_id:"${_id}" profileTitle: "${profileTitle}", profileDescription: "${profileDescription}") {
         _id
         firstName
         lastName
@@ -27,14 +32,15 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
        
       }
     }`;
-    this.props.apiThunk.postUserData(query);
+    _id ? this.props.apiThunk.updateUser(query) : console.log("no id");
+
+    this.props.history.push(ROUTES.ACCOUNT)
   };
 
   labelColor = (input: string) => (input.length === 0 ? 'white' : 'moon-gray');
 
   render() {
-    const { formatMessage } = this.props.intl;
-
+    const { intl: { formatMessage }, user } = this.props;
     return (
       <div className="flex flex-column">
         <span className="white tc mt2">
@@ -42,13 +48,10 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
         </span>
         <Formik
           initialValues={{
-            firstName: '',
-            lastName: '',
-            address: '',
-            profileTitle: '',
-            profileDescription: '',
-            children: '',
-            availabilities: '',
+            profileTitle: user && user.profileTitle,
+            profileDescription: user && user.profileDescription,
+            children: user && user.children,
+            availabilities: user && user.availabilities,
           }}
           onSubmit={this.onSubmit}
         >
@@ -146,16 +149,21 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   }
 }
 
+
+export const mapStateToProps = (state: IAppState): IAddInfoFormMapStateToProps => ({
+  user: getUserData(state),
+});
+
 export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
-): IAddInfoFormsDispatchToProps => ({
+): IAddInfoFormDispatchToProps => ({
   apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 
 const injectIntlAddInfoForm = injectIntl(AddInfoForm);
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   )(injectIntlAddInfoForm),
 );
