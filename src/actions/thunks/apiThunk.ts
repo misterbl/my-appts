@@ -56,7 +56,6 @@ export const getUserData = (query: any) => async (dispatch: any) => {
     }
     const json = await response;
 
-
     dispatch(saveUserData(json.data.data.getUser));
   } catch (error) {
     throw new Error("couldn't get User");

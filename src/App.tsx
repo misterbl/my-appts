@@ -35,6 +35,7 @@ class App extends React.Component<IAppComponent> {
             _id
             firstName
             lastName
+            avatar
             email
             address
             profileTitle

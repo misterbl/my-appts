@@ -19,7 +19,7 @@ export class Account extends React.Component<IAccountComponent> {
         <div className="flex pt4 ml4">
           <img
             className="br-100 h3 w3"
-            src={user ? user.photoURL : ''}
+            src={user ? user.avatar : ''}
             alt="user's profile"
           />
           <strong className="self-center ml3">Name</strong>

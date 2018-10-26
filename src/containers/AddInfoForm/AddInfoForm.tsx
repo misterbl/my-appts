@@ -26,6 +26,7 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
         _id
         firstName
         lastName
+        avatar
         address
         profileTitle
         profileDescription

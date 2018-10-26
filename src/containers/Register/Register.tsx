@@ -19,12 +19,13 @@ import { getUserData } from 'src/selectors/apiSelectors';
 
 export class Register extends React.Component<IRegisterComponent> {
   // TODO first check if user exist
-  createUserInDb = (email: string | null) => {
+  createUserInDb = (email: string | null, avatar: string | null = "") => {
     const query = `mutation {
-      addUser (email: "${email}" ) {
+      addUser (email: "${email}", avatar:"${avatar}" ) {
         _id
         firstName
         lastName
+        avatar
         email
         address
         profileTitle
@@ -50,7 +51,7 @@ export class Register extends React.Component<IRegisterComponent> {
   faceBookLogin = async () => {
     await auth.doFacebookSignIn();
     await firebase.auth().onAuthStateChanged(fbUser => {
-      this.createUserInDb(fbUser && fbUser.email);
+      this.createUserInDb(fbUser && fbUser.email, fbUser && fbUser.photoURL);
     });
   };
 

@@ -27,6 +27,7 @@ export class PersonalInfoForm extends React.Component<
         _id
         firstName
         lastName
+        avatar
         address
         profileTitle
         profileDescription
@@ -46,7 +47,7 @@ export class PersonalInfoForm extends React.Component<
         <div className="flex pt4 ml4">
           <img
             className="br-100 h3 w3"
-            src={user ? user.photoURL : ''}
+            src={user ? user.avatar : ''}
             alt="user's profile"
           />
           <strong className="self-center ml3">Personnal Details</strong>
