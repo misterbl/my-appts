@@ -1,4 +1,4 @@
-import { saveBooks } from '../actionCreators/apiActions';
+// import { saveBooks } from '../actionCreators/apiActions';
 // import makeRequest from '@jg/http-client';
 // import { httpActions, apiActions } from '..';
 // import { REQUEST, ROUTES, ERROR_MESSAGES } from '../../consts';
@@ -8,7 +8,9 @@ import { saveBooks } from '../actionCreators/apiActions';
 // import { IAppState } from '../../types/state';
 import Axios from 'axios';
 
-export const postBooks = (query: any) => async (dispatch: any) => {
+export const postUserData = (query: any) => async (dispatch: any) => {
+  console.log('posting');
+
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
@@ -19,8 +21,10 @@ export const postBooks = (query: any) => async (dispatch: any) => {
       throw new Error("couldn't get books");
     }
     const json = await response;
-    dispatch(saveBooks(json));
+    console.log(json);
+
+    // dispatch(saveBooks(json));
   } catch (error) {
-    throw new Error("couldn't get books");
+    throw new Error("couldn't save User");
   }
 };

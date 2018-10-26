@@ -6,31 +6,25 @@ import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import {
-  IProfileFormComponent,
+  IPersonalInfoFormComponent,
   IProfileFormDispatchToProps,
-} from './ProfileForm.d';
+} from './PersonalInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 
 // import ROUTES from '../../consts/routes';
 
-export class ProfileForm extends React.Component<IProfileFormComponent> {
+export class PersonalInfoForm extends React.Component<
+  IPersonalInfoFormComponent
+> {
   onSubmit = (event: any) => {
-    const {
-      firstName,
-      lastName,
-      address,
-      profileTitle,
-      profileDescription,
-    } = event;
+    const { firstName, lastName, address } = event;
     const query = `mutation {
-      updateUser (firstName: "${firstName}", lastName: "${lastName}", address: "${address}", profileTitle: "${profileTitle}", profileDescription: "${profileDescription}") {
-        _id
+      updateUser (firstName: "${firstName}", lastName: "${lastName}", address: "${address}") {
         firstName
         lastName
         address
         profileTitle
         profileDescription
-       
       }
     }`;
     this.props.apiThunk.postUserData(query);
@@ -51,10 +45,6 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
             firstName: '',
             lastName: '',
             address: '',
-            profileTitle: '',
-            profileDescription: '',
-            children: '',
-            availabilities: '',
           }}
           onSubmit={this.onSubmit}
         >
@@ -116,82 +106,12 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
               >
                 <FormattedMessage id="general|placeholder|profileTitle" />
               </label>
-              <input
-                value={values.profileTitle}
-                name="profileTitle"
-                onFocus={() => this.setState({ focused: 'profileTitle' })}
-                onChange={event =>
-                  setFieldValue('profileTitle', event.target.value)
-                }
-                placeholder={formatMessage({
-                  id: 'general|placeholder|profileTitle',
-                })}
-              />
-              <label
-                className={`${this.labelColor(values.profileDescription)} f6`}
-                htmlFor="profileDescription"
-              >
-                <FormattedMessage id="general|placeholder|profileDescription" />
-              </label>
-              <input
-                value={values.profileDescription}
-                name="profileDescription"
-                onFocus={() => this.setState({ focused: 'profileDescription' })}
-                onChange={event =>
-                  setFieldValue('profileDescription', event.target.value)
-                }
-                placeholder={formatMessage({
-                  id: 'general|placeholder|profileDescription',
-                })}
-              />
-              {/* <label
-                className={`${this.labelColor(
-                  values.children
-                )} f6`}
-                htmlFor="children"
-              >
-                <FormattedMessage id="general|placeholder|children" />
-              </label>{' '} */}
-              {/* <input
-                value={values.children}
-                name="children"
-                  onFocus={() => this.setState({ focused: 'children' })}
-                
-                onChange={event =>
-                  setFieldValue('children', event.target.value)
-                }
-  
-                placeholder={formatMessage({
-                  id: 'general|placeholder|children',
-                })}
-              />
-                 <label
-                className={`${this.labelColor(
-                  values.availabilities
-                )} f6`}
-                htmlFor="availabilities"
-              >
-                <FormattedMessage id="general|placeholder|availabilities" />
-              </label>
-              <input
-                value={values.availabilities}
-                name="availabilities"
-                  onFocus={() => this.setState({ focused: 'availabilities' })}
-                
-                onChange={event =>
-                  setFieldValue('availabilities', event.target.value)
-                }
-  
-                placeholder={formatMessage({
-                  id: 'general|placeholder|availabilities',
-                })}
-              /> */}
               <button
                 className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
                 type="submit"
                 disabled={isSubmitting}
               >
-                <FormattedMessage id="general|button|next" />
+                <FormattedMessage id="general|button|save" />
               </button>
               {/* {error && <p>{error.message}</p>} */}
             </Form>
@@ -208,10 +128,10 @@ export const mapDispatchToProps = (
   apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 
-const injectIntlProfileForm = injectIntl(ProfileForm);
+const injectIntlPersonalInfoForm = injectIntl(PersonalInfoForm);
 export default withRouter(
   connect(
     null,
     mapDispatchToProps,
-  )(injectIntlProfileForm),
+  )(injectIntlPersonalInfoForm),
 );

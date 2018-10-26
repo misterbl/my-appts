@@ -6,9 +6,11 @@ module.exports = {
   'general|placeholder|lastname': 'Lastname',
   'general|placeholder|password': 'Password',
   'general|placeholder|confirmpassword': 'Confirm password',
+
   'general|button|next': 'next',
   'general|button|signin': 'Signin',
   'general|button|register': 'Register',
+  'general|button|save': 'Save',
   'general|content|numberKids': 'Number of children',
   'general|content|location': 'Location',
   'content|appfooter|inbox': 'Inbox',
@@ -22,5 +24,5 @@ module.exports = {
   'general|placeholder|profileTitle': 'Title',
   'general|placeholder|profileDescription': 'Description',
   'general|placeholder|children': 'Children',
-  'general|placeholder|availabilities': 'Availabilities'
+  'general|placeholder|availabilities': 'Availabilities',
 };

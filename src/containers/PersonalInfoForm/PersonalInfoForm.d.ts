@@ -3,21 +3,17 @@ import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 import { ActionCreatorsMapObject } from 'redux';
 
-export interface IProfileFormFormData {
+export interface IPersonalInfoFormData {
   firstName: string;
   lastName: string;
   address: string;
-  profileTitle: string;
-  profileText: string;
-  children: string;
-  availabilities: string;
 }
 
 export interface IProfileFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;
 }
 
-export type IProfileFormComponent = FormikProps<IProfileFormFormData> &
+export type IPersonalInfoFormComponent = FormikProps<IPersonalInfoFormData> &
   IProfileFormDispatchToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

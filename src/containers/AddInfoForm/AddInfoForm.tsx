@@ -6,24 +6,18 @@ import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import {
-  IProfileFormComponent,
-  IProfileFormDispatchToProps,
-} from './ProfileForm.d';
+  IAddInfoFormComponent,
+  IAddInfoFormsDispatchToProps,
+} from './AddInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 
 // import ROUTES from '../../consts/routes';
 
-export class ProfileForm extends React.Component<IProfileFormComponent> {
+export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   onSubmit = (event: any) => {
-    const {
-      firstName,
-      lastName,
-      address,
-      profileTitle,
-      profileDescription,
-    } = event;
+    const { profileTitle, profileDescription } = event;
     const query = `mutation {
-      updateUser (firstName: "${firstName}", lastName: "${lastName}", address: "${address}", profileTitle: "${profileTitle}", profileDescription: "${profileDescription}") {
+      updateUser (profileTitle: "${profileTitle}", profileDescription: "${profileDescription}") {
         _id
         firstName
         lastName
@@ -60,56 +54,6 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
         >
           {({ values, isSubmitting, setFieldValue }) => (
             <Form className="profile-form mh4 flex flex-column">
-              <label
-                className={`${this.labelColor(values.firstName)} f6`}
-                htmlFor="firstName"
-              >
-                <FormattedMessage id="general|placeholder|firstName" />
-              </label>
-              <input
-                value={values.firstName}
-                name="firstName"
-                onFocus={() => this.setState({ focused: 'firstName' })}
-                onChange={event =>
-                  setFieldValue('firstName', event.target.value)
-                }
-                type="text"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|firstName',
-                })}
-              />
-              <label
-                className={`${this.labelColor(values.lastName)} f6`}
-                htmlFor="lastName"
-              >
-                <FormattedMessage id="general|placeholder|lastName" />
-              </label>
-              <input
-                value={values.lastName}
-                name="lastName"
-                onFocus={() => this.setState({ focused: 'lastName' })}
-                onChange={event =>
-                  setFieldValue('lastName', event.target.value)
-                }
-                placeholder={formatMessage({
-                  id: 'general|placeholder|lastName',
-                })}
-              />
-              <label
-                className={`${this.labelColor(values.address)} f6`}
-                htmlFor="address"
-              >
-                <FormattedMessage id="general|placeholder|address" />
-              </label>
-              <input
-                value={values.address}
-                name="address"
-                onFocus={() => this.setState({ focused: 'address' })}
-                onChange={event => setFieldValue('address', event.target.value)}
-                placeholder={formatMessage({
-                  id: 'general|placeholder|address',
-                })}
-              />
               <label
                 className={`${this.labelColor(values.profileTitle)} f6`}
                 htmlFor="profileTitle"
@@ -204,14 +148,14 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
 
 export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
-): IProfileFormDispatchToProps => ({
+): IAddInfoFormsDispatchToProps => ({
   apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 
-const injectIntlProfileForm = injectIntl(ProfileForm);
+const injectIntlAddInfoForm = injectIntl(AddInfoForm);
 export default withRouter(
   connect(
     null,
     mapDispatchToProps,
-  )(injectIntlProfileForm),
+  )(injectIntlAddInfoForm),
 );

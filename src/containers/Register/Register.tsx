@@ -1,27 +1,57 @@
 import * as React from 'react';
 import { Formik, Form } from 'formik';
+import { Dispatch, AnyAction, bindActionCreators } from 'redux';
+import * as firebase from 'firebase/app';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
-import { IRegisterComponent } from './Register.d';
+import { connect } from 'react-redux';
+import {
+  IRegisterComponent,
+  IRegisterFormDispatchToProps,
+  IRegisterFormMapStateToProps,
+} from './Register.d';
 import ROUTES from '../../consts/routes';
 
+import * as apiThunk from '../../actions/thunks/apiThunk';
+import { IAppState } from 'src/types/state';
+import { getUserData } from 'src/selectors/apiSelectors';
+
 export class Register extends React.Component<IRegisterComponent> {
+  // TODO first check if user exist
+  createUserInDb = (email: string | null) => {
+    const query = `mutation {
+      addUser (email: "${email}" ) {
+        _id
+        firstName
+        lastName
+        email
+        address
+        profileTitle
+        profileDescription
+       
+      }
+    }`;
+    this.props.apiThunk.postUserData(query);
+    this.props.history.push(ROUTES.DASHBOARD);
+  };
   onSubmit = (event: any) => {
     const { email, passwordOne } = event;
     auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
-        this.props.history.push(ROUTES.DASHBOARD);
+        this.createUserInDb(email);
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  faceBookLogin = () => {
-    auth.doFacebookSignIn();
-    this.props.history.push(ROUTES.DASHBOARD);
+  faceBookLogin = async () => {
+    await auth.doFacebookSignIn();
+    await firebase.auth().onAuthStateChanged(fbUser => {
+      this.createUserInDb(fbUser && fbUser.email);
+    });
   };
 
   signOut = () => {
@@ -29,6 +59,7 @@ export class Register extends React.Component<IRegisterComponent> {
   };
   render() {
     const { formatMessage } = this.props.intl;
+    console.log(this);
 
     return (
       <div className="flex flex-column vh-100">
@@ -99,5 +130,21 @@ export class Register extends React.Component<IRegisterComponent> {
   }
 }
 
+export const mapDispatchToProps = (
+  dispatch: Dispatch<AnyAction>,
+): IRegisterFormDispatchToProps => ({
+  apiThunk: bindActionCreators(apiThunk, dispatch),
+});
+
+export const mapStateToProps = (
+  state: IAppState,
+): IRegisterFormMapStateToProps => ({
+  user: getUserData(state),
+});
 const injectIntlRegister = injectIntl(Register);
-export default withRouter(injectIntlRegister);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(injectIntlRegister),
+);
