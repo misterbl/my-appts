@@ -28,7 +28,7 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
     this.props.history.push(ROUTES.ACCOUNT)
   };
 
-  labelColor = (input: string) => (input.length === 0 ? 'white' : 'moon-gray');
+  labelColor = (input: string) => (input && input.length === 0 ? 'white' : 'moon-gray');
 
   render() {
     const { intl: { formatMessage }, user } = this.props;
@@ -50,10 +50,10 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
         </div>
         <Formik
           initialValues={{
-            profileTitle: user !== null ? user.profileTitle : '',
-            profileDescription: user !== null ? user.profileDescription : '',
-            children: user !== null ? user.children : '',
-            availabilities: user !== null ? user.availabilities : '',
+            profileTitle: user ? user.profileTitle : '',
+            profileDescription: user ? user.profileDescription : '',
+            children: user ? user.children : '',
+            availabilities: user ? user.availabilities : '',
           }}
           onSubmit={this.onSubmit}
         >

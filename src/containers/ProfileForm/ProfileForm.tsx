@@ -36,7 +36,7 @@ export class ProfileForm extends React.Component<IProfileFormComponent> {
     this.props.apiThunk.postUserData(query);
   };
 
-  labelColor = (input: string) => (input.length === 0 ? 'white' : 'moon-gray');
+  labelColor = (input: string) => (input && input.length === 0 ? 'white' : 'moon-gray');
 
   render() {
     const { formatMessage } = this.props.intl;
