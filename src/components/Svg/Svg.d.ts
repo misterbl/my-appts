@@ -1,5 +1,4 @@
 import { DetailedHTMLProps, ReactElement } from 'react';
-import { HTMLAttributes } from 'enzyme';
 
 export interface ISvg {
   Icon: any;
