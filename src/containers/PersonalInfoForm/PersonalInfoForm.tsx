@@ -13,7 +13,9 @@ import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 
-import ROUTES from '../../consts/routes';
+import { ROUTES, QUERIES } from '../../consts';
+import Svg from 'src/components/Svg';
+import { AccountIcon } from 'src/styles/assets';
 
 export class PersonalInfoForm extends React.Component<
   IPersonalInfoFormComponent
@@ -22,18 +24,7 @@ export class PersonalInfoForm extends React.Component<
     const { firstName, lastName, address } = event;
     // @ts-ignore
     const { _id } = this.props.user
-    const query = `mutation {
-      updateUser (_id: "${_id}" firstName: "${firstName}", lastName: "${lastName}", address: "${address}") {
-        _id
-        firstName
-        lastName
-        avatar
-        address
-        profileTitle
-        profileDescription
-      }
-    }`;
-    this.props.apiThunk.updateUser(query);
+    this.props.apiThunk.updateUser(QUERIES({ _id, firstName, lastName, address }).UPDATE_PERSONAL_INFO);
     this.props.history.push(ROUTES.AD_DETAILS)
   };
 
@@ -45,11 +36,17 @@ export class PersonalInfoForm extends React.Component<
     return (
       <div className="flex flex-column">
         <div className="flex pt4 ml4">
-          <img
-            className="br-100 h3 w3"
-            src={user ? user.avatar : ''}
-            alt="user's profile"
-          />
+          {user && user.avatar ?
+            <img
+              className="br-100 h3 w3"
+              src={user.avatar || ''}
+              alt="user's profile"
+            /> :
+            <Svg
+              Icon={AccountIcon}
+              width="4rem"
+              height="4rem"
+            />}
           <strong className="self-center ml3">Personnal Details</strong>
         </div>
         <span className="white tc mt2">
@@ -57,9 +54,9 @@ export class PersonalInfoForm extends React.Component<
         </span>
         <Formik
           initialValues={{
-            firstName: user && user.firstName,
-            lastName: user && user.lastName,
-            address: user && user.address,
+            firstName: user !== null ? user.firstName : '',
+            lastName: user !== null ? user.lastName : '',
+            address: user !== null ? user.address : '',
           }}
           onSubmit={this.onSubmit}
         >

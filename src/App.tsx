@@ -9,7 +9,7 @@ import {
 } from './App.d';
 import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
-import ROUTES from './consts/routes';
+import { ROUTES, QUERIES } from './consts';
 // import UserCard from './components/UserCard';
 import Home from './components/Home';
 import SignIn from './containers/SignIn';
@@ -30,29 +30,17 @@ class App extends React.Component<IAppComponent> {
     super(props);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        const query = `mutation {
-          getUser (email: "${user.email}") {
-            _id
-            firstName
-            lastName
-            avatar
-            email
-            address
-            profileTitle
-            profileDescription
-          }
-        }`;
-        return this.props.apiThunk.getUserData(query)
+        return this.props.apiThunk.getUserData(QUERIES({ email: user.email }).GET_USER)
       }
       this.props.history.push(ROUTES.INDEX);
     });
   }
 
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.props.apiActions.saveUserData(user);
-    });
-  }
+  // componentDidMount() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     this.props.apiActions.saveUserData(user);
+  //   });
+  // }
   render() {
     const {
       user,

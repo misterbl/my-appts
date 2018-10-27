@@ -14,27 +14,17 @@ import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 
-import ROUTES from '../../consts/routes';
+import { ROUTES, QUERIES } from '../../consts';
+import { AccountIcon } from 'src/styles/assets';
+import Svg from 'src/components/Svg';
 
 export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
+
   onSubmit = async (event: any) => {
     const { profileTitle, profileDescription } = event;
     // @ts-ignore
     const { _id } = this.props.user
-    const query = `mutation {
-      updateUser (_id:"${_id}" profileTitle: "${profileTitle}", profileDescription: "${profileDescription}") {
-        _id
-        firstName
-        lastName
-        avatar
-        address
-        profileTitle
-        profileDescription
-       
-      }
-    }`;
-    _id ? this.props.apiThunk.updateUser(query) : console.log("no id");
-
+    await this.props.apiThunk.updateUser(QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO);
     this.props.history.push(ROUTES.ACCOUNT)
   };
 
@@ -44,15 +34,26 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
     const { intl: { formatMessage }, user } = this.props;
     return (
       <div className="flex flex-column">
-        <span className="white tc mt2">
-          <FormattedMessage id="general|or" />
-        </span>
+        <div className="flex pt4 ml4">
+          {user && user.avatar ?
+            <img
+              className="br-100 h3 w3"
+              src={user.avatar || ''}
+              alt="user's profile"
+            /> :
+            <Svg
+              Icon={AccountIcon}
+              width="4rem"
+              height="4rem"
+            />}
+          <strong className="self-center ml3">Your ad</strong>
+        </div>
         <Formik
           initialValues={{
-            profileTitle: user && user.profileTitle,
-            profileDescription: user && user.profileDescription,
-            children: user && user.children,
-            availabilities: user && user.availabilities,
+            profileTitle: user !== null ? user.profileTitle : '',
+            profileDescription: user !== null ? user.profileDescription : '',
+            children: user !== null ? user.children : '',
+            availabilities: user !== null ? user.availabilities : '',
           }}
           onSubmit={this.onSubmit}
         >

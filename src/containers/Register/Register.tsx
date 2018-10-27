@@ -11,29 +11,15 @@ import {
   IRegisterFormDispatchToProps,
   IRegisterFormMapStateToProps,
 } from './Register.d';
-import ROUTES from '../../consts/routes';
+import { ROUTES, QUERIES } from '../../consts';
 
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 
 export class Register extends React.Component<IRegisterComponent> {
-  // TODO first check if user exist
-  createUserInDb = (email: string | null, avatar: string | null = "") => {
-    const query = `mutation {
-      addUser (email: "${email}", avatar:"${avatar}" ) {
-        _id
-        firstName
-        lastName
-        avatar
-        email
-        address
-        profileTitle
-        profileDescription
-       
-      }
-    }`;
-    this.props.apiThunk.postUserData(query);
+  createUserInDb = async (email: string | null, avatar: string | null = "") => {
+    await this.props.apiThunk.getUserData(QUERIES({ email }).GET_USER) ? alert("user exist") : this.props.apiThunk.postUserData(QUERIES({ email, avatar }).ADD_USER);
     this.props.history.push(ROUTES.DASHBOARD);
   };
   onSubmit = (event: any) => {
@@ -58,6 +44,7 @@ export class Register extends React.Component<IRegisterComponent> {
   signOut = () => {
     auth.doSignOut();
   };
+
   render() {
     const { formatMessage } = this.props.intl;
     console.log(this);
