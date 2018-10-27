@@ -10,9 +10,8 @@ import {
 import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
 import { ROUTES, QUERIES } from './consts';
-// import UserCard from './components/UserCard';
 import Home from './components/Home';
-import SignIn from './containers/SignIn';
+import SignIn from './containers/SignIn/SignIn';
 import Register from './containers/Register';
 import DashBoard from './containers/DashBoard';
 import Account from './containers/Account/Account';
