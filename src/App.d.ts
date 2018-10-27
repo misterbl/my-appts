@@ -13,7 +13,7 @@ export interface IAppComponentMapStateToProps {
   user: IAppState['api']['userData'];
 }
 
-export type IAppComponent = IAppComponentDispatchToProps &
+export type TAppComponent = IAppComponentDispatchToProps &
   IAppComponentMapStateToProps &
   RouteComponentProps<any, StaticContext>;
 //   InjectedIntlProps &

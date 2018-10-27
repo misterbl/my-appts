@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-// import { Formik, Form } from 'formik';
-// import { auth } from '../../firebase';
 import { injectIntl } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { IAccountComponent, IAccountMapStateToProps } from './Account.d';

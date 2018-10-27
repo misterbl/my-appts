@@ -10,15 +10,15 @@ export interface IPersonalInfoFormData {
   address: string;
 }
 
-export interface IProfileFormDispatchToProps {
+export interface IPersonalInfoFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;
 }
 
-export interface IProfileFormMapStateToProps {
+export interface IPersonalInfoFormMapStateToProps {
   user: IAppState['api']['userData'];
 }
 
 export type IPersonalInfoFormComponent = FormikProps<IPersonalInfoFormData> &
-  IProfileFormDispatchToProps & IProfileFormMapStateToProps &
+  IPersonalInfoFormDispatchToProps & IPersonalInfoFormMapStateToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

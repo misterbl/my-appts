@@ -3,14 +3,14 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 import {
-  IAppComponent,
+  TAppComponent,
   IAppComponentDispatchToProps,
   IAppComponentMapStateToProps,
 } from './App.d';
 import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
 import { ROUTES, QUERIES } from './consts';
-import Home from './components/Home';
+import Home from './containers/Home';
 // import SignIn from './containers/SignIn/SignIn';
 import Register from './containers/Register';
 import Login from './containers/Login';
@@ -20,13 +20,13 @@ import AppFooter from './containers/AppFooter/';
 import { getUserData } from './selectors/apiSelectors';
 import * as apiThunk from './actions/thunks/apiThunk';
 import { IAppState } from './types/state';
-import UserCard from './components/UserCard/UserCard';
+import UserCard from './containers/UserCard/UserCard';
 import PersonalInfoForm from './containers/PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from './containers/AddInfoForm/AddInfoForm';
 
-class App extends React.Component<IAppComponent> {
+class App extends React.Component<TAppComponent> {
   shortName: string = '';
-  constructor(props: IAppComponent) {
+  constructor(props: TAppComponent) {
     super(props);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -44,7 +44,7 @@ class App extends React.Component<IAppComponent> {
     } = this.props;
 
     return (
-      <div className="bg-white-10 vh-100">
+      <div className="bg-white-10 vh-100 ml3 mr3">
         <Switch>
           <Route path={ROUTES.INDEX} component={Home} exact />
           <Route path={ROUTES.SIGN_IN} component={Login} />
@@ -52,7 +52,7 @@ class App extends React.Component<IAppComponent> {
           <Route path={ROUTES.REGISTER} component={Register} />
           <Route path={ROUTES.CARD} component={UserCard} />
           <Route path={ROUTES.INBOX} component={UserCard} />
-          <Route path={ROUTES.SEARCH} component={UserCard} />
+          <Route path={ROUTES.SEARCH} component={DashBoard} />
           <Route path={ROUTES.FAVOURITE} component={UserCard} />
           <Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />

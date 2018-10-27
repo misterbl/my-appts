@@ -6,8 +6,8 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import {
   IPersonalInfoFormComponent,
-  IProfileFormDispatchToProps,
-  IProfileFormMapStateToProps,
+  IPersonalInfoFormDispatchToProps,
+  IPersonalInfoFormMapStateToProps,
 } from './PersonalInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
@@ -57,6 +57,8 @@ export class PersonalInfoForm extends React.Component<
             firstName: user ? user.firstName : '',
             lastName: user ? user.lastName : '',
             address: user ? user.address : '',
+            postCode: user ? user.postCode : '',
+            city: user ? user.city : '',
           }}
           onSubmit={this.onSubmit}
         >
@@ -112,6 +114,36 @@ export class PersonalInfoForm extends React.Component<
                   id: 'general|placeholder|address',
                 })}
               />
+              <label
+                className={`${this.labelColor(values.postCode)} f6`}
+                htmlFor="postCode"
+              >
+                <FormattedMessage id="general|placeholder|postCode" />
+              </label>
+              <input
+                value={values.postCode}
+                name="postCode"
+                onFocus={() => this.setState({ focused: 'postCode' })}
+                onChange={event => setFieldValue('postCode', event.target.value)}
+                placeholder={formatMessage({
+                  id: 'general|placeholder|postCode',
+                })}
+              />
+              <label
+                className={`${this.labelColor(values.city)} f6`}
+                htmlFor="city"
+              >
+                <FormattedMessage id="general|placeholder|city" />
+              </label>
+              <input
+                value={values.city}
+                name="city"
+                onFocus={() => this.setState({ focused: 'city' })}
+                onChange={event => setFieldValue('city', event.target.value)}
+                placeholder={formatMessage({
+                  id: 'general|placeholder|city',
+                })}
+              />
               <button
                 className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
                 type="submit"
@@ -129,13 +161,13 @@ export class PersonalInfoForm extends React.Component<
 }
 
 
-export const mapStateToProps = (state: IAppState): IProfileFormMapStateToProps => ({
+export const mapStateToProps = (state: IAppState): IPersonalInfoFormMapStateToProps => ({
   user: getUserData(state),
 });
 
 export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
-): IProfileFormDispatchToProps => ({
+): IPersonalInfoFormDispatchToProps => ({
   apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 

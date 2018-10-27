@@ -7,6 +7,8 @@ const queries = (args: any) => ({
       avatar
       email
       address
+      postCode
+      city
       profileTitle
       profileDescription
      
@@ -20,6 +22,8 @@ const queries = (args: any) => ({
       avatar
       email
       address
+      postCode
+      city
       profileTitle
       profileDescription
     }
@@ -31,6 +35,8 @@ const queries = (args: any) => ({
       lastName
       avatar
       address
+      postCode
+      city
       profileTitle
       profileDescription
      
@@ -43,6 +49,8 @@ const queries = (args: any) => ({
       lastName
       avatar
       address
+      postCode
+      city
       profileTitle
       profileDescription
     }

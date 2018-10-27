@@ -1,10 +1,8 @@
 import { saveUserData } from './../actionCreators/apiActions';
-// import makeRequest from '@jg/http-client';
 // import { httpActions, apiActions } from '..';
 // import { REQUEST, ROUTES, ERROR_MESSAGES } from '../../consts';
 // import config from '../../config';
 // import { push } from 'connected-react-router';
-// import { getCurrencyCode } from '../../selectors/apiSelectors';
 // import { IAppState } from '../../types/state';
 import Axios from 'axios';
 
@@ -55,6 +53,8 @@ export const getUserData = (query: any) => async (dispatch: any) => {
     const json = await response;
     const data = json.data.data.getUser
     dispatch(saveUserData(data));
+    console.log(data);
+
     return data
   } catch (error) {
     throw new Error("couldn't get User");

@@ -21,6 +21,8 @@ module.exports = {
   'general|placeholder|firstName': 'First Name',
   'general|placeholder|lastName': 'Last Name',
   'general|placeholder|address': 'Address',
+  'general|placeholder|postCode': 'Postcode',
+  'general|placeholder|city': 'City',
   'general|placeholder|profileTitle': 'Title',
   'general|placeholder|profileDescription': 'Description',
   'general|placeholder|children': 'Children',
