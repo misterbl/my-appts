@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { ISignInComponent } from './SignIn.d';
 import ROUTES from '../../consts/routes';
 
-export class SignIn extends React.Component<ISignInComponent> {
+class SignIn extends React.Component<ISignInComponent> {
   onSubmit = (event: any) => {
     const { email, password } = event;
     auth
