@@ -11,7 +11,7 @@ import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
 import { ROUTES, QUERIES } from './consts';
 import Home from './components/Home';
-import SignIn from './containers/SignIn/SignIn';
+// import SignIn from './containers/SignIn/SignIn';
 import Register from './containers/Register';
 import DashBoard from './containers/DashBoard';
 import Account from './containers/Account/Account';
@@ -52,7 +52,7 @@ class App extends React.Component<IAppComponent> {
       <div className="bg-white-10 vh-100">
         <Switch>
           <Route path={ROUTES.INDEX} component={Home} exact />
-          <Route path={ROUTES.SIGN_IN} component={SignIn} />
+          <Route path={ROUTES.SIGN_IN} component={Register} />
           <Route path={ROUTES.DASHBOARD} component={DashBoard} />
           <Route path={ROUTES.REGISTER} component={Register} />
           <Route path={ROUTES.CARD} component={UserCard} />
