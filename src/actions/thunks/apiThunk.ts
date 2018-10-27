@@ -37,8 +37,6 @@ export const updateUser = (query: any) => async (dispatch: any) => {
       throw new Error("couldn't save user");
     }
     const json = await response;
-    console.log(json);
-
     dispatch(saveUserData(json.data.data.updateUser));
   } catch (error) {
     throw new Error("couldn't save User");

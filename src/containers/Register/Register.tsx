@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Formik, Form } from 'formik';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
@@ -18,7 +18,7 @@ import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 
 export class Register extends React.Component<IRegisterComponent> {
-  createUserInDb = async (email: string | null, avatar: string | null = "") => {
+  createUserInDb = async (email: string, avatar: string | null = "") => {
     await this.props.apiThunk.getUserData(QUERIES({ email }).GET_USER) ? alert("user exist") : this.props.apiThunk.postUserData(QUERIES({ email, avatar }).ADD_USER);
     this.props.history.push(ROUTES.DASHBOARD);
   };
@@ -35,10 +35,9 @@ export class Register extends React.Component<IRegisterComponent> {
   };
 
   faceBookLogin = async () => {
-    await auth.doFacebookSignIn();
-    await firebase.auth().onAuthStateChanged(fbUser => {
-      this.createUserInDb(fbUser && fbUser.email, fbUser && fbUser.photoURL);
-    });
+    const fbUser = await auth.doFacebookSignIn();
+    // @ts-ignore
+    this.createUserInDb(fbUser && fbUser.email, fbUser && fbUser.photoURL);
   };
 
   signOut = () => {
@@ -47,8 +46,6 @@ export class Register extends React.Component<IRegisterComponent> {
 
   render() {
     const { formatMessage } = this.props.intl;
-    console.log(this);
-
     return (
       <div className="flex flex-column vh-100">
         <button onClick={this.signOut}>Logout</button>

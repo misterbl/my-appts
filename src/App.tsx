@@ -13,6 +13,7 @@ import { ROUTES, QUERIES } from './consts';
 import Home from './components/Home';
 // import SignIn from './containers/SignIn/SignIn';
 import Register from './containers/Register';
+import Login from './containers/Login';
 import DashBoard from './containers/DashBoard';
 import Account from './containers/Account/Account';
 import AppFooter from './containers/AppFooter/';
@@ -34,12 +35,6 @@ class App extends React.Component<IAppComponent> {
       this.props.history.push(ROUTES.INDEX);
     });
   }
-
-  // componentDidMount() {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     this.props.apiActions.saveUserData(user);
-  //   });
-  // }
   render() {
     const {
       user,
@@ -52,7 +47,7 @@ class App extends React.Component<IAppComponent> {
       <div className="bg-white-10 vh-100">
         <Switch>
           <Route path={ROUTES.INDEX} component={Home} exact />
-          <Route path={ROUTES.SIGN_IN} component={Register} />
+          <Route path={ROUTES.SIGN_IN} component={Login} />
           <Route path={ROUTES.DASHBOARD} component={DashBoard} />
           <Route path={ROUTES.REGISTER} component={Register} />
           <Route path={ROUTES.CARD} component={UserCard} />
