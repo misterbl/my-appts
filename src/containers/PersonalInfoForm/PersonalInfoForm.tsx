@@ -28,7 +28,7 @@ export class PersonalInfoForm extends React.Component<
     this.props.history.push(ROUTES.AD_DETAILS)
   };
 
-  labelColor = (input: string) => (input.length === 0 ? 'white' : 'moon-gray');
+  labelColor = (input: string) => (input && input.length === 0 ? 'white' : 'moon-gray');
 
   render() {
     const { user, intl: { formatMessage } } = this.props;
@@ -54,9 +54,9 @@ export class PersonalInfoForm extends React.Component<
         </span>
         <Formik
           initialValues={{
-            firstName: user !== null ? user.firstName : '',
-            lastName: user !== null ? user.lastName : '',
-            address: user !== null ? user.address : '',
+            firstName: user ? user.firstName : '',
+            lastName: user ? user.lastName : '',
+            address: user ? user.address : '',
           }}
           onSubmit={this.onSubmit}
         >
