@@ -23,6 +23,7 @@ import { IAppState } from './types/state';
 import UserCard from './containers/UserCard/UserCard';
 import PersonalInfoForm from './containers/PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from './containers/AddInfoForm/AddInfoForm';
+import MapComponent from './components/MapComponent';
 
 class App extends React.Component<TAppComponent> {
   shortName: string = '';
@@ -52,7 +53,7 @@ class App extends React.Component<TAppComponent> {
           <Route path={ROUTES.REGISTER} component={Register} />
           <Route path={ROUTES.CARD} component={UserCard} />
           <Route path={ROUTES.INBOX} component={UserCard} />
-          <Route path={ROUTES.SEARCH} component={DashBoard} />
+          <Route path={ROUTES.SEARCH} component={MapComponent} />
           <Route path={ROUTES.FAVOURITE} component={UserCard} />
           <Route path={ROUTES.ACCOUNT} component={Account} />
           <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
