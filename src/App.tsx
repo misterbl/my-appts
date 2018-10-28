@@ -33,7 +33,7 @@ class App extends React.Component<TAppComponent> {
       if (user) {
         return this.props.apiThunk.getUserData(QUERIES({ email: user.email }).GET_USER)
       }
-      this.props.history.push(ROUTES.INDEX);
+      // this.props.history.push(ROUTES.INDEX);
     });
   }
   render() {
