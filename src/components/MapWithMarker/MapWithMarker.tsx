@@ -8,7 +8,6 @@ export class MapWithMarker extends React.Component<IMapWithMarker> {
         this.renderMap()
     }
     async renderMap() {
-        // const address = "7 rue montaigne, Cannes, 06400, France";
         const geocoder = new google.maps.Geocoder();
         const loc = async () => {
             await geocoder.geocode({ 'address': this.props.address }, (geocoderResults) => {
