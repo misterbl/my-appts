@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { bindActionCreators, AnyAction, Dispatch } from 'redux';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { IAppState } from '../../types/state';
 import * as apiActions from '../../actions/actionCreators/apiActions';
@@ -9,7 +10,8 @@ import { TUserCard, UserCardDispatchToProps } from './UserCard.d'
 import { QUERIES, ROUTES } from 'src/consts';
 import { AccountIcon, chevronLeftIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
-import { withRouter } from 'react-router';
+import MaMapWithMarker from '../../components/MapWithMarker/';
+
 
 export class UserCard extends React.Component<TUserCard> {
   viewedUser: IAppState['api']['userData'];
@@ -43,8 +45,6 @@ export class UserCard extends React.Component<TUserCard> {
 
   render() {
     const { viewedUser } = this;
-    console.log(viewedUser);
-
     return (
       <>
         <header className="flex w-100 bg-white fixed fw7">
@@ -85,7 +85,7 @@ export class UserCard extends React.Component<TUserCard> {
             <FormattedMessage id="general|content|location" />
           </p>
         </div>
-        <div> location with map</div>
+        <MaMapWithMarker address="7 rue montaigne, Cannes" />
         <footer className="user-card-footer">
           <div className=" flex flex-column ml10">
             <span>Exchange</span>
