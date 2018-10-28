@@ -1,3 +1,3 @@
 export interface IMapWithMarker {
-    address: string | null
+    address?: string
 }

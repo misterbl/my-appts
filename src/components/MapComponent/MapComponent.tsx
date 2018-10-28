@@ -8,7 +8,7 @@ import { IMapComponent } from './MapComponent.d'
 
 const MapWithAMarker = (withGoogleMap((props: IMapComponent) =>
     <GoogleMap
-        defaultZoom={8}
+        defaultZoom={13}
         defaultCenter={{ lat: props.lat, lng: props.lng }}
     >
         <Marker

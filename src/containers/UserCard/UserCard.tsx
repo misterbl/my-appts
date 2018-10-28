@@ -85,7 +85,8 @@ export class UserCard extends React.Component<TUserCard> {
             <FormattedMessage id="general|content|location" />
           </p>
         </div>
-        <MaMapWithMarker address={viewedUser && `${viewedUser.address}, ${viewedUser.postCode}, ${viewedUser.children}`} />
+        MAPS WILL GO HERE
+        {/* <MaMapWithMarker address={viewedUser && `${viewedUser.address}, ${viewedUser.postCode}, ${viewedUser.city}`} /> */}
         <footer className="user-card-footer">
           <div className=" flex flex-column ml10">
             <span>Exchange</span>
