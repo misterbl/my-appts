@@ -8,45 +8,49 @@ import { withRouter } from 'react-router-dom';
 import {
   IAddInfoFormComponent,
   IAddInfoFormDispatchToProps,
-  IAddInfoFormMapStateToProps
+  IAddInfoFormMapStateToProps,
 } from './AddInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
-
 import { ROUTES, QUERIES } from '../../consts';
 import { AccountIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
 
 export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
-
   onSubmit = async (event: any) => {
     const { profileTitle, profileDescription } = event;
     // @ts-ignore
-    const { _id } = this.props.user
-    await this.props.apiThunk.updateUser(QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO);
-    this.props.history.push(ROUTES.ACCOUNT)
+    const { _id } = this.props.user;
+    await this.props.apiThunk.updateUser(
+      QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
+    );
+    this.props.history.push(ROUTES.ACCOUNT);
   };
 
-  labelColor = (input: string) => (input && input.length === 0 ? 'white' : 'moon-gray');
+  labelColor = (input: string) =>
+    input && input.length === 0 ? 'white' : 'moon-gray';
 
   render() {
-    const { intl: { formatMessage }, user } = this.props;
+    const {
+      intl: { formatMessage },
+      user,
+    } = this.props;
     return (
       <div className="flex flex-column">
         <div className="flex pt4 ml4">
-          {user && user.avatar ?
+          {user && user.avatar ? (
             <img
               className="br-100 h3 w3"
               src={user.avatar || ''}
               alt="user's profile"
-            /> :
-            <Svg
-              Icon={AccountIcon}
-              width="4rem"
-              height="4rem"
-            />}
-          <strong className="self-center ml3">Your ad</strong>
+            />
+          ) : (
+            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+          )}
+          <strong className="self-center ml3">
+            <FormattedMessage id="content|addinfoform|title" />
+          </strong>
         </div>
         <Formik
           initialValues={{
@@ -95,27 +99,6 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
               />
               {/* <label
                 className={`${this.labelColor(
-                  values.children
-                )} f6`}
-                htmlFor="children"
-              >
-                <FormattedMessage id="general|placeholder|children" />
-              </label>{' '} */}
-              {/* <input
-                value={values.children}
-                name="children"
-                  onFocus={() => this.setState({ focused: 'children' })}
-                
-                onChange={event =>
-                  setFieldValue('children', event.target.value)
-                }
-  
-                placeholder={formatMessage({
-                  id: 'general|placeholder|children',
-                })}
-              />
-                 <label
-                className={`${this.labelColor(
                   values.availabilities
                 )} f6`}
                 htmlFor="availabilities"
@@ -134,7 +117,8 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
                 placeholder={formatMessage({
                   id: 'general|placeholder|availabilities',
                 })}
-              /> */}
+              />  */}
+
               <button
                 className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
                 type="submit"
@@ -151,8 +135,9 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   }
 }
 
-
-export const mapStateToProps = (state: IAppState): IAddInfoFormMapStateToProps => ({
+export const mapStateToProps = (
+  state: IAppState,
+): IAddInfoFormMapStateToProps => ({
   user: getUserData(state),
 });
 

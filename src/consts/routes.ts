@@ -9,7 +9,8 @@ const routes = {
   SEARCH: '/search',
   ACCOUNT: '/account',
   USER_DETAILS: '/user-details',
-  AD_DETAILS: '/ad-details'
+  CHILDREN: '/children',
+  AD_DETAILS: '/ad-details',
 };
 
 export default routes;
