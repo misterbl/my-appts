@@ -11,6 +11,7 @@ const routes = {
   USER_DETAILS: '/user-details',
   CHILDREN: '/children',
   AD_DETAILS: '/ad-details',
+  PASSWORD_RESET: '/password-reset'
 };
 
 export default routes;

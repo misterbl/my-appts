@@ -35,6 +35,9 @@ module.exports = {
   'general|placeholder|password': 'Password',
 
   'content|login|loginwithemail': 'Login with Email',
+  "content|login|forgotpassword": 'Forgot password',
+  "content|passwordreset|directives": "Please enter your email address to receive a link to reset your password",
+  "content|passwordreset|sent": "A link has been sent to your email to reset your password",
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',

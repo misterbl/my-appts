@@ -13,6 +13,24 @@ code {
     monospace;
 }
 
+.white-input {
+  input {
+    background: transparent;
+    border-right: none;
+    background: transparent;
+    border-bottom: 1px solid #abfccb !important;
+    border-top: none;
+    border-left: none;
+    outline: none;
+    margin-bottom: 30px;
+  }
+  input:focus {
+    border-bottom: 2px solid #3dba6d !important;
+  }
+  input::placeholder {
+    color: #ffff !important;
+  }
+}
 form {
   input {
     background: transparent;
@@ -40,12 +58,11 @@ form {
   background-color: #3c5a99;
 }
 
-// .bg-kids {
-//   background-image: url('../assets/kids.jpg');
-//   height: 100%;
-//   filter: blur(8px);
-//   -webkit-filter: blur(10px);
-// }
+.bg-kids {
+  background-image: url('../assets/kidsBlur.jpg');
+  height: 100vh;
+  background-size: cover;
+}
 
 .user-card-header {
   background-color: #33826d;

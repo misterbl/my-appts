@@ -3,11 +3,19 @@ import { Formik, Form } from 'formik';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
-import { ILoginComponent } from './Login.d';
+import { ILoginComponent, ILoginState } from './Login.d';
 import ROUTES from '../../consts/routes';
 import FacebookButton from 'src/components/FacebookButton';
 import labelColor from '../../utils/labelColor';
-class Login extends React.Component<ILoginComponent> {
+class Login extends React.Component<ILoginComponent, ILoginState> {
+  constructor(props: ILoginComponent) {
+    super(props);
+    this.state = {
+      wrongAuth: false,
+      focused: '',
+    }
+  }
+
   onSubmit = (event: any) => {
     const { email, password } = event;
     auth
@@ -17,15 +25,23 @@ class Login extends React.Component<ILoginComponent> {
       })
       .catch(error => {
         console.log(error);
+        this.setState({ wrongAuth: true })
       });
   };
 
   faceBookLogin = () => {
-    console.log('clicked');
-
     auth.doFacebookSignIn();
     this.props.history.push(ROUTES.DASHBOARD);
   };
+
+
+  // forgotPassword () => {
+  //   auth.doPasswordReset(emailAddress).then(function() {
+  //     // Email sent.
+  //   }).catch(function(error) {
+  //     // An error happened.
+  //   });
+  // }
 
   signOut = () => {
     auth.doSignOut();
@@ -35,12 +51,12 @@ class Login extends React.Component<ILoginComponent> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="flex flex-column vh-100 bg-kids">
-        <FacebookButton className="mt6" onClick={() => this.faceBookLogin()} />
-        <p className="pt3 ma0 tc">
+      <div className="flex flex-column vh-100 bg-kids ph4">
+        <FacebookButton className="mt5" onClick={() => this.faceBookLogin()} />
+        <p className="pt3 ma0 tc white">
           <FormattedMessage id="general|or" />
         </p>
-        <p className="tc pb2">
+        <p className="tc pb2 white">
           <FormattedMessage id="content|login|loginwithemail" />
         </p>
 
@@ -52,14 +68,15 @@ class Login extends React.Component<ILoginComponent> {
           onSubmit={this.onSubmit}
         >
           {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="flex flex-column">
+            <Form autoComplete="off" className="flex flex-column white-input ">
               <label
-                className={`${labelColor(values.email)} f6`}
+                className={`${labelColor(values.email, 'o-0', 'green')} f6`}
                 htmlFor="email"
               >
                 <FormattedMessage id="general|placeholder|email" />
               </label>
               <input
+                autoComplete="new-email"
                 value={values.email}
                 name="email"
                 onFocus={() => this.setState({ focused: 'email' })}
@@ -70,12 +87,13 @@ class Login extends React.Component<ILoginComponent> {
                 })}
               />
               <label
-                className={`${labelColor(values.password)} f6`}
+                className={`${labelColor(values.password, 'o-0', 'green')} f6`}
                 htmlFor="password"
               >
                 <FormattedMessage id="general|placeholder|password" />
               </label>
               <input
+                autoComplete="new-password"
                 value={values.password}
                 name="password"
                 onChange={event =>
@@ -86,8 +104,9 @@ class Login extends React.Component<ILoginComponent> {
                   id: 'general|placeholder|password',
                 })}
               />
+              <a className="mb3 white tc no-underline" href={ROUTES.PASSWORD_RESET}><FormattedMessage id="content|login|forgotpassword" /></a>
               <button
-                className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
+                className="bg-green white fw7 ph3 ttc di pv3 bn shadow-5"
                 type="submit"
                 disabled={isSubmitting}
               >
@@ -98,6 +117,7 @@ class Login extends React.Component<ILoginComponent> {
             </Form>
           )}
         </Formik>
+        {this.state.wrongAuth && <div>Wrong credentials</div>}
       </div>
     );
   }
