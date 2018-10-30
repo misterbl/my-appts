@@ -23,6 +23,7 @@ import { IAppState } from './types/state';
 import UserCard from './containers/UserCard/UserCard';
 import PersonalInfoForm from './containers/PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from './containers/AddInfoForm/AddInfoForm';
+import ChildrenForm from './components/ChildrenForm/ChildrenForm';
 
 class App extends React.Component<TAppComponent> {
   shortName: string = '';
@@ -30,7 +31,9 @@ class App extends React.Component<TAppComponent> {
     super(props);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        return this.props.apiThunk.getUserData(QUERIES({ email: user.email }).GET_USER)
+        return this.props.apiThunk.getUserData(
+          QUERIES({ email: user.email }).GET_USER,
+        );
       }
       // this.props.history.push(ROUTES.INDEX);
     });
@@ -44,26 +47,31 @@ class App extends React.Component<TAppComponent> {
     } = this.props;
 
     return (
-      <div className="bg-white-10 vh-100 ml3 mr3">
-        <Switch>
-          <Route path={ROUTES.INDEX} component={Home} exact />
-          <Route path={ROUTES.SIGN_IN} component={Login} />
-          <Route path={ROUTES.DASHBOARD} component={DashBoard} />
-          <Route path={ROUTES.REGISTER} component={Register} />
-          <Route path={ROUTES.CARD} component={UserCard} />
-          <Route path={ROUTES.INBOX} component={UserCard} />
-          <Route path={ROUTES.SEARCH} component={UserCard} />
-          <Route path={ROUTES.FAVOURITE} component={UserCard} />
-          <Route path={ROUTES.ACCOUNT} component={Account} />
-          <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
-          <Route path={ROUTES.AD_DETAILS} component={AddInfoForm} />
-        </Switch>
+      <>
+        <div className="bg-white-10 vh-100 ml3 mr3">
+          <div className="pb5">
+            <Switch>
+              <Route path={ROUTES.INDEX} component={Home} exact />
+              <Route path={ROUTES.SIGN_IN} component={Login} />
+              <Route path={ROUTES.DASHBOARD} component={DashBoard} />
+              <Route path={ROUTES.REGISTER} component={Register} />
+              <Route path={ROUTES.CARD} component={UserCard} />
+              <Route path={ROUTES.INBOX} component={ChildrenForm} />
+              <Route path={ROUTES.SEARCH} component={DashBoard} />
+              <Route path={ROUTES.FAVOURITE} component={UserCard} />
+              <Route path={ROUTES.ACCOUNT} component={Account} />
+              <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
+              <Route path={ROUTES.CHILDREN} component={ChildrenForm} />
+              <Route path={ROUTES.AD_DETAILS} component={AddInfoForm} />
+            </Switch>
+          </div>
+        </div>
         {user &&
           pathname !== ROUTES.INDEX &&
           pathname !== ROUTES.SIGN_IN &&
           pathname !== ROUTES.REGISTER &&
           pathname !== ROUTES.CARD && <AppFooter />}
-      </div>
+      </>
     );
   }
 }
