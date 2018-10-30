@@ -38,13 +38,13 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="flex flex-column vh-100 bg-kids ph4">
+      <div className="flex flex-column vh-100 bg-light-blue ph4">
         <a className="kidappi green mt5 tc w-100">Kidappi</a>
         <FacebookButton className="mt5" onClick={() => this.faceBookLogin()} />
-        <p className="pt3 ma0 tc dark-green">
+        <p className="pt3 ma0 tc white">
           <FormattedMessage id="general|or" />
         </p>
-        <p className="tc pb2 dark-green">
+        <p className="tc pb2 white">
           <FormattedMessage id="content|login|loginwithemail" />
         </p>
 

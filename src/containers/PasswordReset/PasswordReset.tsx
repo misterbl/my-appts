@@ -32,8 +32,8 @@ class PasswordReset extends React.Component<IPasswordResetComponent, IPasswordRe
     console.log(this);
 
     return (
-      <div className="vh-100 bg-kids">
-        <div className="absolute bottom-2 ph3 tc">
+      <div className="vh-100 bg-light-blue ">
+        <div className="absolute bottom-2 ph3">
           {!submitted && <><p className="tc pb2 white">
             <FormattedMessage id="content|passwordreset|directives" />
           </p>
@@ -46,7 +46,7 @@ class PasswordReset extends React.Component<IPasswordResetComponent, IPasswordRe
               {({ values, isSubmitting, setFieldValue }) => (
                 <Form autoComplete="off" className="flex flex-column white-input ">
                   <label
-                    className={`${labelColor(values.email, 'o-0', 'green')} f6`}
+                    className={`${labelColor(values.email, 'white', 'o-0')} f6`}
                     htmlFor="email"
                   >
                     <FormattedMessage id="general|placeholder|email" />
