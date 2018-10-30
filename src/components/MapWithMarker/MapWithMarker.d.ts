@@ -1,3 +1,8 @@
 export interface IMapWithMarker {
-    address?: string
+  address?: string;
+}
+
+export interface IMapWithMarkerState {
+  lat: number | null;
+  lng: number | null;
 }

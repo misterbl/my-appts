@@ -19,34 +19,39 @@ import { AccountIcon } from 'src/styles/assets';
 
 export class PersonalInfoForm extends React.Component<
   IPersonalInfoFormComponent
-  > {
+> {
   onSubmit = (event: any) => {
-    const { firstName, lastName, address } = event;
+    const { firstName, lastName, address, postCode, city } = event;
     // @ts-ignore
-    const { _id } = this.props.user
-    this.props.apiThunk.updateUser(QUERIES({ _id, firstName, lastName, address }).UPDATE_PERSONAL_INFO);
-    this.props.history.push(ROUTES.AD_DETAILS)
+    const { _id } = this.props.user;
+    this.props.apiThunk.updateUser(
+      QUERIES({ _id, firstName, lastName, address, postCode, city })
+        .UPDATE_PERSONAL_INFO,
+    );
+    this.props.history.push(ROUTES.AD_DETAILS);
   };
 
-  labelColor = (input: string) => (input && input.length === 0 ? 'white' : 'moon-gray');
+  labelColor = (input: string) =>
+    input && input.length === 0 ? 'white' : 'moon-gray';
 
   render() {
-    const { user, intl: { formatMessage } } = this.props;
+    const {
+      user,
+      intl: { formatMessage },
+    } = this.props;
 
     return (
       <div className="flex flex-column">
         <div className="flex pt4 ml4">
-          {user && user.avatar ?
+          {user && user.avatar ? (
             <img
               className="br-100 h3 w3"
               src={user.avatar || ''}
               alt="user's profile"
-            /> :
-            <Svg
-              Icon={AccountIcon}
-              width="4rem"
-              height="4rem"
-            />}
+            />
+          ) : (
+            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+          )}
           <strong className="self-center ml3">Personnal Details</strong>
         </div>
         <span className="white tc mt2">
@@ -124,7 +129,9 @@ export class PersonalInfoForm extends React.Component<
                 value={values.postCode}
                 name="postCode"
                 onFocus={() => this.setState({ focused: 'postCode' })}
-                onChange={event => setFieldValue('postCode', event.target.value)}
+                onChange={event =>
+                  setFieldValue('postCode', event.target.value)
+                }
                 placeholder={formatMessage({
                   id: 'general|placeholder|postCode',
                 })}
@@ -160,8 +167,9 @@ export class PersonalInfoForm extends React.Component<
   }
 }
 
-
-export const mapStateToProps = (state: IAppState): IPersonalInfoFormMapStateToProps => ({
+export const mapStateToProps = (
+  state: IAppState,
+): IPersonalInfoFormMapStateToProps => ({
   user: getUserData(state),
 });
 

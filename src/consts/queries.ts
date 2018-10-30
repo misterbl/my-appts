@@ -29,7 +29,9 @@ const queries = (args: any) => ({
     }
   }`,
   UPDATE_AD_INFO: `mutation {
-    updateUser (_id:"${args._id}" profileTitle: "${args.profileTitle}", profileDescription: "${args.profileDescription}") {
+    updateUser (_id:"${args._id}" profileTitle: "${
+    args.profileTitle
+  }", profileDescription: "${args.profileDescription}") {
       _id
       firstName
       lastName
@@ -43,7 +45,11 @@ const queries = (args: any) => ({
     }
   }`,
   UPDATE_PERSONAL_INFO: `mutation {
-    updateUser (_id: "${args._id}" firstName: "${args.firstName}", lastName: "${args.lastName}", address: "${args.address}") {
+    updateUser (_id: "${args._id}", firstName: "${
+    args.firstName
+  }", lastName: "${args.lastName}", address: "${args.address}", postCode: "${
+    args.postCode
+  }", city: "${args.city}") {
       _id
       firstName
       lastName
