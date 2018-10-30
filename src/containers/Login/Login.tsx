@@ -34,29 +34,17 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
     this.props.history.push(ROUTES.DASHBOARD);
   };
 
-
-  // forgotPassword () => {
-  //   auth.doPasswordReset(emailAddress).then(function() {
-  //     // Email sent.
-  //   }).catch(function(error) {
-  //     // An error happened.
-  //   });
-  // }
-
-  signOut = () => {
-    auth.doSignOut();
-  };
-
   render() {
     const { formatMessage } = this.props.intl;
 
     return (
       <div className="flex flex-column vh-100 bg-kids ph4">
+        <a className="kidappi green mt5 tc w-100">Kidappi</a>
         <FacebookButton className="mt5" onClick={() => this.faceBookLogin()} />
-        <p className="pt3 ma0 tc white">
+        <p className="pt3 ma0 tc dark-green">
           <FormattedMessage id="general|or" />
         </p>
-        <p className="tc pb2 white">
+        <p className="tc pb2 dark-green">
           <FormattedMessage id="content|login|loginwithemail" />
         </p>
 
@@ -70,7 +58,7 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
           {({ values, isSubmitting, setFieldValue }) => (
             <Form autoComplete="off" className="flex flex-column white-input ">
               <label
-                className={`${labelColor(values.email, 'o-0', 'green')} f6`}
+                className={`${labelColor(values.email, 'white', 'o-0')} f6`}
                 htmlFor="email"
               >
                 <FormattedMessage id="general|placeholder|email" />
@@ -87,7 +75,7 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
                 })}
               />
               <label
-                className={`${labelColor(values.password, 'o-0', 'green')} f6`}
+                className={`${labelColor(values.password, 'white', 'o-0')} f6`}
                 htmlFor="password"
               >
                 <FormattedMessage id="general|placeholder|password" />

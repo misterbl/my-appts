@@ -6,15 +6,15 @@ import { FormattedMessage } from 'react-intl';
 const FacebookButton = (props: any) => (
   <div
     onClick={props.onClick}
-    className={`facebook-button h3 flex items-center ${props.className}`}
+    className={`facebook-button h45 flex items-center ${props.className}`}
   >
     <Svg
-      className="bg-white w-10 h2 ml2"
-      width="30pt"
-      height="30pt"
+      className="bg-white w-10 ml2 h30"
+      width='20pt'
+      height='25pt'
       Icon={FacebookIcon}
     />
-    <strong className="white tc ttc w-100 f6">
+    <strong className="white tc ttc w-100 f5">
       <FormattedMessage id="general|button|continuewithfacebook" />
     </strong>
   </div>
