@@ -12,6 +12,7 @@ module.exports = {
   'general|button|signin': 'Signin',
   'general|button|register': 'Register',
   'general|button|save': 'Save',
+  'general|button|continuewithfacebook': 'Continue with Facebook',
 
   'general|content|numberKids': 'Number of children',
   'general|content|location': 'Location',
@@ -30,7 +31,10 @@ module.exports = {
   'general|placeholder|name': 'Name',
   'general|placeholder|information': 'Other information',
   'general|placeholder|availabilities': 'Availabilities',
+  'general|placeholder|email': 'Email',
+  'general|placeholder|password': 'Password',
 
+  'content|login|loginwithemail': 'Login with Email',
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',

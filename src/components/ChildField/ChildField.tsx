@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { TChieldField, IChieldFieldState } from './ChildField.d';
+import labelColor from '../../utils/labelColor';
 
 export class ChildField extends React.Component<
   TChieldField,
@@ -13,8 +14,6 @@ export class ChildField extends React.Component<
       focused: '',
     };
   }
-
-  labelColor = (input?: string) => (input === '' ? 'white' : 'moon-gray');
 
   render() {
     const {
@@ -31,7 +30,7 @@ export class ChildField extends React.Component<
           {` ${childrenNumber! + 1}`}
         </h4>
         <label
-          className={`${this.labelColor(values['name' + childrenNumber])} f6`}
+          className={`${labelColor(values['name' + childrenNumber])} f6`}
           htmlFor={`name${childrenNumber}`}
         >
           <FormattedMessage id="general|placeholder|name" />
@@ -48,7 +47,7 @@ export class ChildField extends React.Component<
           })}
         />
         <label
-          className={`${this.labelColor(values['age' + childrenNumber])} f6`}
+          className={`${labelColor(values['age' + childrenNumber])} f6`}
           htmlFor={`age${childrenNumber}`}
         >
           <FormattedMessage id="general|placeholder|age" />
@@ -65,7 +64,7 @@ export class ChildField extends React.Component<
           })}
         />
         <label
-          className={`${this.labelColor(values['dob' + childrenNumber])} f6`}
+          className={`${labelColor(values['dob' + childrenNumber])} f6`}
           htmlFor={`dob${childrenNumber}`}
         >
           <FormattedMessage id="general|placeholder|dob" />
@@ -82,7 +81,7 @@ export class ChildField extends React.Component<
           })}
         />
         <label
-          className={`${this.labelColor(values['school' + childrenNumber])} f6`}
+          className={`${labelColor(values['school' + childrenNumber])} f6`}
           htmlFor={`school${childrenNumber}`}
         >
           <FormattedMessage id="general|placeholder|school" />
@@ -99,9 +98,7 @@ export class ChildField extends React.Component<
           })}
         />
         <label
-          className={`${this.labelColor(
-            values['information' + childrenNumber],
-          )} f6`}
+          className={`${labelColor(values['information' + childrenNumber])} f6`}
           htmlFor={`information${childrenNumber}`}
         >
           <FormattedMessage id="general|placeholder|information" />

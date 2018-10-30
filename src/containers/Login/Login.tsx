@@ -5,7 +5,8 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { ILoginComponent } from './Login.d';
 import ROUTES from '../../consts/routes';
-
+import FacebookButton from 'src/components/FacebookButton';
+import labelColor from '../../utils/labelColor';
 class Login extends React.Component<ILoginComponent> {
   onSubmit = (event: any) => {
     const { email, password } = event;
@@ -20,6 +21,8 @@ class Login extends React.Component<ILoginComponent> {
   };
 
   faceBookLogin = () => {
+    console.log('clicked');
+
     auth.doFacebookSignIn();
     this.props.history.push(ROUTES.DASHBOARD);
   };
@@ -27,16 +30,19 @@ class Login extends React.Component<ILoginComponent> {
   signOut = () => {
     auth.doSignOut();
   };
+
   render() {
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="flex flex-column vh-100">
-        <button onClick={this.signOut}>Logout</button>
-        <button onClick={this.faceBookLogin} className="facebook-button" />
-        <span className="white tc mt2">
+      <div className="flex flex-column vh-100 bg-kids">
+        <FacebookButton className="mt6" onClick={() => this.faceBookLogin()} />
+        <p className="pt3 ma0 tc">
           <FormattedMessage id="general|or" />
-        </span>
+        </p>
+        <p className="tc pb2">
+          <FormattedMessage id="content|login|loginwithemail" />
+        </p>
 
         <Formik
           initialValues={{
@@ -46,18 +52,29 @@ class Login extends React.Component<ILoginComponent> {
           onSubmit={this.onSubmit}
         >
           {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="Login-register flex flex-column">
-              <label htmlFor="email" />
+            <Form className="flex flex-column">
+              <label
+                className={`${labelColor(values.email)} f6`}
+                htmlFor="email"
+              >
+                <FormattedMessage id="general|placeholder|email" />
+              </label>
               <input
                 value={values.email}
                 name="email"
+                onFocus={() => this.setState({ focused: 'email' })}
                 onChange={event => setFieldValue('email', event.target.value)}
                 type="text"
                 placeholder={formatMessage({
                   id: 'general|placeholder|email',
                 })}
               />
-              <label htmlFor="password" />
+              <label
+                className={`${labelColor(values.password)} f6`}
+                htmlFor="password"
+              >
+                <FormattedMessage id="general|placeholder|password" />
+              </label>
               <input
                 value={values.password}
                 name="password"

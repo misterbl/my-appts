@@ -18,12 +18,11 @@ import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 
 export class Register extends React.Component<IRegisterComponent> {
-
-
-  createUserInDb = async (email: string, avatar: string | null = "") => {
-    console.log("hello");
-    await this.props.apiThunk.getUserData(QUERIES({ email }).GET_USER) ? alert("user exist") : this.props.apiThunk.postUserData(QUERIES({ email, avatar }).ADD_USER);
-
+  createUserInDb = async (email: string, avatar: string | null = '') => {
+    console.log('hello');
+    (await this.props.apiThunk.getUserData(QUERIES({ email }).GET_USER))
+      ? alert('user exist')
+      : this.props.apiThunk.postUserData(QUERIES({ email, avatar }).ADD_USER);
 
     this.props.history.push(ROUTES.DASHBOARD);
   };
@@ -72,7 +71,7 @@ export class Register extends React.Component<IRegisterComponent> {
           onSubmit={this.onSubmit}
         >
           {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="signin-register flex flex-column">
+            <Form className="flex flex-column">
               <label htmlFor="email" />
               <input
                 value={values.email}

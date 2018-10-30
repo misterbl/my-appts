@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-.profile-form {
+form {
   input {
     background: transparent;
     border-right: none;
@@ -30,33 +30,22 @@ code {
   input::placeholder {
     color: #555555;
   }
+  input:-webkit-autofill {
+    box-shadow: inset 0 0 0px 9999px white;
+    -webkit-box-shadow: inset 0 0 0px 9999px white;
+  }
 }
 
 .facebook-button {
-  background-image: url('../assets/facebook-logo.png');
-  background-size: cover;
-  width: 80px;
-  height: 80px;
+  background-color: #3c5a99;
 }
 
-.signin-register {
-  input {
-    background: transparent;
-    border-right: none;
-    background: transparent;
-    border-bottom: 1px solid #78dba3;
-    border-top: none;
-    border-left: none;
-    outline: none;
-    margin-bottom: 30px;
-  }
-  input:focus {
-    border-bottom: 2px solid #fcfcfc;
-  }
-  input::placeholder {
-    color: #ffffff;
-  }
-}
+// .bg-kids {
+//   background-image: url('../assets/kids.jpg');
+//   height: 100%;
+//   filter: blur(8px);
+//   -webkit-filter: blur(10px);
+// }
 
 .user-card-header {
   background-color: #33826d;

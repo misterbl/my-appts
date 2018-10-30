@@ -16,6 +16,7 @@ import { getUserData } from 'src/selectors/apiSelectors';
 import { ROUTES, QUERIES } from '../../consts';
 import { AccountIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
+import labelColor from '../../utils/labelColor';
 
 export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   onSubmit = async (event: any) => {
@@ -27,9 +28,6 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
     );
     this.props.history.push(ROUTES.ACCOUNT);
   };
-
-  labelColor = (input: string) =>
-    input && input.length === 0 ? 'white' : 'moon-gray';
 
   render() {
     const {
@@ -64,7 +62,7 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
           {({ values, isSubmitting, setFieldValue }) => (
             <Form className="profile-form mh4 flex flex-column">
               <label
-                className={`${this.labelColor(values.profileTitle)} f6`}
+                className={`${labelColor(values.profileTitle)} f6`}
                 htmlFor="profileTitle"
               >
                 <FormattedMessage id="general|placeholder|profileTitle" />
@@ -81,7 +79,7 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
                 })}
               />
               <label
-                className={`${this.labelColor(values.profileDescription)} f6`}
+                className={`${labelColor(values.profileDescription)} f6`}
                 htmlFor="profileDescription"
               >
                 <FormattedMessage id="general|placeholder|profileDescription" />
@@ -98,7 +96,7 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
                 })}
               />
               {/* <label
-                className={`${this.labelColor(
+                className={`${labelColor(
                   values.availabilities
                 )} f6`}
                 htmlFor="availabilities"

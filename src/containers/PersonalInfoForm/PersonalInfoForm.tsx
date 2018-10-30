@@ -16,6 +16,7 @@ import { getUserData } from 'src/selectors/apiSelectors';
 import { ROUTES, QUERIES } from '../../consts';
 import Svg from 'src/components/Svg';
 import { AccountIcon } from 'src/styles/assets';
+import labelColor from '../../utils/labelColor';
 
 export class PersonalInfoForm extends React.Component<
   IPersonalInfoFormComponent
@@ -30,9 +31,6 @@ export class PersonalInfoForm extends React.Component<
     );
     this.props.history.push(ROUTES.AD_DETAILS);
   };
-
-  labelColor = (input: string) =>
-    input && input.length === 0 ? 'white' : 'moon-gray';
 
   render() {
     const {
@@ -70,7 +68,7 @@ export class PersonalInfoForm extends React.Component<
           {({ values, isSubmitting, setFieldValue }) => (
             <Form className="profile-form mh4 flex flex-column">
               <label
-                className={`${this.labelColor(values.firstName)} f6`}
+                className={`${labelColor(values.firstName)} f6`}
                 htmlFor="firstName"
               >
                 <FormattedMessage id="general|placeholder|firstName" />
@@ -88,7 +86,7 @@ export class PersonalInfoForm extends React.Component<
                 })}
               />
               <label
-                className={`${this.labelColor(values.lastName)} f6`}
+                className={`${labelColor(values.lastName)} f6`}
                 htmlFor="lastName"
               >
                 <FormattedMessage id="general|placeholder|lastName" />
@@ -105,7 +103,7 @@ export class PersonalInfoForm extends React.Component<
                 })}
               />
               <label
-                className={`${this.labelColor(values.address)} f6`}
+                className={`${labelColor(values.address)} f6`}
                 htmlFor="address"
               >
                 <FormattedMessage id="general|placeholder|address" />
@@ -120,7 +118,7 @@ export class PersonalInfoForm extends React.Component<
                 })}
               />
               <label
-                className={`${this.labelColor(values.postCode)} f6`}
+                className={`${labelColor(values.postCode)} f6`}
                 htmlFor="postCode"
               >
                 <FormattedMessage id="general|placeholder|postCode" />
@@ -136,10 +134,7 @@ export class PersonalInfoForm extends React.Component<
                   id: 'general|placeholder|postCode',
                 })}
               />
-              <label
-                className={`${this.labelColor(values.city)} f6`}
-                htmlFor="city"
-              >
+              <label className={`${labelColor(values.city)} f6`} htmlFor="city">
                 <FormattedMessage id="general|placeholder|city" />
               </label>
               <input

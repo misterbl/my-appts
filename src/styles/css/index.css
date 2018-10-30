@@ -10,7 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.profile-form input {
+form input {
   background: transparent;
   border-right: none;
   background: transparent;
@@ -20,35 +20,19 @@ code {
   outline: none;
   margin-bottom: 30px;
 }
-.profile-form input:focus {
+form input:focus {
   border-bottom: 2px solid #555555;
 }
-.profile-form input::placeholder {
+form input::placeholder {
   color: #555555;
+}
+form input:-webkit-autofill {
+  box-shadow: inset 0 0 0px 9999px white;
+  -webkit-box-shadow: inset 0 0 0px 9999px white;
 }
 
 .facebook-button {
-  background-image: url("../assets/facebook-logo.png");
-  background-size: cover;
-  width: 80px;
-  height: 80px;
-}
-
-.signin-register input {
-  background: transparent;
-  border-right: none;
-  background: transparent;
-  border-bottom: 1px solid #78dba3;
-  border-top: none;
-  border-left: none;
-  outline: none;
-  margin-bottom: 30px;
-}
-.signin-register input:focus {
-  border-bottom: 2px solid #fcfcfc;
-}
-.signin-register input::placeholder {
-  color: #ffffff;
+  background-color: #3c5a99;
 }
 
 .user-card-header {

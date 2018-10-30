@@ -5,6 +5,7 @@ import SearchIcon from './searchIcon';
 import AccountIcon from './accountIcon';
 import chevronLeftIcon from './chevronLeftIcon';
 import PlusIcon from './plusIcon';
+import FacebookIcon from './facebookIcon';
 
 export {
   MessageIcon,
@@ -14,4 +15,5 @@ export {
   AccountIcon,
   chevronLeftIcon,
   PlusIcon,
+  FacebookIcon,
 };

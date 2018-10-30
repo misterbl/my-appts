@@ -13,7 +13,6 @@ export class MapWithMarker extends React.Component<
       lng: null,
     };
     this.getGeoCode(this.props.address, (searchLatlng: any) => {
-      console.log('searchLatlng', searchLatlng);
       this.setState({ lat: searchLatlng[0] });
       this.setState({ lng: searchLatlng[1] });
     });
