@@ -18,16 +18,25 @@ import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 
 export class Register extends React.Component<IRegisterComponent> {
+
+
   createUserInDb = async (email: string, avatar: string | null = "") => {
+    console.log("hello");
     await this.props.apiThunk.getUserData(QUERIES({ email }).GET_USER) ? alert("user exist") : this.props.apiThunk.postUserData(QUERIES({ email, avatar }).ADD_USER);
+
+
     this.props.history.push(ROUTES.DASHBOARD);
   };
   onSubmit = (event: any) => {
+    console.log(0);
     const { email, passwordOne } = event;
+    console.log(1);
     auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
+        console.log(2);
         this.createUserInDb(email);
+        console.log(3);
       })
       .catch(error => {
         console.log(error);
