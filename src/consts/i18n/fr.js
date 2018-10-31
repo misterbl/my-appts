@@ -17,7 +17,7 @@ module.exports = {
   'content|appfooter|dashboard': 'Tableau de bord',
   'content|appfooter|favourite': 'Favorits',
   'content|appfooter|search': 'Recherche',
-  'content|appfooter|account': 'Compte',
+  'content|appfooter|booking': 'Mes gardes',
   'general|placeholder|firstName': 'Prénom',
   'general|placeholder|lastName': 'Nom de famille',
   'general|placeholder|address': 'Adresse',

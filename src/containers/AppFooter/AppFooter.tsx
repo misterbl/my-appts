@@ -7,19 +7,22 @@ import {
   HomeIcon,
   StarIcon,
   SearchIcon,
-  AccountIcon,
+  BookingIcon,
 } from '../../styles/assets';
-import { IAppFooterComponent } from './AppFooter.d';
+import { TAppFooterComponent, IAppFooterState } from './AppFooter.d';
 import Svg from '../../components/Svg';
 
-export class AppFooter extends React.Component<IAppFooterComponent> {
-  state = { clicked: '' };
-  iconList = [
-    { icon: MessageIcon, route: ROUTES.INBOX, name: 'inbox' },
-    { icon: HomeIcon, route: ROUTES.DASHBOARD, name: 'dashboard' },
-    { icon: StarIcon, route: ROUTES.FAVOURITE, name: 'favourite' },
-    { icon: SearchIcon, route: ROUTES.SEARCH, name: 'search' },
-    { icon: AccountIcon, route: ROUTES.ACCOUNT, name: 'account' },
+export class AppFooter extends React.Component<TAppFooterComponent, IAppFooterState> {
+  constructor(props: TAppFooterComponent) {
+    super(props);
+    this.state = { clicked: '' }
+  }
+  iconList = () => [
+    { icon: MessageIcon, route: ROUTES.INBOX, name: "inbox" },
+    { icon: HomeIcon, route: ROUTES.DASHBOARD, name: "dashboard" },
+    { icon: StarIcon, route: ROUTES.FAVOURITE, name: "favourite" },
+    { icon: SearchIcon, route: ROUTES.SEARCH, name: "search" },
+    { icon: BookingIcon, route: ROUTES.BOOKING, name: "booking" },
   ];
 
   clickedAction = (route: string) => {
@@ -40,7 +43,7 @@ export class AppFooter extends React.Component<IAppFooterComponent> {
   };
 
   mapIcons = (list: any) => {
-    return list.map((element: any) => (
+    return this.iconList().map((element: any) => (
       <Svg
         Icon={element.icon}
         name={<FormattedMessage id={`content|appfooter|${element.name}`} />}
@@ -52,6 +55,8 @@ export class AppFooter extends React.Component<IAppFooterComponent> {
   };
 
   render() {
+    console.log(this.props.intl.formatMessage({ id: 'content|appfooter|inbox' }));
+
     return (
       <div className="flex bg-white justify-around fixed w-100 bottom-0 pv2 ph3 shadow-5">
         {this.mapIcons(this.iconList)}

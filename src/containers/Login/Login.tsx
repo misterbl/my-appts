@@ -1,20 +1,25 @@
 import * as React from 'react';
 import { Formik, Form } from 'formik';
+import { Dispatch, AnyAction, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
-import { ILoginComponent, ILoginState } from './Login.d';
+import { ILoginComponent, ILoginState, ILoginStateDispatchToProps } from './Login.d';
 import ROUTES from '../../consts/routes';
 import FacebookButton from 'src/components/FacebookButton';
 import labelColor from '../../utils/labelColor';
 import { WarningIcon } from '../../styles/assets/';
-class Login extends React.Component<ILoginComponent, ILoginState> {
+import { QUERIES } from 'src/consts';
+import * as apiThunk from '../../actions/thunks/apiThunk';
+
+
+export class Login extends React.Component<ILoginComponent, ILoginState> {
   constructor(props: ILoginComponent) {
     super(props);
     this.state = {
       wrongAuth: false,
-      focused: '',
     };
   }
 
@@ -31,8 +36,9 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
       });
   };
 
-  faceBookLogin = () => {
-    auth.doFacebookSignIn();
+  faceBookLogin = async () => {
+    const fbUser = await auth.doFacebookSignIn();
+    await this.props.apiThunk.getUserData(QUERIES({ email: fbUser && fbUser.email }).GET_USER);
     this.props.history.push(ROUTES.DASHBOARD);
   };
 
@@ -41,9 +47,9 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
 
     return (
       <div className="flex flex-column vh-100 green-bg ph4">
-        {/* <a className="kidappi white mt5 tc w-100">Kidappi</a> */}
+        <a className="kidappi white mt4 tc w-100">Kidappi</a>
         <FacebookButton
-          className="mt5 shadow-5"
+          className="mt4 shadow-5"
           onClick={() => this.faceBookLogin()}
         />
         <div className="text--line-through">
@@ -75,7 +81,7 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
               <label
                 className={`${labelColor(
                   values.email,
-                  'glow white',
+                  'white',
                   'o-0',
                 )} f6`}
                 htmlFor="email"
@@ -86,7 +92,6 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
                 autoComplete="new-email"
                 value={values.email}
                 name="email"
-                onFocus={() => this.setState({ focused: 'email' })}
                 onChange={event => setFieldValue('email', event.target.value)}
                 type="text"
                 placeholder={formatMessage({
@@ -103,7 +108,7 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
               <label
                 className={`${labelColor(
                   values.password,
-                  'glow white',
+                  'white',
                   'o-0',
                 )} f6 mt4`}
                 htmlFor="password"
@@ -144,8 +149,6 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
               >
                 <FormattedMessage id="general|button|signin" />
               </button>
-
-              {/* {error && <p>{error.message}</p>} */}
             </Form>
           )}
         </Formik>
@@ -155,5 +158,14 @@ class Login extends React.Component<ILoginComponent, ILoginState> {
   }
 }
 
+export const mapDispatchToProps = (
+  dispatch: Dispatch<AnyAction>,
+): ILoginStateDispatchToProps => ({
+  apiThunk: bindActionCreators(apiThunk, dispatch),
+});
+
 const injectIntlLogin = injectIntl(Login);
-export default withRouter(injectIntlLogin);
+export default withRouter(connect(
+  null,
+  mapDispatchToProps,
+)(injectIntlLogin));

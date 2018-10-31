@@ -11,7 +11,8 @@ const routes = {
   USER_DETAILS: '/user-details',
   CHILDREN: '/children',
   AD_DETAILS: '/ad-details',
-  PASSWORD_RESET: '/password-reset'
+  PASSWORD_RESET: '/password-reset',
+  BOOKING: '/booking'
 };
 
 export default routes;
