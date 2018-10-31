@@ -49,7 +49,6 @@ class App extends React.Component<TAppComponent> {
 
     return (
       <>
-
         <Switch>
           <Route path={ROUTES.INDEX} component={Home} exact />
           <Route path={ROUTES.SIGN_IN} component={Login} />

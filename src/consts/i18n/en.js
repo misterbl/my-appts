@@ -9,7 +9,7 @@ module.exports = {
 
   'general|button|next': 'next',
   'general|button|add': 'Add',
-  'general|button|signin': 'Signin',
+  'general|button|signin': 'Sign in',
   'general|button|register': 'Register',
   'general|button|save': 'Save',
   'general|button|continuewithfacebook': 'Continue with Facebook',
@@ -35,9 +35,13 @@ module.exports = {
   'general|placeholder|password': 'Password',
 
   'content|login|loginwithemail': 'Login with Email',
-  "content|login|forgotpassword": 'Forgot password',
-  "content|passwordreset|directives": "Please enter your email address to receive a link to reset your password",
-  "content|passwordreset|sent": "A link has been sent to your email to reset your password",
+  'content|login|forgotpassword': 'Forgot password',
+  'content|login|emailrequired': 'An email address is required',
+  'content|login|passwordrequired': 'A password is required',
+  'content|passwordreset|directives':
+    'Please enter your email address to receive a link to reset your password',
+  'content|passwordreset|sent':
+    'A link has been sent to your email to reset your password',
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',

@@ -9,9 +9,9 @@ const FacebookButton = (props: any) => (
     className={`facebook-button h45 flex items-center ${props.className}`}
   >
     <Svg
-      className="bg-white w-10 ml2 h30"
-      width='20pt'
-      height='25pt'
+      className="bg-white fbIcon"
+      width="20pt"
+      height="25pt"
       Icon={FacebookIcon}
     />
     <strong className="white tc ttc w-100 f5">

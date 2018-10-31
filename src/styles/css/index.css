@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Ubuntu", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -15,8 +15,10 @@ code {
   font-size: 5rem;
 }
 
-.h30 {
-  height: 30px;
+.fbIcon {
+  height: 21px;
+  width: 22px;
+  margin-left: 1rem;
 }
 
 .h45 {
@@ -31,7 +33,9 @@ code {
   border-top: none;
   border-left: none;
   outline: none;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 0px !important;
+  color: #014404;
 }
 .white-input input:focus {
   border-bottom: 2px solid #3dba6d !important;
@@ -57,12 +61,49 @@ form input::placeholder {
   color: #555555;
 }
 form input:-webkit-autofill {
-  box-shadow: inset 0 0 0px 9999px #96CCFF;
-  -webkit-box-shadow: inset 0 0 0px 9999px #96CCFF;
+  box-shadow: inset 0 0 0px 9999px #96ccff;
+  -webkit-box-shadow: inset 0 0 0px 9999px #96ccff;
+}
+
+.text--line-through {
+  position: relative;
+  text-align: center;
+  margin: 22px 0 0;
+}
+.text--line-through--text {
+  position: relative;
+  background: #35ad49;
+  z-index: 5;
+  padding: 0 15px;
+}
+.text--line-through::before {
+  content: "";
+  display: block;
+  border-top: 1px white solid;
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
 }
 
 .facebook-button {
   background-color: #3c5a99;
+  border-radius: 5px;
+}
+
+.loginNext {
+  background-color: #f2de4b;
+  color: #967c0d;
+  border-radius: 4px;
+}
+
+.green-bg {
+  background-color: #35ad49;
+}
+
+.green-error {
+  color: #cce281;
 }
 
 .bg-kids {

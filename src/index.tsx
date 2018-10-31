@@ -27,8 +27,8 @@ addLocaleData([...locale_en, ...locale_fr]);
 ReactDOM.render(
   <Provider store={store}>
     <IntlProvider locale={language} messages={messages[language]}>
-    <ConnectedRouter history={history}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
       </ConnectedRouter>
     </IntlProvider>
   </Provider>,
