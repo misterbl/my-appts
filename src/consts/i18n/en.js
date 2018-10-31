@@ -46,7 +46,7 @@ module.exports = {
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',
   'content|appfooter|search': 'Search',
-  'content|appfooter|booking': 'Booking',
+  'content|appfooter|booking': 'My bookings',
   'content|addinfoform|title': 'Your ad',
   'content|childrenform|title': 'Your children',
   'content|childrenform|explanation':
