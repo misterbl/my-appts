@@ -9,7 +9,7 @@ import ROUTES from '../../consts/routes';
 import FacebookButton from 'src/components/FacebookButton';
 import labelColor from '../../utils/labelColor';
 import { WarningIcon } from '../../styles/assets/';
-class Login extends React.Component<ILoginComponent, ILoginState> {
+export class Login extends React.Component<ILoginComponent, ILoginState> {
   constructor(props: ILoginComponent) {
     super(props);
     this.state = {
