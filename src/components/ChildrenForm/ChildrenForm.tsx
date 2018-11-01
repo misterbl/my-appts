@@ -22,7 +22,7 @@ import ChildFied from '../ChildField';
 export class ChildrenForm extends React.Component<
   IChildrenFormComponent,
   IChildrenFormState
-> {
+  > {
   constructor(props: IChildrenFormComponent) {
     super(props);
     this.state = {
@@ -84,8 +84,8 @@ export class ChildrenForm extends React.Component<
               alt="user's profile"
             />
           ) : (
-            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-          )}
+              <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+            )}
           <strong className="self-center ml3">
             {' '}
             <FormattedMessage id="content|childrenform|title" />
@@ -113,13 +113,8 @@ export class ChildrenForm extends React.Component<
                 Icon={PlusIcon}
                 className="self-end mb4"
               />
-              <button
-                className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                <FormattedMessage id="general|button|add" />
-              </button>
+              //@ts-ignore
+              {this.props.submitButton}
               {/* {error && <p>{error.message}</p>} */}
             </Form>
           )}

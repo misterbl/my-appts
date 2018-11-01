@@ -10,7 +10,7 @@ export interface EditProfileDispatchToProps {
 }
 
 export interface EditProfileState {
-  selected: string
+  selected: string;
 }
 // export interface EditProfileMapStateToProps {
 //   user: IAppState['api']['userData'];

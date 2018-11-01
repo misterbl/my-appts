@@ -13,20 +13,22 @@ import {
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
-import { ROUTES, QUERIES } from '../../consts';
+// import { ROUTES, QUERIES } from '../../consts';
 import { AccountIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
 import labelColor from '../../utils/labelColor';
 
 export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   onSubmit = async (event: any) => {
-    const { profileTitle, profileDescription } = event;
-    // @ts-ignore
-    const { _id } = this.props.user;
-    await this.props.apiThunk.updateUser(
-      QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
-    );
-    this.props.history.push(ROUTES.PROFILE);
+    console.log(event);
+
+    // const { profileTitle, profileDescription } = event;
+    // // @ts-ignore
+    // const { _id } = this.props.user;
+    // await this.props.apiThunk.updateUser(
+    //   QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
+    // );
+    // this.props.history.push(ROUTES.PROFILE);
   };
 
   render() {
@@ -44,8 +46,8 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
               alt="user's profile"
             />
           ) : (
-            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-          )}
+              <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+            )}
           <strong className="self-center ml3">
             <FormattedMessage id="content|addinfoform|title" />
           </strong>
@@ -117,13 +119,8 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
                 })}
               />  */}
 
-              <button
-                className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                <FormattedMessage id="general|button|next" />
-              </button>
+              //@ts-ignore
+              {this.props.submitButton}
               {/* {error && <p>{error.message}</p>} */}
             </Form>
           )}

@@ -20,19 +20,44 @@ export class EditProfile extends React.Component<EditProfileComponent, EditProfi
   pagesName = ['MY INFO', 'MY AD', 'MY CHILDREN', 'MY PHOTOS'];
   constructor(props: EditProfileComponent) {
     super(props);
+    // @ts-ignore
+    this.submiFormInfo = React.createRef();
+    // @ts-ignore
+    this.submiFormAd = React.createRef();
+    // @ts-ignore
+    this.submiFormChildren = React.createRef();
+    // @ts-ignore
+    this.submiFormPhotos = React.createRef();
+
     this.state = { selected: 'MY INFO' }
+  }
+
+  changeTab = (selected: any, tab: any) => {
+    console.log(selected)
+    switch (selected) {
+      case 'MY INFO':
+        // @ts-ignore
+        if (this.submiFormInfo && this.submiFormInfo.current) { this.submiFormInfo.current.click(); }
+      case 'MY AD':
+        // @ts-ignore
+        if (this.submiFormAd && this.submiFormAd.current) { this.submiFormAd.current.click(); }
+      case 'MY CHILDREN':
+        // @ts-ignore
+        if (this.submiFormChildren && this.submiFormChildren.current) { this.submiFormChildren.current.click(); }
+    }
   }
 
   renderPage = (selected: any) => {
     switch (selected) {
       case 'MY INFO':
         // @ts-ignore
-        return <PersonalInfoForm />;
+        return (<PersonalInfoForm submitButton={<button ref={this.submiFormInfo} type="submit" />} />);
       case 'MY AD':
-        return <AddInfoForm />;
+        // @ts-ignore
+        return <AddInfoForm submitButton={<button ref={this.submiFormAd} type="submit" />} />;
       case 'MY CHILDREN':
         // @ts-ignore
-        return <ChildrenForm />;
+        return <ChildrenForm submitButton={<button ref={this.submiFormChildren} type="submit" />} />;
       default:
         return <span />;
     }
@@ -49,7 +74,7 @@ export class EditProfile extends React.Component<EditProfileComponent, EditProfi
           <div className="f6 mt3 flex flex-nowrap justify-between mh2">
             {
               pagesName.map((tab, index) => (
-                <div key={tab} onClick={() => this.setState({ selected: tab })} className={`white pb2 ttu ${selected === tab ? 'bb b--orange' : ''}`}>{tab}</div>
+                <div key={tab} onClick={async () => { await this.changeTab(selected, tab); this.setState({ selected: tab }); }} className={`white pb2 ttu ${selected === tab ? 'bb b--orange' : ''}`}>{tab}</div>
               ))
             }
           </div>
