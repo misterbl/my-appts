@@ -9,6 +9,7 @@ import PlusIcon from './plusIcon';
 import FacebookIcon from './facebookIcon';
 import WarningIcon from './warningIcon';
 import AccountIcon from './accountIcon';
+import EditIcon from './editIcon';
 
 export {
   MessageIcon,
@@ -22,4 +23,5 @@ export {
   FacebookIcon,
   WarningIcon,
   AccountIcon,
+  EditIcon,
 };

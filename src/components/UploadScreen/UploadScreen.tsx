@@ -41,25 +41,25 @@ export class UploadScreen extends React.Component<
       );
       reader.readAsDataURL(acceptedFiles[0]);
       // @ts-ignore
-      // for (const i; i <= filesToBeSent.length; i++) {
-      //   filesPreview.push(
-      //     <div>
-      //       {filesToBeSent[i][0].name}
-      //       <MuiThemeProvider>
-      //         <a href="#">
-      //           <FontIcon
-      //             className="material-icons customstyle"
-      //             color={blue500}
-      //             // @ts-ignore
-      //             styles={{ top: 10 }}
-      //           >
-      //             clear
-      //           </FontIcon>
-      //         </a>
-      //       </MuiThemeProvider>
-      //     </div>,
-      //   );
-      // }
+      for (const i; i <= filesToBeSent.length; i++) {
+        filesPreview.push(
+          <div>
+            {/* {filesToBeSent[i][0].name}
+            <MuiThemeProvider>
+              <a href="#">
+                <FontIcon
+                  className="material-icons customstyle"
+                  color={blue500}
+                  // @ts-ignore
+                  styles={{ top: 10 }}
+                >
+                  clear
+                </FontIcon>
+              </a>
+            </MuiThemeProvider> */}
+          </div>,
+        );
+      }
       // @ts-ignore
       this.setState({ filesToBeSent, filesPreview });
     } else {
