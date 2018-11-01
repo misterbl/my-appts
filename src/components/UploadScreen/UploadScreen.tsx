@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 // import { blue500 } from 'material-ui/styles/colors';
 import { RaisedButton } from 'material-ui';
 
+// https://medium.com/technoetics/handling-file-upload-in-reactjs-b9b95068f6b
 export class UploadScreen extends React.Component {
   constructor(props: any) {
     super(props);
@@ -71,10 +72,9 @@ export class UploadScreen extends React.Component {
 
     return (
       <div className="App">
-        <Dropzone onDrop={files => this.onDrop(files)}>
-          <div>
-            Try dropping some files here, or click to select files to upload.
-          </div>
+        <Dropzone className="b--red ba" onDrop={files => this.onDrop(files)}>
+          // @ts-ignore
+          <img src={this.state.imageSource} />
         </Dropzone>
         <div>
           // @ts-ignore
@@ -88,8 +88,6 @@ export class UploadScreen extends React.Component {
             onClick={event => this.handleClick(event)}
           />
         </MuiThemeProvider>
-        // @ts-ignore
-        <img src={this.state.imageSource} />
       </div>
     );
   }
