@@ -13,6 +13,7 @@ module.exports = {
   'general|button|register': 'Register',
   'general|button|save': 'Save',
   'general|button|continuewithfacebook': 'Continue with Facebook',
+  'general|button|send': 'Send',
 
   'general|content|numberKids': 'Number of children',
   'general|content|location': 'Location',

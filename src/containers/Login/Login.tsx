@@ -81,7 +81,10 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
           onSubmit={this.onSubmit}
         >
           {({ values, isSubmitting, setFieldValue, touched, errors }) => (
-            <Form autoComplete="off" className="flex flex-column white-input ">
+            <Form
+              autoComplete="off"
+              className="form-green flex flex-column white-input "
+            >
               <label
                 className={`${labelColor(values.email, 'white', 'o-0')} f6`}
                 htmlFor="email"
@@ -141,7 +144,7 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
                 </strong>
               </a>
               <button
-                className="loginNext fw7 ph3 ttc di pv3 bn shadow-5"
+                className="loginNext fw7 ph3 ttu di pv3 bn shadow-5"
                 type="submit"
                 disabled={isSubmitting}
               >

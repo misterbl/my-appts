@@ -3,13 +3,12 @@ import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 
 export interface IPasswordReseformData {
-    email?: string;
+  email?: string;
 }
 
 export interface IPasswordReseState {
-    submitted: boolean
-    focused: string
+  submitted: boolean;
 }
 export type IPasswordResetComponent = FormikProps<IPasswordReseformData> &
-    InjectedIntlProps &
-    RouteComponentProps<any, StaticContext>;
+  InjectedIntlProps &
+  RouteComponentProps<any, StaticContext>;
