@@ -1,36 +1,36 @@
 import * as React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Dropzone from 'react-dropzone';
-// import FontIcon from 'material-ui/FontIcon';
-// import { blue500 } from 'material-ui/styles/colors';
 import { RaisedButton } from 'material-ui';
+import { IUploadScreen, IUploadScreenState } from './IUploadScreen';
 
 // https://medium.com/technoetics/handling-file-upload-in-reactjs-b9b95068f6b
-export class UploadScreen extends React.Component {
-  constructor(props: any) {
+export class UploadScreen extends React.Component<
+  IUploadScreen,
+  IUploadScreenState
+> {
+  constructor(props: IUploadScreen) {
     super(props);
     this.state = {
       filesPreview: [],
       filesToBeSent: [],
       printcount: 10,
+      imageSource: '',
     };
   }
 
   handleClick = (e: any) => {
-    // @ts-ignore
     console.log(this.state.filesToBeSent);
     console.log('event', e);
   };
 
   onDrop(acceptedFiles: any) {
-    // console.log('Accepted files: ', acceptedFiles[0].name);
-    // @ts-ignore
     const filesToBeSent = this.state.filesToBeSent;
-    // @ts-ignore
     if (filesToBeSent.length < this.state.printcount) {
-      filesToBeSent.push(acceptedFiles);
       // @ts-ignore
-      const filesPreview = [];
+      filesToBeSent.push(acceptedFiles);
+
+      const filesPreview: any = [];
       const reader = new FileReader();
       reader.addEventListener(
         'load',
@@ -72,14 +72,14 @@ export class UploadScreen extends React.Component {
 
     return (
       <div className="App">
-        <Dropzone className="b--red ba" onDrop={files => this.onDrop(files)}>
-          // @ts-ignore
+        <Dropzone
+          accept="image/jpeg,image/png"
+          className="b--red ba"
+          onDrop={files => this.onDrop(files)}
+        >
           <img src={this.state.imageSource} />
         </Dropzone>
-        <div>
-          // @ts-ignore
-          {this.state.filesPreview}
-        </div>
+        <div>{this.state.filesPreview}</div>
         <MuiThemeProvider>
           <RaisedButton
             label="Print Files"
@@ -88,6 +88,7 @@ export class UploadScreen extends React.Component {
             onClick={event => this.handleClick(event)}
           />
         </MuiThemeProvider>
+        {this.state.filesPreview.map(image => image)}
       </div>
     );
   }
