@@ -26,7 +26,7 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
     await this.props.apiThunk.updateUser(
       QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
     );
-    this.props.history.push(ROUTES.ACCOUNT);
+    this.props.history.push(ROUTES.PROFILE);
   };
 
   render() {

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Formik, Form } from 'formik';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
+import * as Yup from 'yup';
+
 // import * as firebase from 'firebase/app';
 import { auth } from '../../firebase';
 import { injectIntl, FormattedMessage } from 'react-intl';
@@ -10,35 +12,44 @@ import {
   IRegisterComponent,
   IRegisterFormDispatchToProps,
   IRegisterFormMapStateToProps,
+  IRegisterState,
 } from './Register.d';
 import { ROUTES, QUERIES } from '../../consts';
-
 import * as apiThunk from '../../actions/thunks/apiThunk';
+import labelColor from '../../utils/labelColor';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
+import FacebookButton from 'src/components/FacebookButton';
+import ErrorMessage from '../../components/ErrorMessage';
 
-export class Register extends React.Component<IRegisterComponent> {
+export class Register extends React.Component<
+  IRegisterComponent,
+  IRegisterState
+> {
+  constructor(props: IRegisterComponent) {
+    super(props);
+    this.state = {
+      userExists: false,
+    };
+  }
+
   createUserInDb = async (email: string, avatar: string | null = '') => {
-    console.log('hello');
     (await this.props.apiThunk.getUserData(QUERIES({ email }).GET_USER))
-      ? alert('user exist')
+      ? this.props.history.push(ROUTES.DASHBOARD)
       : this.props.apiThunk.postUserData(QUERIES({ email, avatar }).ADD_USER);
 
     this.props.history.push(ROUTES.DASHBOARD);
   };
   onSubmit = (event: any) => {
-    console.log(0);
-    const { email, passwordOne } = event;
-    console.log(1);
+    const { email, password } = event;
     auth
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        console.log(2);
         this.createUserInDb(email);
-        console.log(3);
       })
       .catch(error => {
         console.log(error);
+        this.setState({ userExists: true });
       });
   };
 
@@ -53,27 +64,52 @@ export class Register extends React.Component<IRegisterComponent> {
   };
 
   render() {
+    console.log(this.state);
+
     const { formatMessage } = this.props.intl;
     return (
-      <div className="flex flex-column vh-100">
-        <button onClick={this.signOut}>Logout</button>
-        <button onClick={this.faceBookLogin} className="facebook-button" />
-        <span className="white tc mt2">
-          <FormattedMessage id="general|or" />
-        </span>
-
+      <div className="flex flex-column vh-100 green-bg ph4">
+        {/* <a className="kidappi white mt4 tc w-100">Kidappi</a> */}
+        <FacebookButton
+          className="mt4 shadow-5"
+          onClick={() => this.faceBookLogin()}
+        />
+        <div className="text--line-through">
+          <span className="spant3 ma0 tc white text--line-through--text">
+            <FormattedMessage id="general|or" />
+          </span>
+        </div>
+        <p className="tc white f4">
+          <FormattedMessage id="content|regiter|registerwithemail" />
+        </p>
         <Formik
           initialValues={{
             email: '',
-            passwordOne: '',
-            passwordTwo: '',
+            password: '',
           }}
+          validationSchema={Yup.object().shape({
+            email: Yup.string()
+              .email()
+              .required(formatMessage({ id: 'content|login|emailrequired' })),
+            password: Yup.string()
+              .required(formatMessage({ id: 'content|login|passwordrequired' }))
+              .min(6),
+          })}
           onSubmit={this.onSubmit}
         >
-          {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="flex flex-column">
-              <label htmlFor="email" />
+          {({ values, isSubmitting, setFieldValue, touched, errors }) => (
+            <Form
+              autoComplete="off"
+              className="form-green flex flex-column white-input "
+            >
+              <label
+                className={`${labelColor(values.email, 'white', 'o-0')} f6`}
+                htmlFor="email"
+              >
+                <FormattedMessage id="general|placeholder|email" />
+              </label>
               <input
+                autoComplete="new-email"
                 value={values.email}
                 name="email"
                 onChange={event => setFieldValue('email', event.target.value)}
@@ -82,39 +118,56 @@ export class Register extends React.Component<IRegisterComponent> {
                   id: 'general|placeholder|email',
                 })}
               />
-              <label htmlFor="passwordOne" />
+              {touched.email &&
+                errors.email && <ErrorMessage error={errors.email} />}
+              <label
+                className={`${labelColor(
+                  values.password,
+                  'white',
+                  'o-0',
+                )} f6 mt4`}
+                htmlFor="password"
+              >
+                <FormattedMessage id="general|placeholder|password" />
+              </label>
               <input
-                value={values.passwordOne}
-                name="passwordOne"
+                value={values.password}
+                name="password"
                 onChange={event =>
-                  setFieldValue('passwordOne', event.target.value)
+                  setFieldValue('password', event.target.value)
                 }
                 type="password"
                 placeholder={formatMessage({
                   id: 'general|placeholder|password',
                 })}
               />
-              <label htmlFor="passwordTwo" />
-              <input
-                value={values.passwordTwo}
-                name="passwordTwo"
-                onChange={event =>
-                  setFieldValue('passwordTwo', event.target.value)
-                }
-                type="password"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|confirmpassword',
-                })}
-              />
+              {touched.password &&
+                errors.password && <ErrorMessage error={errors.password} />}
+              <a
+                className="mv4 white tc no-underline"
+                href={ROUTES.PASSWORD_RESET}
+              >
+                {this.state.userExists && (
+                  <>
+                    <ErrorMessage
+                      error={formatMessage({
+                        id: 'content|register|userExists',
+                      })}
+                      className="pb3 tl"
+                    />
+                    <strong>
+                      <FormattedMessage id="content|login|forgotpassword" />
+                    </strong>
+                  </>
+                )}
+              </a>
               <button
-                className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
+                className="loginNext fw7 ph3 ttu di pv3 bn shadow-5"
                 type="submit"
                 disabled={isSubmitting}
               >
-                <FormattedMessage id="general|button|next" />
+                <FormattedMessage id="general|button|register" />
               </button>
-
-              {/* {error && <p>{error.message}</p>} */}
             </Form>
           )}
         </Formik>

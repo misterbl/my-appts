@@ -39,7 +39,7 @@ export const doFacebookSignIn = () => auth.signInWithPopup(provider).then(functi
   console.log("errorCode", errorCode);
   console.log("errorMessage", errorMessage);
 
-  // The email of the user's account used.
+  // The email of the user's profile used.
   const email = error.email;
   console.log("email", email);
 

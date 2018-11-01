@@ -74,9 +74,9 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
             email: Yup.string()
               .email()
               .required(formatMessage({ id: 'content|login|emailrequired' })),
-            password: Yup.string().required(
-              formatMessage({ id: 'content|login|passwordrequired' }),
-            ),
+            password: Yup.string()
+              .required(formatMessage({ id: 'content|login|passwordrequired' }))
+              .min(6),
           })}
           onSubmit={this.onSubmit}
         >

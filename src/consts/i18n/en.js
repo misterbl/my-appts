@@ -35,6 +35,10 @@ module.exports = {
   'general|placeholder|email': 'Email',
   'general|placeholder|password': 'Password',
 
+  'content|regiter|registerwithemail': 'Register with Email',
+  'content|register|userExists':
+    'this email is already registered, try a different email address or sign in',
+
   'content|login|loginwithemail': 'Login with Email',
   'content|login|forgotpassword': 'Forgot password',
   'content|login|emailrequired': 'An email address is required',
@@ -46,6 +50,8 @@ module.exports = {
     'Please enter your email address to receive a link to reset your password',
   'content|passwordreset|sent':
     'A link has been sent to your email to reset your password',
+
+  'content|dashboard|profile': 'Profile',
 
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',

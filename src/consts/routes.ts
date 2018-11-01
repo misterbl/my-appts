@@ -7,12 +7,12 @@ const routes = {
   INBOX: '/inbox',
   FAVOURITE: '/favourite',
   SEARCH: '/search',
-  ACCOUNT: '/account',
+  PROFILE: '/profile',
   USER_DETAILS: '/user-details',
   CHILDREN: '/children',
   AD_DETAILS: '/ad-details',
   PASSWORD_RESET: '/password-reset',
-  BOOKING: '/booking'
+  BOOKING: '/booking',
 };
 
 export default routes;

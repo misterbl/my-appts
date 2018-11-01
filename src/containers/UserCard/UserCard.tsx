@@ -10,7 +10,7 @@ import { TUserCard, UserCardDispatchToProps } from './UserCard.d';
 import { QUERIES, ROUTES } from 'src/consts';
 import { AccountIcon, chevronLeftIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
-import MaMapWithMarker from '../../components/MapWithMarker/';
+// import MaMapWithMarker from '../../components/MapWithMarker/';
 
 export class UserCard extends React.Component<TUserCard> {
   viewedUser: IAppState['api']['userData'];
@@ -87,13 +87,13 @@ export class UserCard extends React.Component<TUserCard> {
             <FormattedMessage id="general|content|location" />
           </p>
         </div>
-        MAPS WILL GO HERE
+        {/* MAPS WILL GO HERE
         <MaMapWithMarker
           // @ts-ignore
           address={
             viewedUser && `${viewedUser.postCode}, ${viewedUser.city}, UK`
           }
-        />
+        /> */}
         <footer className="user-card-footer">
           <div className=" flex flex-column ml10">
             <span>Exchange</span>

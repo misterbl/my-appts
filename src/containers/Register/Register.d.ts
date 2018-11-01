@@ -17,6 +17,10 @@ export interface IRegisterFormMapStateToProps {
   user: IAppState['api']['userData'];
 }
 
+export interface IRegisterState {
+  userExists: boolean;
+}
+
 export type IRegisterComponent = FormikProps<IRegisterFormData> &
   IRegisterFormDispatchToProps &
   IRegisterFormMapStateToProps &

@@ -21,6 +21,8 @@ class PasswordReset extends React.Component<
   }
 
   onSubmit = (event: any) => {
+    console.log(event);
+
     const { email } = event;
     auth
       .doPasswordReset(email)
@@ -55,9 +57,6 @@ class PasswordReset extends React.Component<
                     .required(
                       formatMessage({ id: 'content|login|emailrequired' }),
                     ),
-                  password: Yup.string().required(
-                    formatMessage({ id: 'content|login|passwordrequired' }),
-                  ),
                 })}
                 onSubmit={this.onSubmit}
               >

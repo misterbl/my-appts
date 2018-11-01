@@ -16,7 +16,7 @@ const Svg = ({
   >
     <Icon fill={fill} width={width} height={height} />
     {name && (
-      <span className={`f7 ${fill === '#555555' ? 'mid-gray' : 'orange'}`}>
+      <span className={`f7 pt1 ${fill === '#555555' ? 'mid-gray' : 'orange'}`}>
         {name}
       </span>
     )}
