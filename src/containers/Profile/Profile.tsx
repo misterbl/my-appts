@@ -18,7 +18,7 @@ export class Profile extends React.Component<IAccountComponent> {
     return (
       <>
         <UploadScreen />
-        <div className="flex pt4 ml4">
+        <div className="flex pt4">
           {user && user.avatar ? (
             <img
               className="br-100 h3 w3"
@@ -28,20 +28,18 @@ export class Profile extends React.Component<IAccountComponent> {
           ) : (
             <Svg Icon={AccountIcon} width="4rem" height="4rem" />
           )}
-          <strong className="self-center ml3">Profile</strong>
+          <strong className="self-center ml3">{user && user.firstName}</strong>
         </div>
-        <div className="flex flex-column">
-          <button
-            className="tl mt4"
-            onClick={() => {
-              this.props.history.push(ROUTES.USER_DETAILS);
-            }}
-          >
-            Edit profile
-          </button>
-          <button className="tl mt4">Other stuff</button>
-          <button className="tl mt4">Other stuff</button>
-        </div>
+        <p>{user && user.profileTitle}</p>
+        <p>{user && user.profileDescription}</p>
+        <button
+          className="tl mt4"
+          onClick={() => {
+            this.props.history.push(ROUTES.USER_DETAILS);
+          }}
+        >
+          Edit profile
+        </button>
       </>
     );
   }
