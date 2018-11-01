@@ -17,25 +17,15 @@ import AddInfoForm from '../AddInfoForm/AddInfoForm';
 import ChildrenForm from 'src/components/ChildrenForm/ChildrenForm';
 
 export class EditProfile extends React.Component<EditProfileComponent, EditProfileState> {
-  pagesName = ['MY DETAILS', 'MY AD', 'MY CHILDREN', 'MY PHOTOS'];
+  pagesName = ['MY INFO', 'MY AD', 'MY CHILDREN', 'MY PHOTOS'];
   constructor(props: EditProfileComponent) {
     super(props);
-    this.state = { selected: '' }
+    this.state = { selected: 'MY INFO' }
   }
-  // onSubmit = (event: any) => {
-  //   const { firstName, lastName, address, postCode, city } = event;
-  //   // @ts-ignore
-  //   const { _id } = this.props.user;
-  //   this.props.apiThunk.updateUser(
-  //     QUERIES({ _id, firstName, lastName, address, postCode, city })
-  //       .UPDATE_PERSONAL_INFO,
-  //   );
-  //   this.props.history.push(ROUTES.AD_DETAILS);
-  // };
 
   renderPage = (selected: any) => {
     switch (selected) {
-      case 'MY DETAILS':
+      case 'MY INFO':
         // @ts-ignore
         return <PersonalInfoForm />;
       case 'MY AD':
@@ -48,10 +38,6 @@ export class EditProfile extends React.Component<EditProfileComponent, EditProfi
     }
   }
   render() {
-    // const {
-    //   user,
-    //   intl: { formatMessage },
-    // } = this.props;
     const { pagesName, state: { selected } } = this
     return (
       <>
@@ -63,7 +49,7 @@ export class EditProfile extends React.Component<EditProfileComponent, EditProfi
           <div className="f6 mt3 flex flex-nowrap justify-between mh2">
             {
               pagesName.map((tab, index) => (
-                <div onClick={() => this.setState({ selected: tab })} className={`white pb2 ${selected === tab ? 'bb b--orange' : ''}`}>{tab}</div>
+                <div key={tab} onClick={() => this.setState({ selected: tab })} className={`white pb2 ttu ${selected === tab ? 'bb b--orange' : ''}`}>{tab}</div>
               ))
             }
           </div>

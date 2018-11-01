@@ -20,7 +20,7 @@ import labelColor from '../../utils/labelColor';
 
 export class PersonalInfoForm extends React.Component<
   IPersonalInfoFormComponent
-> {
+  > {
   onSubmit = (event: any) => {
     const { firstName, lastName, address, postCode, city } = event;
     // @ts-ignore
@@ -48,9 +48,9 @@ export class PersonalInfoForm extends React.Component<
               alt="user's profile"
             />
           ) : (
-            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-          )}
-          <strong className="self-center ml3">Personnal Details</strong>
+              <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+            )}
+          <strong className="self-center ttc ml3"><FormattedMessage id='content|editprofile|myinfo' /></strong>
         </div>
         <span className="white tc mt2">
           <FormattedMessage id="general|or" />
