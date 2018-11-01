@@ -8,6 +8,7 @@ import { IAppState } from 'src/types/state';
 import ROUTES from '../../consts/routes';
 import Svg from '../../components/Svg';
 import { AccountIcon } from '../../styles/assets';
+import { UploadScreen } from 'src/components/UploadScreen/UploadScreen';
 
 export class Profile extends React.Component<IAccountComponent> {
   render() {
@@ -16,6 +17,7 @@ export class Profile extends React.Component<IAccountComponent> {
     const { user } = this.props;
     return (
       <>
+        <UploadScreen />
         <div className="flex pt4 ml4">
           {user && user.avatar ? (
             <img
