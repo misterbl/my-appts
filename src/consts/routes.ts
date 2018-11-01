@@ -13,6 +13,7 @@ const routes = {
   AD_DETAILS: '/ad-details',
   PASSWORD_RESET: '/password-reset',
   BOOKING: '/booking',
+  EDIT_PROFILE: '/edit-profile'
 };
 
 export default routes;
