@@ -36,7 +36,7 @@ class App extends React.Component<TAppComponent> {
           QUERIES({ email: user.email }).GET_USER,
         );
       }
-      // this.props.history.push(ROUTES.INDEX);
+      this.props.history.push(ROUTES.INDEX);
     });
   }
   render() {

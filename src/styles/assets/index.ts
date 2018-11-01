@@ -2,20 +2,22 @@ import MessageIcon from './messageIcon';
 import HomeIcon from './homeIcon';
 import StarIcon from './starIcon';
 import SearchIcon from './searchIcon';
-import AccountIcon from './accountIcon';
+import BookingIcon from './bookingIcon';
 import chevronLeftIcon from './chevronLeftIcon';
 import PlusIcon from './plusIcon';
 import FacebookIcon from './facebookIcon';
 import WarningIcon from './warningIcon';
+import AccountIcon from './accountIcon'
 
 export {
   MessageIcon,
   HomeIcon,
   StarIcon,
   SearchIcon,
-  AccountIcon,
+  BookingIcon,
   chevronLeftIcon,
   PlusIcon,
   FacebookIcon,
   WarningIcon,
+  AccountIcon
 };

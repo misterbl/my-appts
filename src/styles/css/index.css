@@ -61,8 +61,8 @@ form input::placeholder {
   color: #555555;
 }
 form input:-webkit-autofill {
-  box-shadow: inset 0 0 0px 9999px #96ccff;
-  -webkit-box-shadow: inset 0 0 0px 9999px #96ccff;
+  box-shadow: inset 0 0 0px 9999px transparent;
+  -webkit-box-shadow: inset 0 0 0px 9999px transparent;
 }
 
 .text--line-through {

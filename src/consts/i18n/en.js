@@ -38,16 +38,21 @@ module.exports = {
   'content|login|forgotpassword': 'Forgot password',
   'content|login|emailrequired': 'An email address is required',
   'content|login|passwordrequired': 'A password is required',
+  'content|login|wrongcredentials':
+    "Wrong email or password, try again or click on the 'Forgot password' link below",
+
   'content|passwordreset|directives':
     'Please enter your email address to receive a link to reset your password',
   'content|passwordreset|sent':
     'A link has been sent to your email to reset your password',
+
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',
   'content|appfooter|search': 'Search',
-  'content|appfooter|account': 'Account',
+  'content|appfooter|booking': 'My bookings',
   'content|addinfoform|title': 'Your ad',
+
   'content|childrenform|title': 'Your children',
   'content|childrenform|explanation':
     'List here your children you will need care for (their name will never been shown to other users',

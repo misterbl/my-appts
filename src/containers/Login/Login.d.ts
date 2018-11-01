@@ -1,3 +1,4 @@
+import { ActionCreatorsMapObject } from 'redux';
 import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
@@ -9,9 +10,11 @@ export interface ILoginFormData {
 
 export interface ILoginState {
     wrongAuth: boolean;
-    focused: string;
 }
 
+export interface ILoginStateDispatchToProps {
+    apiThunk: ActionCreatorsMapObject;
+}
 export type ILoginComponent = FormikProps<ILoginFormData> &
-    InjectedIntlProps &
+    InjectedIntlProps & ILoginStateDispatchToProps &
     RouteComponentProps<any, StaticContext>;

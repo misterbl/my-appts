@@ -14,7 +14,7 @@ const FacebookButton = (props: any) => (
       height="25pt"
       Icon={FacebookIcon}
     />
-    <strong className="white tc ttc w-100 f5">
+    <strong className="white tc w-100 f5">
       <FormattedMessage id="general|button|continuewithfacebook" />
     </strong>
   </div>
