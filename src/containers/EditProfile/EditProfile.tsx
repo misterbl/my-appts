@@ -1,14 +1,7 @@
 import * as React from 'react';
-import { injectIntl } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
-import {
-  EditProfileComponent,
-  EditProfileState
-} from './EditProfile.d';
-// import * as apiThunk from '../../actions/thunks/apiThunk';
-// import { IAppState } from 'src/types/state';
-// import { getUserData } from 'src/selectors/apiSelectors';
-
+import { TEditProfile, EditProfileState } from './EditProfile.d';
 import { ROUTES } from '../../consts';
 import { chevronLeftIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
@@ -16,87 +9,90 @@ import PersonalInfoForm from '../PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from '../AddInfoForm/AddInfoForm';
 import ChildrenForm from 'src/components/ChildrenForm/ChildrenForm';
 
-export class EditProfile extends React.Component<EditProfileComponent, EditProfileState> {
-  pagesName = ['MY INFO', 'MY AD', 'MY CHILDREN', 'MY PHOTOS'];
-  constructor(props: EditProfileComponent) {
+export class EditProfile extends React.Component<
+  TEditProfile,
+  EditProfileState
+> {
+  pagesName = ['myinfo', 'myad', 'mychildren', 'myavailabilities'];
+  buttonRef = React.createRef<HTMLButtonElement>();
+  constructor(props: TEditProfile) {
     super(props);
-    // @ts-ignore
-    this.submiFormInfo = React.createRef();
-    // @ts-ignore
-    this.submiFormAd = React.createRef();
-    // @ts-ignore
-    this.submiFormChildren = React.createRef();
-    // @ts-ignore
-    this.submiFormPhotos = React.createRef();
-
-    this.state = { selected: 'MY INFO' }
+    this.state = {
+      selected: 'myinfo',
+    };
   }
 
-  changeTab = (selected: any, tab: any) => {
-    console.log(selected)
-    switch (selected) {
-      case 'MY INFO':
-        // @ts-ignore
-        if (this.submiFormInfo && this.submiFormInfo.current) { this.submiFormInfo.current.click(); }
-      case 'MY AD':
-        // @ts-ignore
-        if (this.submiFormAd && this.submiFormAd.current) { this.submiFormAd.current.click(); }
-      case 'MY CHILDREN':
-        // @ts-ignore
-        if (this.submiFormChildren && this.submiFormChildren.current) { this.submiFormChildren.current.click(); }
+  submitForm = () => {
+    const node = this.buttonRef.current;
+    if (node) {
+      node.click();
     }
-  }
+  };
+
+  submitButton = () => <button ref={this.buttonRef} type="submit" />;
+
+  handleClick = async (tab: string) => {
+    await this.submitForm();
+    this.setState({ selected: tab });
+  };
 
   renderPage = (selected: any) => {
     switch (selected) {
-      case 'MY INFO':
+      case 'myinfo':
         // @ts-ignore
-        return (<PersonalInfoForm submitButton={<button ref={this.submiFormInfo} type="submit" />} />);
-      case 'MY AD':
+        return <PersonalInfoForm submitButton={this.submitButton()} />;
+      case 'myad':
         // @ts-ignore
-        return <AddInfoForm submitButton={<button ref={this.submiFormAd} type="submit" />} />;
-      case 'MY CHILDREN':
+        return <AddInfoForm submitButton={this.submitButton()} />;
+      case 'mychildren':
         // @ts-ignore
-        return <ChildrenForm submitButton={<button ref={this.submiFormChildren} type="submit" />} />;
+        return <ChildrenForm submitButton={this.submitButton()} />;
       default:
         return <span />;
     }
-  }
+  };
+
   render() {
-    const { pagesName, state: { selected } } = this
+    const {
+      pagesName,
+      state: { selected },
+      props: {
+        history: { push },
+        intl: { formatMessage },
+      },
+      handleClick,
+      renderPage,
+    } = this;
     return (
       <>
         <header className="green-bg pt3 shadow-3">
-          <p className="flex ma0" onClick={() => this.props.history.push(ROUTES.SEARCH)}>
+          <p className="flex ma0" onClick={() => push(ROUTES.DASHBOARD)}>
             <Svg fill="white" Icon={chevronLeftIcon} />
-            <p className="white ma0 ml3">My Profile</p>
+            <p className="white ma0 ml3 ttc">
+              <FormattedMessage id="content|editprofile|myprofile" />
+            </p>
           </p>
           <div className="f6 mt3 flex flex-nowrap justify-between mh2">
-            {
-              pagesName.map((tab, index) => (
-                <div key={tab} onClick={async () => { await this.changeTab(selected, tab); this.setState({ selected: tab }); }} className={`white pb2 ttu ${selected === tab ? 'bb b--orange' : ''}`}>{tab}</div>
-              ))
-            }
+            {pagesName.map(tab => (
+              <div
+                key={tab}
+                onClick={() => handleClick(tab)}
+                className={`white pb2 ttu ${
+                  selected === tab ? 'bb b--orange' : ''
+                }`}
+              >
+                {formatMessage({
+                  id: `content|editprofile|${tab}`,
+                })}
+              </div>
+            ))}
           </div>
         </header>
-        {this.renderPage(selected)}
-
+        {renderPage(selected)}
       </>
     );
   }
 }
-
-// export const mapStateToProps = (
-//   state: IAppState,
-// ): IEditProfileMapStateToProps => ({
-//   user: getUserData(state),
-// });
-
-// export const mapDispatchToProps = (
-//   dispatch: Dispatch<AnyAction>,
-// ): IEditProfileDispatchToProps => ({
-//   apiThunk: bindActionCreators(apiThunk, dispatch),
-// });
 
 const injectIntlEditProfile = injectIntl(EditProfile);
 export default withRouter(injectIntlEditProfile);

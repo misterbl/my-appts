@@ -53,7 +53,11 @@ module.exports = {
 
   'content|dashboard|profile': 'Profile',
 
-  'content|editprofile|myinfo': 'My Info',
+  'content|editprofile|myinfo': 'my Info',
+  'content|editprofile|myprofile': 'my profile',
+  'content|editprofile|myad': 'my ad',
+  'content|editprofile|mychildren': 'my children',
+  'content|editprofile|myavailabilities': 'my availabilities',
 
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',

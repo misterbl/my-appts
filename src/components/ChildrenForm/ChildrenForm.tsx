@@ -18,11 +18,12 @@ import { IAppState } from 'src/types/state';
 import Svg from '../Svg';
 import { AccountIcon, PlusIcon } from 'src/styles/assets';
 import ChildFied from '../ChildField';
+import { QUERIES } from 'src/consts';
 
 export class ChildrenForm extends React.Component<
   IChildrenFormComponent,
   IChildrenFormState
-  > {
+> {
   constructor(props: IChildrenFormComponent) {
     super(props);
     this.state = {
@@ -33,13 +34,12 @@ export class ChildrenForm extends React.Component<
   onSubmit = async (event: any) => {
     console.log(event);
 
-    // const { profileTitle, profileDescription } = event;
-    // // @ts-ignore
-    // const { _id } = this.props.user;
-    // await this.props.apiThunk.updateUser(
-    //   QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
-    // );
-    // this.props.history.push(ROUTES.PROFILE);
+    const { profileTitle, profileDescription } = event;
+    // @ts-ignore
+    const { _id } = this.props.user;
+    await this.props.apiThunk.updateUser(
+      QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
+    );
   };
 
   displayChildField = (values: any, setFieldValue: any) => (
@@ -84,8 +84,8 @@ export class ChildrenForm extends React.Component<
               alt="user's profile"
             />
           ) : (
-              <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-            )}
+            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+          )}
           <strong className="self-center ml3">
             {' '}
             <FormattedMessage id="content|childrenform|title" />

@@ -17,20 +17,20 @@ import { getUserData } from 'src/selectors/apiSelectors';
 import Svg from 'src/components/Svg';
 import { AccountIcon } from 'src/styles/assets';
 import labelColor from '../../utils/labelColor';
+import { QUERIES } from 'src/consts';
 
 export class PersonalInfoForm extends React.Component<
   IPersonalInfoFormComponent
   > {
   onSubmit = (event: any) => {
     console.log(event)
-    // const { firstName, lastName, address, postCode, city } = event;
-    // // @ts-ignore
-    // const { _id } = this.props.user;
-    // this.props.apiThunk.updateUser(
-    //   QUERIES({ _id, firstName, lastName, address, postCode, city })
-    //     .UPDATE_PERSONAL_INFO,
-    // );
-    // this.props.history.push(ROUTES.AD_DETAILS);
+    const { firstName, lastName, address, postCode, city } = event;
+    // @ts-ignore
+    const { _id } = this.props.user;
+    this.props.apiThunk.updateUser(
+      QUERIES({ _id, firstName, lastName, address, postCode, city })
+        .UPDATE_PERSONAL_INFO,
+    );
   };
 
   render() {

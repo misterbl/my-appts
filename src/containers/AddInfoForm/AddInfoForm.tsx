@@ -17,18 +17,17 @@ import { getUserData } from 'src/selectors/apiSelectors';
 import { AccountIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
 import labelColor from '../../utils/labelColor';
+import { QUERIES } from 'src/consts';
 
 export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   onSubmit = async (event: any) => {
     console.log(event);
-
-    // const { profileTitle, profileDescription } = event;
-    // // @ts-ignore
-    // const { _id } = this.props.user;
-    // await this.props.apiThunk.updateUser(
-    //   QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
-    // );
-    // this.props.history.push(ROUTES.PROFILE);
+    const { profileTitle, profileDescription } = event;
+    // @ts-ignore
+    const { _id } = this.props.user;
+    await this.props.apiThunk.updateUser(
+      QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
+    );
   };
 
   render() {
@@ -46,8 +45,8 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
               alt="user's profile"
             />
           ) : (
-              <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-            )}
+            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+          )}
           <strong className="self-center ml3">
             <FormattedMessage id="content|addinfoform|title" />
           </strong>
@@ -118,7 +117,6 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
                   id: 'general|placeholder|availabilities',
                 })}
               />  */}
-
               //@ts-ignore
               {this.props.submitButton}
               {/* {error && <p>{error.message}</p>} */}
