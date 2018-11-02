@@ -1,8 +1,9 @@
 import { getUserData, updateUser } from './thunks/apiThunk';
-import { saveUserData } from './actionCreators/apiActions';
+import { saveUserData, saveUserEmail } from './actionCreators/apiActions';
 
 export const apiActions = {
   saveUserData,
   getUserData,
-  updateUser
+  updateUser,
+  saveUserEmail,
 };

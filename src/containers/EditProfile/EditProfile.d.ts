@@ -7,6 +7,10 @@ import { RefObject } from 'react';
 export interface EditProfileState {
   selected: string;
 }
+export interface EditProfileComponent {
+  userEmail: string | null;
+}
 
-export type TEditProfile = InjectedIntlProps &
+export type TEditProfile = EditProfileComponent &
+  InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

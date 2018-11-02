@@ -7,7 +7,6 @@ import { saveUserData } from './../actionCreators/apiActions';
 import Axios from 'axios';
 
 export const postUserData = (query: any) => async (dispatch: any) => {
-
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
@@ -51,11 +50,11 @@ export const getUserData = (query: any) => async (dispatch: any) => {
       throw new Error("couldn't get user");
     }
     const json = await response;
-    const data = json.data.data.getUser
-    dispatch(saveUserData(data));
+    const data = json.data.data.getUser;
+    await dispatch(saveUserData(data));
     console.log(data);
 
-    return data
+    return data;
   } catch (error) {
     throw new Error("couldn't get User");
   }

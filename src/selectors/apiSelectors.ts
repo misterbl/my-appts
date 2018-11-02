@@ -7,3 +7,8 @@ export const getUserData = createSelector(
   apiSelector,
   api => api && api.userData && api.userData,
 );
+
+export const getUseEmail = createSelector(
+  apiSelector,
+  api => api && api.userData && api.userData && api.userData.email,
+);

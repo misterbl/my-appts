@@ -66,12 +66,12 @@ export class EditProfile extends React.Component<
     return (
       <>
         <header className="green-bg pt3 shadow-3">
-          <p className="flex ma0" onClick={() => push(ROUTES.DASHBOARD)}>
+          <div className="flex ma0" onClick={() => push(ROUTES.DASHBOARD)}>
             <Svg fill="white" Icon={chevronLeftIcon} />
-            <p className="white ma0 ml3 ttc">
+            <span className="white ml3 ttc">
               <FormattedMessage id="content|editprofile|myprofile" />
-            </p>
-          </p>
+            </span>
+          </div>
           <div className="f6 mt3 flex flex-nowrap justify-between mh2">
             {pagesName.map(tab => (
               <div

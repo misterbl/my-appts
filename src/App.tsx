@@ -9,7 +9,7 @@ import {
 } from './App.d';
 import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
-import { ROUTES, QUERIES } from './consts';
+import { ROUTES } from './consts';
 import Home from './containers/Home';
 import Register from './containers/Register';
 import Login from './containers/Login';
@@ -27,13 +27,17 @@ import PasswordReset from './containers/PasswordReset';
 import EditProfile from './containers/EditProfile/EditProfile';
 
 class App extends React.Component<TAppComponent> {
+  userEmail: string;
   constructor(props: TAppComponent) {
     super(props);
+    this.checkUser();
+  }
+
+  checkUser = () => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        return this.props.apiThunk.getUserData(
-          QUERIES({ email: user.email }).GET_USER,
-        );
+        const email = user.email;
+        this.props.apiActions.saveUserEmail(email);
       } else if (
         !user &&
         this.props.history.location.pathname !== ROUTES.PASSWORD_RESET
@@ -41,7 +45,7 @@ class App extends React.Component<TAppComponent> {
         this.props.history.push(ROUTES.INDEX);
       }
     });
-  }
+  };
   render() {
     const {
       user,

@@ -28,6 +28,18 @@ const queries = (args: any) => ({
       profileDescription
     }
   }`,
+  GET_USER_INFO: `mutation {
+    getUser (email: "${args.email}") {
+      _id
+      firstName
+      lastName
+      avatar
+      email
+      address
+      postCode
+      city
+    }
+  }`,
   UPDATE_AD_INFO: `mutation {
     updateUser (_id:"${args._id}" profileTitle: "${
     args.profileTitle

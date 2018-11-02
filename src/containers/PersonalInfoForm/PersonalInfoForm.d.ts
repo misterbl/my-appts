@@ -18,7 +18,12 @@ export interface IPersonalInfoFormMapStateToProps {
   user: IAppState['api']['userData'];
 }
 
+export interface IPersonalInfoFormState {
+  currentUser: IAppState['api']['userData'];
+}
+
 export type IPersonalInfoFormComponent = FormikProps<IPersonalInfoFormData> &
-  IPersonalInfoFormDispatchToProps & IPersonalInfoFormMapStateToProps &
+  IPersonalInfoFormDispatchToProps &
+  IPersonalInfoFormMapStateToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;
