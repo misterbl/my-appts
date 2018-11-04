@@ -11,19 +11,20 @@ export class DashBoard extends React.Component<IDashBoardComponent> {
   pushToPage = (route: string) => {
     this.props.history.push(route);
   };
+
   render() {
     return (
-      <div className="flex flex-column vh-100">
+      <div
+        onClick={() => this.pushToPage(ROUTES.PROFILE)}
+        className="flex flex-column vh-100 ph7-ns"
+      >
         <div className="h3 br2 mt4 shadow-4 pa3 ba b--moon-gray">
           <div className="flex ml3 justify-between">
             <span className="flex">
               <Svg className="mr2" Icon={AccountIcon} />
               <FormattedMessage id="content|dashboard|profile" />
             </span>
-            <Svg
-              handleClick={() => this.pushToPage(ROUTES.PROFILE)}
-              Icon={chevronRigthIcon}
-            />
+            <Svg Icon={chevronRigthIcon} />
           </div>
         </div>
       </div>

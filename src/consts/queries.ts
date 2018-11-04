@@ -7,8 +7,6 @@ const queries = (args: any) => ({
       avatar
       email
       address
-      postCode
-      city
       profileTitle
       profileDescription
      
@@ -22,8 +20,6 @@ const queries = (args: any) => ({
       avatar
       email
       address
-      postCode
-      city
       profileTitle
       profileDescription
     }
@@ -36,8 +32,13 @@ const queries = (args: any) => ({
       avatar
       email
       address
-      postCode
-      city
+    }
+  }`,
+  GET_AD_INFO: `mutation {
+    getUser (email: "${args.email}") {
+      _id
+      profileTitle
+      profileDescription
     }
   }`,
   UPDATE_AD_INFO: `mutation {
@@ -49,8 +50,6 @@ const queries = (args: any) => ({
       lastName
       avatar
       address
-      postCode
-      city
       profileTitle
       profileDescription
      
@@ -59,16 +58,14 @@ const queries = (args: any) => ({
   UPDATE_PERSONAL_INFO: `mutation {
     updateUser (_id: "${args._id}", firstName: "${
     args.firstName
-  }", lastName: "${args.lastName}", address: "${args.address}", postCode: "${
-    args.postCode
-  }", city: "${args.city}") {
+  }", lastName: "${args.lastName}", avatar:"${args.avatar}" address: "${
+    args.address
+  }") {
       _id
       firstName
       lastName
       avatar
       address
-      postCode
-      city
       profileTitle
       profileDescription
     }

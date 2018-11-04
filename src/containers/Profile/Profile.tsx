@@ -8,7 +8,6 @@ import { IAppState } from 'src/types/state';
 import ROUTES from '../../consts/routes';
 import Svg from '../../components/Svg';
 import { AccountIcon, EditIcon } from '../../styles/assets';
-// import { UploadScreen } from 'src/components/UploadScreen/UploadScreen';
 
 export class Profile extends React.Component<IAccountComponent> {
   render() {
@@ -17,7 +16,6 @@ export class Profile extends React.Component<IAccountComponent> {
     const { user } = this.props;
     return (
       <>
-        {/* <UploadScreen /> */}
         <div className="flex justify-between pt4">
           <div className="flex">
             {user && user.avatar ? (
@@ -27,8 +25,8 @@ export class Profile extends React.Component<IAccountComponent> {
                 alt="user's profile"
               />
             ) : (
-                <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-              )}
+              <Svg Icon={AccountIcon} width="4rem" height="4rem" />
+            )}
             <strong className="self-center ml3">
               {user && user.firstName}
             </strong>
@@ -40,7 +38,7 @@ export class Profile extends React.Component<IAccountComponent> {
         <button
           className="tl mt4"
           onClick={() => {
-            this.props.history.push(ROUTES.USER_DETAILS);
+            this.props.history.push(ROUTES.EDIT_PROFILE);
           }}
         >
           Edit profile

@@ -59,6 +59,15 @@ module.exports = {
   'content|editprofile|mychildren': 'my children',
   'content|editprofile|myavailabilities': 'my availabilities',
 
+  'content|personalinfoform|firstNamerequired': 'A first name is required',
+  'content|personalinfoform|lastNamerequired': 'A last name is required',
+  'content|personalinfoform|addressrequired': 'An address is required',
+  'content|personalinfoform|postcoderequired': 'A post code is required',
+  'content|personalinfoform|cityrequired': 'A city is required',
+
+  'content|adinfoform|profileTitlerequired': 'A profile title is required',
+  'content|adinfoform|profileDescriptionrequired':
+    'A profile description is required',
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',
   'content|appfooter|favourite': 'Favourite',

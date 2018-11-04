@@ -16,25 +16,29 @@ export class Home extends React.Component<
   };
   render() {
     return (
-      <div className="tc">
-        <img
+      <div className="flex flex-column vh-100 green-bg ph4 ph7-ns">
+        {/* <img
           className="mt6 w-30"
           src={require('../../styles/assets/kidappi-logo.png')}
-        />
-        <div className="flex justify-around absolute w-100 bottom-2 mb4 ">
-          <button
-            onClick={this.pushToSignIn}
-            className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
-          >
-            <FormattedMessage id="general|button|signin" />
-          </button>
-          <button
-            onClick={this.pushToRegister}
-            className="bg-green white fw7 ph3 ttc di pv3 bn-ns"
-          >
-            <FormattedMessage id="general|button|register" />
-          </button>
+        /> */}
+        <a className="kidappi white mt5 tc w-100">Kidappi</a>
+        <button
+          onClick={this.pushToSignIn}
+          className="loginNext fw7 mt5 ttu di pv3 bn shadow-5"
+        >
+          <FormattedMessage id="general|button|signin" />
+        </button>
+        <div className="text--line-through">
+          <span className="spant3 ma0 tc white text--line-through--text">
+            <FormattedMessage id="general|or" />
+          </span>
         </div>
+        <button
+          onClick={this.pushToRegister}
+          className="loginNext fw7 mt4 ttu di pv3 bn shadow-5"
+        >
+          <FormattedMessage id="general|button|register" />
+        </button>
       </div>
     );
   }

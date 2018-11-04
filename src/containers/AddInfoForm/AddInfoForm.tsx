@@ -2,24 +2,22 @@ import * as React from 'react';
 import { Formik, Form } from 'formik';
 import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { connect } from 'react-redux';
-
 import { injectIntl, FormattedMessage } from 'react-intl';
+import * as Yup from 'yup';
 import { withRouter } from 'react-router-dom';
 import {
-  IAddInfoFormComponent,
+  TAddInfoForm,
   IAddInfoFormDispatchToProps,
   IAddInfoFormMapStateToProps,
 } from './AddInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
-// import { ROUTES, QUERIES } from '../../consts';
-import { AccountIcon } from 'src/styles/assets';
-import Svg from 'src/components/Svg';
-import labelColor from '../../utils/labelColor';
 import { QUERIES } from 'src/consts';
+import FormikInput from 'src/components/FormikInput/FormikInput';
+import labelColor from 'src/utils/labelColor';
 
-export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
+export class AddInfoForm extends React.Component<TAddInfoForm> {
   onSubmit = async (event: any) => {
     console.log(event);
     const { profileTitle, profileDescription } = event;
@@ -33,97 +31,68 @@ export class AddInfoForm extends React.Component<IAddInfoFormComponent> {
   render() {
     const {
       intl: { formatMessage },
-      user,
     } = this.props;
+
+    const { user } = this.props;
+    console.log(this.props.user);
+
     return (
-      <div className="flex flex-column">
-        <div className="flex pt4 ml4">
-          {user && user.avatar ? (
-            <img
-              className="br-100 h3 w3"
-              src={user.avatar || ''}
-              alt="user's profile"
+      <Formik
+        initialValues={{
+          profileTitle: user ? user.profileTitle : '',
+          profileDescription: user ? user.profileDescription : '',
+        }}
+        validationSchema={Yup.object().shape({
+          profileTitle: Yup.string().required(
+            formatMessage({
+              id: 'content|adinfoform|profileTitlerequired',
+            }),
+          ),
+          profileDescription: Yup.string().required(
+            formatMessage({
+              id: 'content|adinfoform|profileDescriptionrequired',
+            }),
+          ),
+        })}
+        onSubmit={this.onSubmit}
+      >
+        {formikProps => (
+          <Form className="profile-form mh4 mt4 flex flex-column ph7-ns">
+            <FormikInput
+              {...formikProps}
+              values={formikProps.values.profileTitle}
+              errors={formikProps.errors.profileTitle}
+              setFieldValue={formikProps.setFieldValue}
+              name="profileTitle"
             />
-          ) : (
-            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-          )}
-          <strong className="self-center ml3">
-            <FormattedMessage id="content|addinfoform|title" />
-          </strong>
-        </div>
-        <Formik
-          initialValues={{
-            profileTitle: user ? user.profileTitle : '',
-            profileDescription: user ? user.profileDescription : '',
-            children: user ? user.children : '',
-            availabilities: user ? user.availabilities : '',
-          }}
-          onSubmit={this.onSubmit}
-        >
-          {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="profile-form mh4 flex flex-column">
-              <label
-                className={`${labelColor(values.profileTitle)} f6`}
-                htmlFor="profileTitle"
-              >
-                <FormattedMessage id="general|placeholder|profileTitle" />
-              </label>
-              <input
-                value={values.profileTitle}
-                name="profileTitle"
-                onFocus={() => this.setState({ focused: 'profileTitle' })}
-                onChange={event =>
-                  setFieldValue('profileTitle', event.target.value)
-                }
-                placeholder={formatMessage({
-                  id: 'general|placeholder|profileTitle',
-                })}
-              />
-              <label
-                className={`${labelColor(values.profileDescription)} f6`}
-                htmlFor="profileDescription"
-              >
-                <FormattedMessage id="general|placeholder|profileDescription" />
-              </label>
-              <input
-                value={values.profileDescription}
-                name="profileDescription"
-                onFocus={() => this.setState({ focused: 'profileDescription' })}
-                onChange={event =>
-                  setFieldValue('profileDescription', event.target.value)
-                }
-                placeholder={formatMessage({
-                  id: 'general|placeholder|profileDescription',
-                })}
-              />
-              {/* <label
-                className={`${labelColor(
-                  values.availabilities
-                )} f6`}
-                htmlFor="availabilities"
-              >
-                <FormattedMessage id="general|placeholder|availabilities" />
-              </label>
-              <input
-                value={values.availabilities}
-                name="availabilities"
-                  onFocus={() => this.setState({ focused: 'availabilities' })}
-                
-                onChange={event =>
-                  setFieldValue('availabilities', event.target.value)
-                }
-  
-                placeholder={formatMessage({
-                  id: 'general|placeholder|availabilities',
-                })}
-              />  */}
-              //@ts-ignore
-              {this.props.submitButton}
-              {/* {error && <p>{error.message}</p>} */}
-            </Form>
-          )}
-        </Formik>
-      </div>
+
+            <label
+              className={`${labelColor(
+                formikProps.values.profileDescription,
+              )} f6`}
+              htmlFor="profileDescription"
+            >
+              <FormattedMessage id="general|placeholder|profileDescription" />
+            </label>
+            <textarea
+              className="ba b--light-silver h5"
+              value={formikProps.values.profileDescription}
+              name="profileDescription"
+              onChange={event =>
+                formikProps.setFieldValue(
+                  'profileDescription',
+                  event.target.value,
+                )
+              }
+              placeholder={formatMessage({
+                id: 'general|placeholder|profileDescription',
+              })}
+            />
+
+            {this.props.submitButton}
+          </Form>
+        )}
+      </Formik>
     );
   }
 }

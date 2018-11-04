@@ -52,7 +52,7 @@ export const getUserData = (query: any) => async (dispatch: any) => {
     const json = await response;
     const data = json.data.data.getUser;
     await dispatch(saveUserData(data));
-    console.log(data);
+    console.log('data from getUserDataThunk:', data);
 
     return data;
   } catch (error) {

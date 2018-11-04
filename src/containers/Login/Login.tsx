@@ -51,7 +51,7 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="flex flex-column vh-100 green-bg ph4">
+      <div className="flex flex-column vh-100 green-bg ph4 ph7-ns">
         {/* <a className="kidappi white mt4 tc w-100">Kidappi</a> */}
         <FacebookButton
           className="mt4 shadow-5"
@@ -102,7 +102,13 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
                 })}
               />
               {touched.email &&
-                errors.email && <ErrorMessage error={errors.email} />}
+                errors.email && (
+                  <ErrorMessage
+                    fill="#cce281"
+                    className="green-error"
+                    error={errors.email}
+                  />
+                )}
               <label
                 className={`${labelColor(
                   values.password,
@@ -126,17 +132,24 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
                 })}
               />
               {touched.password &&
-                errors.password && <ErrorMessage error={errors.password} />}
+                errors.password && (
+                  <ErrorMessage
+                    fill="#cce281"
+                    className="green-error"
+                    error={errors.password}
+                  />
+                )}
               <a
                 className="mv4 white tc no-underline"
                 href={ROUTES.PASSWORD_RESET}
               >
                 {this.state.wrongAuth && (
                   <ErrorMessage
+                    fill="#cce281"
+                    className=" pb3 tl green-error"
                     error={formatMessage({
                       id: 'content|login|wrongcredentials',
                     })}
-                    className="pb3 tl"
                   />
                 )}
                 <strong>

@@ -11,7 +11,12 @@ export interface IAddInfoFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;
 }
 
-export type IAddInfoFormComponent = IAddInfoFormDispatchToProps &
+export interface IAddInfoFormComponent {
+  submitButton: HTMLButtonElement;
+}
+
+export type TAddInfoForm = IAddInfoFormComponent &
+  IAddInfoFormDispatchToProps &
   IAddInfoFormMapStateToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

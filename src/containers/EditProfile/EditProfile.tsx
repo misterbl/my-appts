@@ -29,7 +29,9 @@ export class EditProfile extends React.Component<
     }
   };
 
-  submitButton = () => <button ref={this.buttonRef} type="submit" />;
+  submitButton = () => (
+    <button ref={this.buttonRef} className="dn" type="submit" />
+  );
 
   handleClick = async (tab: string) => {
     await this.submitForm();
@@ -66,18 +68,21 @@ export class EditProfile extends React.Component<
     return (
       <>
         <header className="green-bg pt3 shadow-3">
-          <div className="flex ma0" onClick={() => push(ROUTES.DASHBOARD)}>
+          <div
+            className="flex ma0 ph5-ns"
+            onClick={() => push(ROUTES.DASHBOARD)}
+          >
             <Svg fill="white" Icon={chevronLeftIcon} />
             <span className="white ml3 ttc">
               <FormattedMessage id="content|editprofile|myprofile" />
             </span>
           </div>
-          <div className="f6 mt3 flex flex-nowrap justify-between mh2">
+          <div className="f6 mt3 flex flex-nowrap justify-between mh2 ph7-ns">
             {pagesName.map(tab => (
               <div
                 key={tab}
                 onClick={() => handleClick(tab)}
-                className={`white pb2 ttu ${
+                className={`white pb2 f7 ttu ${
                   selected === tab ? 'bb b--orange' : ''
                 }`}
               >

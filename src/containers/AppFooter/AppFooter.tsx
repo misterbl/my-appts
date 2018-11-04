@@ -38,7 +38,8 @@ export class AppFooter extends React.Component<
   };
 
   filled = (route: string) => {
-    if (this.state.clicked === route) {
+    const { clicked } = this.state;
+    if (clicked === route || route === this.props.location.pathname) {
       return '#ff6300';
     } else {
       return undefined;
@@ -58,8 +59,10 @@ export class AppFooter extends React.Component<
   };
 
   render() {
+    console.log(this.props);
+
     return (
-      <div className="flex bg-white justify-around fixed w-100 bottom-0 pv2 ph3 shadow-1">
+      <div className="flex bg-white justify-around fixed w-100 bottom-0 pv2 ph3 ph7-ns shadow-1">
         {this.mapIcons(this.iconList)}
       </div>
     );

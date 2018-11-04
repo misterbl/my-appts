@@ -1,4 +1,5 @@
 export interface IErrorMessage {
-  error: string;
+  error: any;
   className: string;
+  fill: string;
 }

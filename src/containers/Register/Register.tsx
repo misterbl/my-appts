@@ -68,7 +68,7 @@ export class Register extends React.Component<
 
     const { formatMessage } = this.props.intl;
     return (
-      <div className="flex flex-column vh-100 green-bg ph4">
+      <div className="flex flex-column vh-100 green-bg ph4 ph7-ns">
         {/* <a className="kidappi white mt4 tc w-100">Kidappi</a> */}
         <FacebookButton
           className="mt4 shadow-5"
@@ -119,7 +119,13 @@ export class Register extends React.Component<
                 })}
               />
               {touched.email &&
-                errors.email && <ErrorMessage error={errors.email} />}
+                errors.email && (
+                  <ErrorMessage
+                    fill="#cce281"
+                    className="green-error"
+                    error={errors.email}
+                  />
+                )}
               <label
                 className={`${labelColor(
                   values.password,
@@ -142,7 +148,13 @@ export class Register extends React.Component<
                 })}
               />
               {touched.password &&
-                errors.password && <ErrorMessage error={errors.password} />}
+                errors.password && (
+                  <ErrorMessage
+                    fill="#cce281"
+                    className="green-error"
+                    error={errors.password}
+                  />
+                )}
               <a
                 className="mv4 white tc no-underline"
                 href={ROUTES.PASSWORD_RESET}
@@ -150,10 +162,11 @@ export class Register extends React.Component<
                 {this.state.userExists && (
                   <>
                     <ErrorMessage
+                      fill="#cce281"
+                      className="green-error pb3 tl"
                       error={formatMessage({
                         id: 'content|register|userExists',
                       })}
-                      className="pb3 tl"
                     />
                     <strong>
                       <FormattedMessage id="content|login|forgotpassword" />
@@ -171,6 +184,7 @@ export class Register extends React.Component<
             </Form>
           )}
         </Formik>
+        <div onClick={this.signOut}>signOut</div>
       </div>
     );
   }

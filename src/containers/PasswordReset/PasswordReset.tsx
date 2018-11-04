@@ -85,7 +85,13 @@ class PasswordReset extends React.Component<
                       })}
                     />
                     {touched.email &&
-                      errors.email && <ErrorMessage error={errors.email} />}
+                      errors.email && (
+                        <ErrorMessage
+                          fill="#cce281"
+                          className="green-error"
+                          error={errors.email}
+                        />
+                      )}
                     <button
                       className="loginNext fw7 ph3 ttu di pv3 mv5 bn shadow-5"
                       type="submit"

@@ -9,7 +9,7 @@ import {
 } from './App.d';
 import { apiActions } from './actions';
 import * as firebase from 'firebase/app';
-import { ROUTES } from './consts';
+import { ROUTES, QUERIES } from './consts';
 import Home from './containers/Home';
 import Register from './containers/Register';
 import Login from './containers/Login';
@@ -30,20 +30,31 @@ class App extends React.Component<TAppComponent> {
   userEmail: string;
   constructor(props: TAppComponent) {
     super(props);
-    this.checkUser();
+    this.getUserInfo();
   }
-
+  getUserInfo = () => {
+    const {
+      apiThunk: { getUserData: getData },
+    } = this.props;
+    if (!this.props.user) {
+      firebase.auth().onAuthStateChanged(async loggedInUser => {
+        if (loggedInUser) {
+          getData(QUERIES({ email: loggedInUser.email }).GET_USER).then(() =>
+            this.render(),
+          );
+        }
+      });
+    }
+  };
   checkUser = () => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const email = user.email;
-        this.props.apiActions.saveUserEmail(email);
-      } else if (
+      if (
         !user &&
         this.props.history.location.pathname !== ROUTES.PASSWORD_RESET
       ) {
-        this.props.history.push(ROUTES.INDEX);
+        return this.props.history.push(ROUTES.INDEX);
       }
+      this.props.apiActions.saveUserEmail(user && user.email);
     });
   };
   render() {
