@@ -230,6 +230,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-autocomplete@^1.8.4":
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/@types/react-autocomplete/-/react-autocomplete-1.8.4.tgz#eeee3575ced20d0e3fe85adfadda9a95cf2d7dfa"
+  integrity sha512-EvSGh/K4Drsob1L2G09zIjCKCii1cGzuiZ7urvkku4t6F1MU+KaRHbctmKpH9ylenWuTyN0pbNj+igYbYh3FvQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^16.0.9":
   version "16.0.9"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.9.tgz#73ceb7abe6703822eab6600e65c5c52efd07fb91"

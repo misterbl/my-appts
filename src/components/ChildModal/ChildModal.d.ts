@@ -7,6 +7,7 @@ import { FormikProps } from 'formik';
 export interface IChildModalState {
   modalIsOpen: boolean;
   checked: string;
+  value: string;
 }
 
 export interface IChildModalComponent {

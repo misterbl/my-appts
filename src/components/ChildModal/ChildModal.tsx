@@ -4,6 +4,7 @@ import { injectIntl } from 'react-intl';
 import { TChildModal, IChildModalState } from './ChildModal.d';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
+import * as ReactAutocomplete from 'react-autocomplete';
 
 const customStyles = {
   content: {
@@ -19,6 +20,7 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
     this.state = {
       modalIsOpen: false,
       checked: '',
+      value: '',
     };
 
     Modal.setAppElement('body');
@@ -130,20 +132,41 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                     </label>
                   </div>
                 </div>
-                <input
-                  value={values.school}
-                  name="school"
-                  onChange={event => {
-                    setFieldValue('school', event.target.value);
-                  }}
-                  placeholder={formatMessage({
-                    id: 'general|placeholder|school',
-                  })}
-                />
                 <button type="submit">save</button>
               </Form>
             )}
           </Formik>
+          <div className="white-input mh4 mt4 form-green">
+            <ReactAutocomplete
+              inputProps={{
+                placeholder: formatMessage({
+                  id: 'general|placeholder|school',
+                }),
+              }}
+              items={[
+                { id: 'foo', label: 'foo' },
+                { id: 'bar', label: 'bar' },
+                { id: 'baz', label: 'baz' },
+              ]}
+              shouldItemRender={(item, value) =>
+                item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
+              }
+              getItemValue={item => item.label}
+              renderItem={(item, highlighted) => (
+                <div
+                  key={item.id}
+                  style={{
+                    backgroundColor: highlighted ? '#eee' : 'transparent',
+                  }}
+                >
+                  {item.label}
+                </div>
+              )}
+              value={this.state.value}
+              onChange={e => this.setState({ value: e.target.value })}
+              onSelect={value => this.setState({ value })}
+            />
+          </div>
         </Modal>
       </div>
     );
