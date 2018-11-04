@@ -2,24 +2,11 @@
 module.exports = {
   'general|or': 'or',
   'general|placeholder|email': 'Email',
-  'general|placeholder|firstname': 'Firstname',
-  'general|placeholder|lastname': 'Lastname',
+  'general|placeholder|firstName': 'First name',
+  'general|placeholder|lastName': 'Last name',
   'general|placeholder|password': 'Password',
   'general|placeholder|confirmpassword': 'Confirm password',
 
-  'general|button|next': 'next',
-  'general|button|add': 'Add',
-  'general|button|signin': 'Sign in',
-  'general|button|register': 'Register',
-  'general|button|save': 'Save',
-  'general|button|continuewithfacebook': 'Continue with Facebook',
-  'general|button|send': 'Send',
-
-  'general|content|numberKids': 'Number of children',
-  'general|content|location': 'Location',
-
-  'general|placeholder|firstName': 'First Name',
-  'general|placeholder|lastName': 'Last Name',
   'general|placeholder|address': 'Address',
   'general|placeholder|postCode': 'Postcode',
   'general|placeholder|city': 'City',
@@ -29,11 +16,24 @@ module.exports = {
   'general|placeholder|age': 'Age',
   'general|placeholder|dob': 'Dob',
   'general|placeholder|school': 'School',
-  'general|placeholder|name': 'Name',
   'general|placeholder|information': 'Other information',
   'general|placeholder|availabilities': 'Availabilities',
-  'general|placeholder|email': 'Email',
-  'general|placeholder|password': 'Password',
+
+  'general|button|next': 'next',
+  'general|button|add': 'Add',
+  'general|button|signin': 'Sign in',
+  'general|button|register': 'Register',
+  'general|button|save': 'Save',
+  'general|button|continuewithfacebook': 'Continue with Facebook',
+  'general|button|send': 'Send',
+
+  'content|appfooter|inbox': 'Inbox',
+  'content|appfooter|dashboard': 'Dashboard',
+  'content|appfooter|favourite': 'Favourite',
+  'content|appfooter|search': 'Search',
+  'content|appfooter|booking': 'My bookings',
+  'general|content|numberKids': 'Number of children',
+  'general|content|location': 'Location',
 
   'content|regiter|registerwithemail': 'Register with Email',
   'content|register|userExists':
@@ -65,15 +65,8 @@ module.exports = {
   'content|personalinfoform|postcoderequired': 'A post code is required',
   'content|personalinfoform|cityrequired': 'A city is required',
 
-  'content|adinfoform|profileTitlerequired': 'A profile title is required',
-  'content|adinfoform|profileDescriptionrequired':
-    'A profile description is required',
-  'content|appfooter|inbox': 'Inbox',
-  'content|appfooter|dashboard': 'Dashboard',
-  'content|appfooter|favourite': 'Favourite',
-  'content|appfooter|search': 'Search',
-  'content|appfooter|booking': 'My bookings',
-  'content|addinfoform|title': 'Your ad',
+  'content|adinfoform|adTitleRequired': 'An ad title is required',
+  'content|adinfoform|adDescriptionRequired': 'An ad description is required',
 
   'content|childrenform|title': 'Your children',
   'content|childrenform|explanation':

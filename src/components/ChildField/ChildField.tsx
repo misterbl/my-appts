@@ -30,20 +30,22 @@ export class ChildField extends React.Component<
           {` ${childrenNumber! + 1}`}
         </h4>
         <label
-          className={`${labelColor(values['name' + childrenNumber])} f6`}
-          htmlFor={`name${childrenNumber}`}
+          className={`${labelColor(values['firstName' + childrenNumber])} f6`}
+          htmlFor={`firstName${childrenNumber}`}
         >
-          <FormattedMessage id="general|placeholder|name" />
+          <FormattedMessage id="general|placeholder|firstName" />
         </label>
         <input
-          value={values['name' + childrenNumber]}
-          name={`name${childrenNumber}`}
-          onFocus={() => this.setState({ focused: `name${childrenNumber}` })}
+          value={values['firstName' + childrenNumber]}
+          name={`firstName${childrenNumber}`}
+          onFocus={() =>
+            this.setState({ focused: `firstName${childrenNumber}` })
+          }
           onChange={event => {
-            setFieldValue('name' + childrenNumber, event.target.value);
+            setFieldValue('firstName' + childrenNumber, event.target.value);
           }}
           placeholder={formatMessage({
-            id: 'general|placeholder|name',
+            id: 'general|placeholder|firstName',
           })}
         />
         <label

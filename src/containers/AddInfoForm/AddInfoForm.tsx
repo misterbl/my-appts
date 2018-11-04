@@ -45,12 +45,12 @@ export class AddInfoForm extends React.Component<TAddInfoForm> {
         validationSchema={Yup.object().shape({
           profileTitle: Yup.string().required(
             formatMessage({
-              id: 'content|adinfoform|profileTitlerequired',
+              id: 'content|adinfoform|adTitleRequired',
             }),
           ),
           profileDescription: Yup.string().required(
             formatMessage({
-              id: 'content|adinfoform|profileDescriptionrequired',
+              id: 'content|adinfoform|adDescriptionRequired',
             }),
           ),
         })}
