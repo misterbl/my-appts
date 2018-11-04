@@ -54,6 +54,8 @@ module.exports = {
 
   'content|dashboard|profile': 'Profile',
 
+  'content|profile|editProfile': 'Modifier le profil',
+
   'content|editprofile|myinfo': 'mes Infos',
   'content|editprofile|myprofile': 'mon Profile',
   'content|editprofile|myad': 'mon Annonce',

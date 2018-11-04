@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { IAccountComponent, IAccountMapStateToProps } from './Profile.d';
 import { getUserData } from '../../selectors/apiSelectors';
@@ -41,7 +41,7 @@ export class Profile extends React.Component<IAccountComponent> {
             this.props.history.push(ROUTES.EDIT_PROFILE);
           }}
         >
-          Edit profile
+          <FormattedMessage id="content|profile|editProfile" />
         </button>
       </>
     );

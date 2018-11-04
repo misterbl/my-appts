@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Formik, Form } from 'formik';
 import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { connect } from 'react-redux';
 
@@ -15,10 +14,9 @@ import * as apiThunk from '../../actions/thunks/apiThunk';
 // import { ROUTES, QUERIES } from '../../consts';
 import { getUserData } from 'src/selectors/apiSelectors';
 import { IAppState } from 'src/types/state';
-import Svg from '../Svg';
-import { AccountIcon, PlusIcon } from 'src/styles/assets';
 import ChildFied from '../ChildField';
 import { QUERIES } from 'src/consts';
+import { ChildModal } from '../ChildModal/ChildModal';
 
 export class ChildrenForm extends React.Component<
   IChildrenFormComponent,
@@ -71,30 +69,16 @@ export class ChildrenForm extends React.Component<
     );
 
   render() {
-    const { user } = this.props;
-    const formElement = Array.from(new Array(this.state.childrenNumber));
+    // const formElement = Array.from(new Array(this.state.childrenNumber));
 
     return (
       <div>
-        <div className="flex pv4 ml4">
-          {user && user.avatar ? (
-            <img
-              className="br-100 h3 w3"
-              src={user.avatar || ''}
-              alt="user's profile"
-            />
-          ) : (
-            <Svg Icon={AccountIcon} width="4rem" height="4rem" />
-          )}
-          <strong className="self-center ml3">
-            {' '}
-            <FormattedMessage id="content|childrenform|title" />
-          </strong>
-        </div>
         <span className="f6">
           <FormattedMessage id="content|childrenform|explanation" />
         </span>
-        <Formik
+        // @ts-ignore
+        <ChildModal intl={this.props.intl} />
+        {/* <Formik
           initialValues={this.initialValues(this.state.childrenNumber)}
           onSubmit={this.onSubmit}
         >
@@ -116,9 +100,9 @@ export class ChildrenForm extends React.Component<
               //@ts-ignore
               {this.props.submitButton}
               {/* {error && <p>{error.message}</p>} */}
-            </Form>
+        {/* </Form>
           )}
-        </Formik>
+        </Formik> */}
       </div>
     );
   }

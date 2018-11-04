@@ -132,7 +132,6 @@ export class PersonalInfoForm extends React.Component<
       intl: { formatMessage },
       user,
     } = this.props;
-    console.log(this);
 
     return (
       <div className="flex flex-column ph7-ns">

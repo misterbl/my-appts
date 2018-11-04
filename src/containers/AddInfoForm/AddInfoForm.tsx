@@ -20,9 +20,26 @@ import labelColor from 'src/utils/labelColor';
 export class AddInfoForm extends React.Component<TAddInfoForm> {
   onSubmit = async (event: any) => {
     console.log(event);
-    const { profileTitle, profileDescription } = event;
-    // @ts-ignore
-    const { _id } = this.props.user;
+    const {
+      profileTitle: eventProfileTitle,
+      profileDescription: eventProfileDescription,
+    } = event;
+    const {
+      // @ts-ignore
+      user: { _id },
+      user,
+    } = this.props;
+    const profileTitle =
+      event.profileTitle === 'undefined'
+        ? user && user.profileTitle
+        : eventProfileTitle;
+
+    const profileDescription =
+      event.profileDescription === 'undefined'
+        ? user && user.profileDescription
+        : eventProfileDescription;
+    console.log(profileTitle, profileDescription);
+
     await this.props.apiThunk.updateUser(
       QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
     );
@@ -34,7 +51,6 @@ export class AddInfoForm extends React.Component<TAddInfoForm> {
     } = this.props;
 
     const { user } = this.props;
-    console.log(this.props.user);
 
     return (
       <Formik

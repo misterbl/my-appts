@@ -18,8 +18,8 @@ export class DashBoard extends React.Component<IDashBoardComponent> {
         onClick={() => this.pushToPage(ROUTES.PROFILE)}
         className="flex flex-column vh-100 ph7-ns"
       >
-        <div className="h3 br2 mt4 shadow-4 pa3 ba b--moon-gray">
-          <div className="flex ml3 justify-between">
+        <div className="h3 br2 mt4 flex justify-center items-center shadow-4 pa3 ba b--moon-gray">
+          <div className="flex ml3 justify-between w-100">
             <span className="flex">
               <Svg className="mr2" Icon={AccountIcon} />
               <FormattedMessage id="content|dashboard|profile" />
