@@ -65,6 +65,7 @@ class App extends React.Component<TAppComponent> {
       },
     } = this.props;
     const { INDEX, SIGN_IN, REGISTER, PASSWORD_RESET, EDIT_PROFILE } = ROUTES;
+
     const pageClass =
       pathname === INDEX ||
       pathname === SIGN_IN ||
@@ -75,24 +76,25 @@ class App extends React.Component<TAppComponent> {
         : 'bg-white-10 vh-100 ml3 mr3 pb5';
 
     return (
-      <div className={pageClass}>
-        <Switch>
-          <Route path={ROUTES.INDEX} component={Home} exact />
-          <Route path={ROUTES.SIGN_IN} component={Login} />
-          <Route path={ROUTES.REGISTER} component={Register} />
-          <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
-          <Route path={ROUTES.EDIT_PROFILE} component={EditProfile} />
-          <Route path={ROUTES.DASHBOARD} component={DashBoard} />
-          <Route path={ROUTES.CARD} component={UserCard} />
-          <Route path={ROUTES.INBOX} component={ChildrenForm} />
-          <Route path={ROUTES.SEARCH} component={DashBoard} />
-          <Route path={ROUTES.FAVOURITE} component={EditProfile} />
-          <Route path={ROUTES.PROFILE} component={Profile} />
-          <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
-          <Route path={ROUTES.CHILDREN} component={ChildrenForm} />
-          <Route path={ROUTES.AD_DETAILS} component={AddInfoForm} />
-        </Switch>
-
+      <>
+        <div className={pageClass}>
+          <Switch>
+            <Route path={ROUTES.INDEX} component={Home} exact />
+            <Route path={ROUTES.SIGN_IN} component={Login} />
+            <Route path={ROUTES.REGISTER} component={Register} />
+            <Route path={ROUTES.PASSWORD_RESET} component={PasswordReset} />
+            <Route path={ROUTES.EDIT_PROFILE} component={EditProfile} />
+            <Route path={ROUTES.DASHBOARD} component={DashBoard} />
+            <Route path={ROUTES.CARD} component={UserCard} />
+            <Route path={ROUTES.INBOX} component={ChildrenForm} />
+            <Route path={ROUTES.SEARCH} component={DashBoard} />
+            <Route path={ROUTES.FAVOURITE} component={EditProfile} />
+            <Route path={ROUTES.PROFILE} component={Profile} />
+            <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
+            <Route path={ROUTES.CHILDREN} component={ChildrenForm} />
+            <Route path={ROUTES.AD_DETAILS} component={AddInfoForm} />
+          </Switch>
+        </div>
         {user &&
           pathname !== ROUTES.INDEX &&
           pathname !== ROUTES.SIGN_IN &&
@@ -100,7 +102,7 @@ class App extends React.Component<TAppComponent> {
           pathname !== ROUTES.PASSWORD_RESET &&
           pathname !== ROUTES.CARD &&
           pathname !== ROUTES.EDIT_PROFILE && <AppFooter />}
-      </div>
+      </>
     );
   }
 }
