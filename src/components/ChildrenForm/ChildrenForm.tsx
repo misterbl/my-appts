@@ -72,37 +72,12 @@ export class ChildrenForm extends React.Component<
     // const formElement = Array.from(new Array(this.state.childrenNumber));
 
     return (
-      <div>
+      <div className="mt3">
         <span className="f6">
           <FormattedMessage id="content|childrenform|explanation" />
         </span>
         // @ts-ignore
         <ChildModal intl={this.props.intl} />
-        {/* <Formik
-          initialValues={this.initialValues(this.state.childrenNumber)}
-          onSubmit={this.onSubmit}
-        >
-          {({ values, isSubmitting, setFieldValue }) => (
-            <Form className="profile-form mh4 flex flex-column mt4">
-              {formElement.map((element, index) => (
-                <ChildFied
-                  childrenNumber={index}
-                  key={index}
-                  values={values}
-                  setFieldValue={setFieldValue}
-                />
-              ))}
-              <Svg
-                handleClick={() => this.addChildField(values, setFieldValue)}
-                Icon={PlusIcon}
-                className="self-end mb4"
-              />
-              //@ts-ignore
-              {this.props.submitButton}
-              {/* {error && <p>{error.message}</p>} */}
-        {/* </Form>
-          )}
-        </Formik> */}
       </div>
     );
   }

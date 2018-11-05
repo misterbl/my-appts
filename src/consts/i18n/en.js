@@ -14,7 +14,7 @@ module.exports = {
   'general|placeholder|profileDescription': 'Description',
   'general|placeholder|children': 'Children',
   'general|placeholder|age': 'Age',
-  'general|placeholder|dob': 'Dob',
+  'general|placeholder|dob': 'Date of birth',
   'general|placeholder|school': 'School',
   'general|placeholder|information': 'Other information',
   'general|placeholder|availabilities': 'Availabilities',
@@ -73,5 +73,8 @@ module.exports = {
   'content|childrenform|title': 'Your children',
   'content|childrenform|explanation':
     'List here your children you will need care for (their name will never been shown to other users',
+  'content|childfield|addAChild': 'Add a child',
   'content|childfield|child': 'Child',
+  'content|childrenform|boy': 'boy',
+  'content|childrenform|girl': 'girl',
 };

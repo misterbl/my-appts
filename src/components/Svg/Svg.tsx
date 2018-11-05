@@ -10,17 +10,19 @@ const Svg = ({
   width = '15pt',
   height = '15pt',
 }: ISvg) => (
-    <div
-      onClick={handleClick}
-      className={`flex flex-column items-center ${className}`}
-    >
-      <Icon fill={fill} width={width} height={height} />
-      {name && (
-        <span className={`f7 pt1 ${fill === '#555555' ? 'mid-gray' : 'orange'}`}>
-          {name}
-        </span>
-      )}
-    </div>
-  );
+  <div
+    onClick={handleClick}
+    className={`flex flex-column items-center ${className}`}
+  >
+    <Icon fill={fill} width={width} height={height} />
+    {name && (
+      <span
+        className={`f7 pt1 tc ${fill === '#555555' ? 'mid-gray' : 'orange'}`}
+      >
+        {name}
+      </span>
+    )}
+  </div>
+);
 
 export default Svg;

@@ -26,6 +26,9 @@ code {
 .h45 {
   height: 45px;
 }
+.white-text {
+  color: white !important;
+}
 .white-input {
   input {
     background: transparent;
@@ -112,9 +115,14 @@ form {
 .loginNext {
   background-color: #f2de4b;
   color: #967c0d;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
+.pink-button {
+  background-color: #e24fe2;
+  color: white;
+  border-radius: 5px;
+}
 .green-bg {
   background-color: #35ad49;
 }

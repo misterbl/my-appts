@@ -3,11 +3,14 @@ import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 import { ActionCreatorsMapObject } from 'redux';
 import { FormikProps } from 'formik';
+import { Moment } from 'moment';
 
 export interface IChildModalState {
   modalIsOpen: boolean;
   checked: string;
-  value: string;
+  selectedSchool: string;
+  schools: any;
+  dob: Moment;
 }
 
 export interface IChildModalComponent {

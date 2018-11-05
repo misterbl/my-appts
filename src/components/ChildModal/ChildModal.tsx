@@ -1,10 +1,14 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
-import { injectIntl } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
+import DatePicker from 'react-datepicker';
+import * as moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 import { TChildModal, IChildModalState } from './ChildModal.d';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as ReactAutocomplete from 'react-autocomplete';
+import { getSchools } from 'src/actions/thunks/getSchools';
 
 const customStyles = {
   content: {
@@ -20,7 +24,9 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
     this.state = {
       modalIsOpen: false,
       checked: '',
-      value: '',
+      selectedSchool: '',
+      schools: [],
+      dob: moment(),
     };
 
     Modal.setAppElement('body');
@@ -39,15 +45,51 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
     this.setState({ modalIsOpen: false });
   };
 
-  // afterOpenModal = () => {
-  //   // references are now sync'd and can be accessed.
-  //   console.log('modal closed');
-  // };
   checked = (box: string) => {
-    if (this.state.checked === box) {
+    const {
+      intl: { formatMessage },
+    } = this.props;
+    if (
+      this.state.checked === box &&
+      box === formatMessage({ id: 'content|childrenform|boy' })
+    ) {
       return 'facebook-button white';
+    } else if (
+      this.state.checked === box &&
+      box === formatMessage({ id: 'content|childrenform|girl' })
+    ) {
+      return 'pink-button';
     }
     return 'loginNext';
+  };
+
+  findSchools = async (e: any) => {
+    e.persist();
+    console.log('event', e);
+    if (e.target.value) {
+      window.setTimeout(async () => {
+        const tempSchoolList: any = [];
+        const data = await getSchools(e.target.value);
+        const schoolsFound = data.data.records;
+        await schoolsFound.map((school: any) =>
+          tempSchoolList.push({
+            id: school.recordid,
+            label: `${school.fields.appellation_officielle} ${
+              school.fields.code_postal_uai
+            } ${school.fields.libelle_commune} ${
+              school.fields.libelle_departement
+            }\n`,
+          }),
+        );
+        this.setState({ schools: tempSchoolList });
+      }, 500);
+    }
+  };
+
+  handleChange = (date: moment.Moment) => {
+    this.setState({
+      dob: date,
+    });
   };
 
   render() {
@@ -57,7 +99,12 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
     } = this.props;
     return (
       <div>
-        <button onClick={this.openModal}>Open Modal</button>
+        <button
+          className="loginNext fw7 ph3 mt4 ml4 mt6 ttu di pv3 bn shadow-5"
+          onClick={this.openModal}
+        >
+          <FormattedMessage id="content|childfield|addAChild" />
+        </button>
         <Modal
           className="green-bg"
           isOpen={this.state.modalIsOpen}
@@ -66,7 +113,9 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <button onClick={this.closeModal}>close</button>
+          <button className="ml3 mt3 f3" onClick={this.closeModal}>
+            x
+          </button>
           <Formik
             initialValues={{
               firstName: '',
@@ -107,7 +156,7 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                           this.setState({ checked: 'boy' });
                         }}
                       />
-                      <span>Boy</span>
+                      <FormattedMessage id="content|childrenform|boy" />
                     </label>
                   </div>
                   <div
@@ -115,7 +164,6 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                       'girl',
                     )}`}
                   >
-                    {' '}
                     <label>
                       <input
                         className="dn"
@@ -128,45 +176,66 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                           this.setState({ checked: 'girl' });
                         }}
                       />
-                      <span>Girl</span>
+                      <FormattedMessage id="content|childrenform|girl" />
                     </label>
                   </div>
                 </div>
-                <button type="submit">save</button>
+                <FormattedMessage id="general|placeholder|dob">
+                  {text => <p className="mt5 mb2 white">{text}:</p>}
+                </FormattedMessage>
+                <DatePicker
+                  selected={this.state.dob}
+                  onChange={this.handleChange}
+                  dateFormat="DD/MM/YYYY"
+                  showMonthDropdown
+                  showYearDropdown
+                  dropdownMode="select"
+                  className="w-100 white-text"
+                />
+                <span className="white-input mt5 form-green">
+                  <ReactAutocomplete
+                    wrapperStyle={{ width: '100%', display: 'block' }}
+                    inputProps={{
+                      placeholder: formatMessage({
+                        id: 'general|placeholder|school',
+                      }),
+                      className: 'w-100',
+                    }}
+                    items={this.state.schools}
+                    shouldItemRender={(item, value) =>
+                      item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
+                    }
+                    getItemValue={item => item.label}
+                    renderItem={(item, highlighted) => (
+                      <span
+                        className="f7"
+                        key={item.id}
+                        style={{
+                          backgroundColor: 'transparent',
+                        }}
+                      >
+                        {item.label}
+                      </span>
+                    )}
+                    value={this.state.selectedSchool}
+                    onChange={e => {
+                      this.findSchools(e),
+                        this.setState({ selectedSchool: e.target.value });
+                    }}
+                    onSelect={selectedSchool =>
+                      this.setState({ selectedSchool })
+                    }
+                  />
+                </span>
+                <button
+                  className="loginNext fw7 ph3 mt6 ttu di pv3 bn shadow-5"
+                  type="submit"
+                >
+                  <FormattedMessage id="general|button|save" />
+                </button>
               </Form>
             )}
           </Formik>
-          <div className="white-input mh4 mt4 form-green">
-            <ReactAutocomplete
-              inputProps={{
-                placeholder: formatMessage({
-                  id: 'general|placeholder|school',
-                }),
-              }}
-              items={[
-                { id: 'foo', label: 'foo' },
-                { id: 'bar', label: 'bar' },
-                { id: 'baz', label: 'baz' },
-              ]}
-              shouldItemRender={(item, value) =>
-                item.label.toLowerCase().indexOf(value.toLowerCase()) > -1
-              }
-              getItemValue={item => item.label}
-              renderItem={(item, highlighted) => (
-                <div
-                  key={item.id}
-                  style={{
-                    backgroundColor: highlighted ? '#eee' : 'transparent',
-                  }}
-                >
-                  {item.label}
-                </div>
-              )}
-              value={this.state.value}
-              onChange={e => this.setState({ value: e.target.value })}
-              onSelect={value => this.setState({ value })}
-            />
-          </div>
         </Modal>
       </div>
     );
