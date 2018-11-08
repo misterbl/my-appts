@@ -40,7 +40,7 @@ class PasswordReset extends React.Component<
 
     return (
       <div className="vh-100 green-bg tc ">
-        <p className="kidappi white ma0 pt5 w-100">Kidappi</p>
+        {/* <p className="kidappi white ma0 pt5 w-100">Kidappi</p> */}
         <div className="absolute bottom-2 ph3">
           {!submitted && (
             <>
