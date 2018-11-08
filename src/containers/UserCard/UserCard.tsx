@@ -3,58 +3,72 @@ import { FormattedMessage } from 'react-intl';
 import { bindActionCreators, AnyAction, Dispatch } from 'redux';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { IAppState } from '../../types/state';
 import * as apiActions from '../../actions/actionCreators/apiActions';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-import { TUserCard, UserCardDispatchToProps } from './UserCard.d';
+import {
+  TUserCard,
+  UserCardDispatchToProps,
+  IUserCardState,
+  IUserCardMapStateToProps,
+} from './UserCard.d';
 import { QUERIES, ROUTES } from 'src/consts';
 import { AccountIcon, chevronLeftIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
+import getMatchedRouteParams from 'src/utils/getMatchedRouteParams';
+import { IAppState } from 'src/types/state';
+import { getUserData } from 'src/selectors/apiSelectors';
 // import MaMapWithMarker from '../../components/MapWithMarker/';
 
-export class UserCard extends React.Component<TUserCard> {
-  viewedUser: IAppState['api']['userData'];
-  async componentDidMount() {
-    const email = 'misterbl@hotmail.com';
-    this.viewedUser = await this.props.apiThunk.getUserData(
-      QUERIES({ email }).GET_USER,
+export class UserCard extends React.Component<TUserCard, IUserCardState> {
+  constructor(props: TUserCard) {
+    super(props);
+    this.getUser();
+    this.state = {
+      viewedUser: null,
+    };
+  }
+  async getUser() {
+    const {
+      history: {
+        location: { pathname },
+      },
+    } = this.props;
+    const { userId } = await getMatchedRouteParams(pathname);
+    const response = this.props.apiThunk.getViewedUserData(
+      QUERIES({ id: userId }).GET_USER_BY_ID,
     );
+    const viewedUser = await response;
+    this.setState({ viewedUser });
   }
 
-  handleGet = () => {
-    // @ts-ignore
-    const query = `{
-      books {
-        title
-      }
-    }`;
-    // @ts-ignore
-    this.props.apiThunk.postBooks(query);
-  };
-
-  handleSubmit = () => {
-    const query = `mutation {
-      addBook (title: "new title", author: "new author") {
-        _id
-        title
-        author
-      }
-    }`;
-    // @ts-ignore
-    this.props.apiThunk.postBooks(query);
-  };
-
   render() {
-    const { viewedUser } = this;
+    let sameUser: boolean;
+    const { viewedUser } = this.state;
+    const { user } = this.props;
+    if (user && viewedUser) {
+      sameUser = user._id === viewedUser._id;
+    }
     console.log(this);
 
     return (
       <>
         <header className="flex w-100 bg-white fixed fw7">
-          <p onClick={() => this.props.history.push(ROUTES.SEARCH)}>
+          <p
+            onClick={() =>
+              this.props.history.push(
+                sameUser ? ROUTES.DASHBOARD : ROUTES.SEARCH,
+              )
+            }
+          >
             <Svg Icon={chevronLeftIcon} />
           </p>
-          <p className="ml4">{viewedUser && viewedUser.firstName}</p>
+          <p className="ml4">
+            {user && user._id === (viewedUser && viewedUser._id) ? (
+              <FormattedMessage id="content|appfooter|dashboard" />
+            ) : (
+              viewedUser && viewedUser.firstName
+            )}
+          </p>
         </header>
         <div className="flex pt5">
           {viewedUser && viewedUser.avatar ? (
@@ -70,8 +84,6 @@ export class UserCard extends React.Component<TUserCard> {
             <strong className="pb2">
               {viewedUser && viewedUser.firstName}
             </strong>
-            {/* TODO change api to have several fields for address and pass the city here */}
-            <p className="ma0">{viewedUser && viewedUser.address}</p>
           </div>
         </div>
         <div className="m10 mt30 pb60">
@@ -81,8 +93,8 @@ export class UserCard extends React.Component<TUserCard> {
             <FormattedMessage id="general|content|numberKids" />: 2
           </p> */}
           {/* TODO Change when api done for children */}
-          <p>{viewedUser && viewedUser.children}</p>
-          <p>{viewedUser && viewedUser.children}</p>
+          {/* <p>{viewedUser && viewedUser.children}</p>
+          <p>{viewedUser && viewedUser.children}</p> */}
           <p>
             <FormattedMessage id="general|content|location" />
           </p>
@@ -108,6 +120,12 @@ export class UserCard extends React.Component<TUserCard> {
   }
 }
 
+export const mapStateToProps = (
+  state: IAppState,
+): IUserCardMapStateToProps => ({
+  user: getUserData(state),
+});
+
 export const mapDispatchToProps = (
   dispatch: Dispatch<AnyAction>,
 ): UserCardDispatchToProps => ({
@@ -117,7 +135,7 @@ export const mapDispatchToProps = (
 // export const mapStateToProps = (state: IAppState): UserCardMapStateToProps => ({});
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   )(UserCard),
 );

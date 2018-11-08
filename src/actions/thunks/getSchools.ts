@@ -1,24 +1,13 @@
 import axios from 'axios';
 
 export const getSchools = async (school: string) => {
-  // const body = JSON.stringify({
-  //   title: "title 3",
-  //   author: "author 3"
-  // });
-
   const response = await axios({
     method: 'get',
     url: `https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-adresse-et-geolocalisation-etablissements-premier-et-second-degre&q=${school}`,
-    // mode: "no-cors",
     headers: { 'Content-Type': 'application/json' },
-    // data: {
-    //   title: "title 3",
-    //   author: "author 3"
-    // }
   });
-  // .then(res => res.json())
+
   const data = await response;
-  console.log('schools', data);
   return data;
 };
 

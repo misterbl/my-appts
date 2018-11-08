@@ -1,13 +1,12 @@
-import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
+import { ActionCreatorsMapObject } from 'redux';
+import { IAppState } from 'src/types/state';
 
-export interface IDashBoardFormData {
-  email?: string;
-  passwordOne?: string;
-  passwordTwo?: string;
+export interface IDashBoardMapStateToProps {
+  user: IAppState['api']['userData'];
 }
 
-export type IDashBoardComponent = FormikProps<IDashBoardFormData> &
+export type TDashBoard = IDashBoardMapStateToProps &
   InjectedIntlProps &
   RouteComponentProps<any, StaticContext>;

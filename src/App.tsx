@@ -14,7 +14,7 @@ import Home from './containers/Home';
 import Register from './containers/Register';
 import Login from './containers/Login';
 import DashBoard from './containers/DashBoard';
-import Profile from './containers/Profile/Profile';
+// import Profile from './containers/Profile/Profile';
 import AppFooter from './containers/AppFooter/';
 import { getUserData } from './selectors/apiSelectors';
 import * as apiThunk from './actions/thunks/apiThunk';
@@ -73,7 +73,7 @@ class App extends React.Component<TAppComponent> {
       pathname === PASSWORD_RESET ||
       pathname === EDIT_PROFILE
         ? ''
-        : 'bg-white-10 vh-100 ml3 mr3 pb5';
+        : 'bg-white-10 vh-100 mh3 pb5';
 
     return (
       <>
@@ -89,14 +89,14 @@ class App extends React.Component<TAppComponent> {
             <Route path={ROUTES.INBOX} component={ChildrenForm} />
             <Route path={ROUTES.SEARCH} component={DashBoard} />
             <Route path={ROUTES.FAVOURITE} component={EditProfile} />
-            <Route path={ROUTES.PROFILE} component={Profile} />
+            <Route path={ROUTES.PROFILE} component={UserCard} />
             <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
             <Route path={ROUTES.CHILDREN} component={ChildrenForm} />
             <Route path={ROUTES.AD_DETAILS} component={AddInfoForm} />
           </Switch>
         </div>
         {user &&
-          pathname !== ROUTES.INDEX &&
+          pathname.indexOf('card') === -1 &&
           pathname !== ROUTES.SIGN_IN &&
           pathname !== ROUTES.REGISTER &&
           pathname !== ROUTES.PASSWORD_RESET &&

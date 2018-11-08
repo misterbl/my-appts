@@ -10,7 +10,8 @@ export const postUserData = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      baseURL: 'http://localhost:4000/graphql',
+      baseURL: 'http://kidappi-graphql.herokuapp.com/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
@@ -27,6 +28,49 @@ export const updateUser = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
+      baseURL: 'http://kidappi-graphql.herokuapp.com/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
+      headers: { 'Content-Type': 'application/graphql' },
+    }).post('', query);
+    if (response && response.status === 404) {
+      throw new Error("couldn't save user");
+    }
+    const json = await response;
+    console.log('response', response);
+
+    dispatch(saveUserData(json.data.data.updateUser));
+  } catch (error) {
+    console.log(error);
+
+    throw new Error("couldn't save User");
+  }
+};
+export const updateChild = (query: any) => async (dispatch: any) => {
+  //   const resourceName = REQUEST.GET_FRP_DATA;
+  try {
+    const response = await Axios.create({
+      baseURL: 'http://kidappi-graphql.herokuapp.com/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
+      headers: { 'Content-Type': 'application/graphql' },
+    }).post('', query);
+    if (response && response.status === 404) {
+      throw new Error("couldn't save user");
+    }
+    const json = await response;
+    console.log('response', response);
+
+    dispatch(saveUserData(json.data.data.updateChild));
+  } catch (error) {
+    console.log(error);
+
+    throw new Error("couldn't save User");
+  }
+};
+
+export const removeChild = (query: any) => async (dispatch: any) => {
+  //   const resourceName = REQUEST.GET_FRP_DATA;
+  try {
+    const response = await Axios.create({
       baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
@@ -34,8 +78,12 @@ export const updateUser = (query: any) => async (dispatch: any) => {
       throw new Error("couldn't save user");
     }
     const json = await response;
-    dispatch(saveUserData(json.data.data.updateUser));
+    console.log('response', response);
+
+    dispatch(saveUserData(json.data.data.removeChild));
   } catch (error) {
+    console.log(error);
+
     throw new Error("couldn't save User");
   }
 };
@@ -56,6 +104,28 @@ export const getUserData = (query: any) => async (dispatch: any) => {
 
     return data;
   } catch (error) {
+    console.log(error);
+    throw new Error("couldn't get User");
+  }
+};
+export const getViewedUserData = (query: any) => async (dispatch: any) => {
+  //   const resourceName = REQUEST.GET_FRP_DATA;
+  try {
+    const response = await Axios.create({
+      baseURL: 'http://localhost:4000/graphql',
+      headers: { 'Content-Type': 'application/graphql' },
+    }).post('', query);
+    if (response && response.status === 404) {
+      throw new Error("couldn't get user");
+    }
+    const json = await response;
+    const data = json.data.data.getUserById;
+    // await dispatch(saveUserData(data));
+    console.log('data from getViewedUserDataThunk:', data);
+
+    return data;
+  } catch (error) {
+    console.log(error);
     throw new Error("couldn't get User");
   }
 };

@@ -71,7 +71,14 @@ form {
     -webkit-box-shadow: inset 0 0 0px 9999px transparent;
   }
 }
-
+.placeholder-white {
+  input::placeholder {
+    color: white !important;
+  }
+  textarea::placeholder {
+    color: white !important;
+  }
+}
 .profile-form {
   input:-webkit-autofill {
     box-shadow: inset 0 0 0px 9999px white;
@@ -105,6 +112,11 @@ form {
     top: 50%;
     z-index: 1;
   }
+}
+
+.delete-child {
+  right: -10px;
+  top: 23px;
 }
 
 .facebook-button {

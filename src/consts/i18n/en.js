@@ -26,6 +26,7 @@ module.exports = {
   'general|button|save': 'Save',
   'general|button|continuewithfacebook': 'Continue with Facebook',
   'general|button|send': 'Send',
+  'general|button|ok': 'ok',
 
   'content|appfooter|inbox': 'Inbox',
   'content|appfooter|dashboard': 'Dashboard',
@@ -71,10 +72,17 @@ module.exports = {
   'content|adinfoform|adDescriptionRequired': 'An ad description is required',
 
   'content|childrenform|title': 'Your children',
-  'content|childrenform|explanation':
-    'List here your children you will need care for (their name will never been shown to other users',
+  'content|childrenform|explanation1':
+    'List here the children you will need care for.',
+  'content|childrenform|explanation2':
+    '(Their name will never been shown to other users).',
   'content|childfield|addAChild': 'Add a child',
   'content|childfield|child': 'Child',
   'content|childrenform|boy': 'boy',
   'content|childrenform|girl': 'girl',
+  'content|childrenform|select': 'Select',
+  'content|childrenform|information':
+    'write here any further information about your child (allergies, food intolerance, hobbies...)',
+  'content|childrenform|deleteConfirmation':
+    'Are you sure you wish to delete this card for {childName}',
 };

@@ -69,6 +69,13 @@ form input:-webkit-autofill {
   -webkit-box-shadow: inset 0 0 0px 9999px transparent;
 }
 
+.placeholder-white input::placeholder {
+  color: white !important;
+}
+.placeholder-white textarea::placeholder {
+  color: white !important;
+}
+
 .profile-form input:-webkit-autofill {
   box-shadow: inset 0 0 0px 9999px white;
   -webkit-box-shadow: inset 0 0 0px 9999px white;
@@ -99,6 +106,11 @@ form input:-webkit-autofill {
   position: absolute;
   top: 50%;
   z-index: 1;
+}
+
+.delete-child {
+  right: -10px;
+  top: 23px;
 }
 
 .facebook-button {

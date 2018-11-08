@@ -1,83 +1,73 @@
 import * as React from 'react';
 import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { connect } from 'react-redux';
-
 import { injectIntl, FormattedMessage } from 'react-intl';
-import { withRouter } from 'react-router-dom';
 import {
   IChildrenFormComponent,
   IChildrenFormDispatchToProps,
   IChildrenFormMapStateToProps,
-  IChildrenFormState,
 } from './ChildrenForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-// import { ROUTES, QUERIES } from '../../consts';
 import { getUserData } from 'src/selectors/apiSelectors';
-import { IAppState } from 'src/types/state';
-import ChildFied from '../ChildField';
 import { QUERIES } from 'src/consts';
-import { ChildModal } from '../ChildModal/ChildModal';
+import ChildModal from '../ChildModal/ChildModal';
+import { Child, IAppState } from 'src/types/state';
+import Svg from '../Svg';
+import { deleteIcon } from 'src/styles/assets';
 
-export class ChildrenForm extends React.Component<
-  IChildrenFormComponent,
-  IChildrenFormState
-> {
-  constructor(props: IChildrenFormComponent) {
-    super(props);
-    this.state = {
-      childrenNumber: 0,
-      formElement: [],
-    };
-  }
-  onSubmit = async (event: any) => {
-    console.log(event);
-
-    const { profileTitle, profileDescription } = event;
-    // @ts-ignore
-    const { _id } = this.props.user;
-    await this.props.apiThunk.updateUser(
-      QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
+export class ChildrenForm extends React.Component<IChildrenFormComponent> {
+  removeChild = async (child: Child) => {
+    this.props.apiThunk.removeChild(
+      QUERIES({ _id: this.props.user!._id, child }).REMOVE_CHILD,
     );
   };
-
-  displayChildField = (values: any, setFieldValue: any) => (
-    <ChildFied
-      childrenNumber={this.state.childrenNumber + 1}
-      key={this.state.childrenNumber}
-      values={values}
-      setFieldValue={setFieldValue}
-    />
-  );
-
-  addChildField = (values: any, setFieldValue: any) => {
-    const { formElement } = this.state;
-    formElement.push(this.displayChildField(values, setFieldValue));
-    this.setState({
-      childrenNumber: this.state.childrenNumber + 1,
-    });
-  };
-
-  initialValues = (index: any) =>
-    ['name', 'age', 'dob', 'school', 'information'].reduce(
-      (carry: any, item: any) => {
-        for (let i = 0; i <= index; i++) {
-          carry[`${item}${i}`] = '';
-        }
-        return carry;
-      },
-      {},
-    );
-
   render() {
-    // const formElement = Array.from(new Array(this.state.childrenNumber));
+    const {
+      user,
+      intl: { formatMessage },
+    } = this.props;
 
     return (
-      <div className="mt3">
-        <span className="f6">
-          <FormattedMessage id="content|childrenform|explanation" />
+      <div className="mt3 mh3">
+        <p className="f5 gray mb2">
+          <FormattedMessage id="content|childrenform|explanation1" />
+        </p>
+        <strong className="f6 mt2 gray">
+          <FormattedMessage id="content|childrenform|explanation2" />
+        </strong>
+        <div className="flex flex-wrap mt4 justify-around">
+          {user &&
+            user.children &&
+            user.children.map((child: any, index: number) => (
+              <div className="relative ma4">
+                <div className="flex flex-column tc">
+                  <span className="f5 gray">{child.name || ' '}</span>
+                  <ChildModal updating child={child} user={user} />
+                </div>
+                <Svg
+                  className="absolute delete-child "
+                  Icon={deleteIcon}
+                  handleClick={() => {
+                    if (
+                      window.confirm(
+                        formatMessage(
+                          {
+                            id: 'content|childrenform|deleteConfirmation',
+                          },
+                          { childName: child.name },
+                        ),
+                      )
+                    ) {
+                      this.removeChild(child);
+                    }
+                  }}
+                />
+              </div>
+            ))}
+        </div>
+        <span className="tc">
+          <ChildModal user={user} />
         </span>
-        // @ts-ignore
-        <ChildModal intl={this.props.intl} />
       </div>
     );
   }
@@ -96,9 +86,7 @@ export const mapDispatchToProps = (
 });
 
 const injectIntlChildrenForm = injectIntl(ChildrenForm);
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(injectIntlChildrenForm),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(injectIntlChildrenForm);

@@ -1,6 +1,6 @@
 const routes = {
   INDEX: '/',
-  CARD: '/card',
+  CARD: '/:userId/card',
   SIGN_IN: '/signin',
   REGISTER: '/register',
   DASHBOARD: '/dashboard',
@@ -13,7 +13,7 @@ const routes = {
   AD_DETAILS: '/ad-details',
   PASSWORD_RESET: '/password-reset',
   BOOKING: '/booking',
-  EDIT_PROFILE: '/edit-profile'
+  EDIT_PROFILE: '/edit-profile',
 };
 
 export default routes;

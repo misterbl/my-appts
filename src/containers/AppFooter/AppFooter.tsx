@@ -59,8 +59,6 @@ export class AppFooter extends React.Component<
   };
 
   render() {
-    console.log(this.props);
-
     return (
       <div className="flex bg-white justify-around fixed w-100 bottom-0 pv2 ph3 ph7-ns shadow-1">
         {this.mapIcons(this.iconList)}

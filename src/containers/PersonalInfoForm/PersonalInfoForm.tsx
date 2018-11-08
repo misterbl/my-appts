@@ -20,6 +20,7 @@ import labelColor from '../../utils/labelColor';
 import { QUERIES } from 'src/consts';
 import ErrorMessage from 'src/components/ErrorMessage';
 import FormikInput from 'src/components/FormikInput/FormikInput';
+import AboutYouModal from 'src/components/AboutYouModal/AboutYouModal';
 // import { UploadScreen } from 'src/components/UploadScreen/UploadScreen';
 
 export class PersonalInfoForm extends React.Component<
@@ -32,8 +33,7 @@ export class PersonalInfoForm extends React.Component<
     const { user } = this.props;
     this.state = {
       currentUser: user,
-      // @ts-ignore
-      address: '',
+      address: (user && user.address) || '',
       addressError: false,
       filesToBeSent: [],
       avatar: [],
@@ -79,6 +79,7 @@ export class PersonalInfoForm extends React.Component<
   };
 
   checkAddressError = (e: any) => {
+    this.setState({ address: e.target.value });
     if (e.target.value.length === 0) {
       return this.setState({ addressError: true });
     }
@@ -132,6 +133,7 @@ export class PersonalInfoForm extends React.Component<
       intl: { formatMessage },
       user,
     } = this.props;
+    console.log(this);
 
     return (
       <div className="flex flex-column ph7-ns">
@@ -211,7 +213,6 @@ export class PersonalInfoForm extends React.Component<
             )}
           </Formik>
         )}
-
         <form
           onSubmit={(e: any) => e.preventDefault()}
           className="profile-form mh3 flex flex-column"
@@ -243,6 +244,10 @@ export class PersonalInfoForm extends React.Component<
             />
           )}
         </form>
+        <AboutYouModal
+          user={user}
+          updateUser={this.props.apiThunk.updateUser}
+        />
       </div>
     );
   }

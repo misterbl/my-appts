@@ -1,14 +1,30 @@
 import * as React from 'react';
 import * as Modal from 'react-modal';
 import { injectIntl, FormattedMessage } from 'react-intl';
+import * as uniqid from 'uniqid';
 import DatePicker from 'react-datepicker';
 import * as moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import { TChildModal, IChildModalState } from './ChildModal.d';
+import {
+  TChildModal,
+  IChildModalState,
+  IChildModalDispatchToProps,
+} from './ChildModal.d';
+import * as apiThunk from '../../actions/thunks/apiThunk';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as ReactAutocomplete from 'react-autocomplete';
 import { getSchools } from 'src/actions/thunks/getSchools';
+import { QUERIES } from 'src/consts';
+import { Dispatch, AnyAction, bindActionCreators } from 'redux';
+import Svg from '../Svg';
+import {
+  girlIcon,
+  boyIcon,
+  calendarIcon,
+  schoolIcon,
+  nameIcon,
+} from 'src/styles/assets';
 
 const customStyles = {
   content: {
@@ -22,11 +38,12 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
   constructor(props: TChildModal) {
     super(props);
     this.state = {
+      id: this.props.child ? this.props.child.id : uniqid(),
       modalIsOpen: false,
-      checked: '',
+      checked: this.props.child ? this.props.child.gender : '',
       selectedSchool: '',
       schools: [],
-      dob: moment(),
+      dob: this.props.child ? moment.unix(this.props.child.dob) : moment(),
     };
 
     Modal.setAppElement('body');
@@ -39,9 +56,32 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
   closeModal = () => {
     this.setState({ modalIsOpen: false });
   };
-  onSubmit = (event: any) => {
-    console.log(event);
+  onSubmit = async (event: any) => {
+    const { firstName, information } = event;
+    const { checked, selectedSchool, dob, id } = this.state;
+    if (!this.props.user) {
+      return;
+    }
+    const {
+      user: { _id },
+    } = this.props;
 
+    const child = {
+      id,
+      name: firstName,
+      gender: checked,
+      dob: dob.unix(),
+      school: selectedSchool,
+      information,
+    };
+
+    if (this.props.updating) {
+      await this.props.apiThunk.updateChild(
+        QUERIES({ _id: this.props.user!._id, child }).UPDATE_CHILD,
+      );
+    } else {
+      await this.props.apiThunk.updateUser(QUERIES({ _id, child }).ADD_CHILD);
+    }
     this.setState({ modalIsOpen: false });
   };
 
@@ -53,19 +93,18 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
       this.state.checked === box &&
       box === formatMessage({ id: 'content|childrenform|boy' })
     ) {
-      return 'facebook-button white';
+      return 'dark-green';
     } else if (
       this.state.checked === box &&
       box === formatMessage({ id: 'content|childrenform|girl' })
     ) {
-      return 'pink-button';
+      return 'dark-green';
     }
-    return 'loginNext';
+    return 'white';
   };
 
   findSchools = async (e: any) => {
     e.persist();
-    console.log('event', e);
     if (e.target.value) {
       window.setTimeout(async () => {
         const tempSchoolList: any = [];
@@ -78,7 +117,7 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
               school.fields.code_postal_uai
             } ${school.fields.libelle_commune} ${
               school.fields.libelle_departement
-            }\n`,
+            }`,
           }),
         );
         this.setState({ schools: tempSchoolList });
@@ -93,56 +132,79 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
   };
 
   render() {
-    console.log(this);
     const {
       intl: { formatMessage },
+      child,
     } = this.props;
+
     return (
       <div>
         <button
-          className="loginNext fw7 ph3 mt4 ml4 mt6 ttu di pv3 bn shadow-5"
+          className={`${
+            !child ? 'loginNext mv4' : 'bg-transparent mt2'
+          } fw7 ph3 ttu di pv3 bn shadow-5`}
           onClick={this.openModal}
         >
-          <FormattedMessage id="content|childfield|addAChild" />
+          {child ? (
+            <Svg
+              fill="#777777"
+              width="40pt"
+              height="40pt"
+              Icon={child.gender === 'girl' ? girlIcon : boyIcon}
+            />
+          ) : (
+            <FormattedMessage id="content|childfield|addAChild" />
+          )}
         </button>
         <Modal
           className="green-bg"
           isOpen={this.state.modalIsOpen}
-          // onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <button className="ml3 mt3 f3" onClick={this.closeModal}>
+          <button className="ml2 mt2 f3 white" onClick={this.closeModal}>
             x
           </button>
           <Formik
             initialValues={{
-              firstName: '',
-              boy: 'off',
-              girl: 'off',
-              school: '',
+              firstName: child ? child.name : '',
+              boy: child && child.gender === 'boy' ? 'on' : 'off',
+              girl: child && child.gender === 'girl' ? 'on' : 'off',
+              school: child ? child.school : '',
+              information: child ? child.information : '',
             }}
             onSubmit={this.onSubmit}
           >
             {({ values, setFieldValue }) => (
-              <Form className=" profile-form mh4 flex flex-column mt4 white-input">
-                <input
-                  value={values.firstName}
-                  name="firstName"
-                  onChange={event => {
-                    setFieldValue('firstName', event.target.value);
-                  }}
-                  placeholder={formatMessage({
-                    id: 'general|placeholder|firstName',
-                  })}
-                />
-                <div className="mt5 flex justify-between">
-                  <div
-                    className={`fw7 ph3 ttu di pv3 bn shadow-5 tc w-40 ${this.checked(
-                      'boy',
-                    )}`}
-                  >
+              <Form className="placeholder-white white mh4 ttc flex flex-column mt3">
+                <button
+                  className="ttu absolute white top-1 right-1"
+                  type="submit"
+                >
+                  <FormattedMessage id="general|button|ok" />
+                </button>
+                <div className="flex ml3">
+                  <Svg
+                    width="25pt"
+                    height="25pt"
+                    fill="white"
+                    Icon={nameIcon}
+                  />
+                  <input
+                    className="white-text w-40 mb0 ml3"
+                    value={values.firstName}
+                    name="firstName"
+                    onChange={event => {
+                      setFieldValue('firstName', event.target.value);
+                    }}
+                    placeholder={formatMessage({
+                      id: 'general|placeholder|firstName',
+                    })}
+                  />
+                </div>
+                <div className="mt4 flex ml3">
+                  <div className={`${this.checked('boy')}`}>
                     <label>
                       <input
                         className="dn"
@@ -151,19 +213,22 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                         name="boy"
                         onChange={event => {
                           setFieldValue('boy', event.target.value);
-
                           setFieldValue('girl', 'off');
                           this.setState({ checked: 'boy' });
                         }}
                       />
-                      <FormattedMessage id="content|childrenform|boy" />
+                      <Svg
+                        width="25pt"
+                        height="25pt"
+                        fill={`${this.checked('boy')}`}
+                        Icon={boyIcon}
+                      />
                     </label>
                   </div>
-                  <div
-                    className={`fw7 ph3 ttu di pv3 bn shadow-5 tc w-40 ${this.checked(
-                      'girl',
-                    )}`}
-                  >
+                  <FormattedMessage id="general|or">
+                    {text => <span className="white lh-copy ml5">{text}</span>}
+                  </FormattedMessage>
+                  <div className={`${this.checked('girl')} ml5`}>
                     <label>
                       <input
                         className="dn"
@@ -176,26 +241,58 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                           this.setState({ checked: 'girl' });
                         }}
                       />
-                      <FormattedMessage id="content|childrenform|girl" />
+                      <Svg
+                        width="25pt"
+                        height="25pt"
+                        fill={`${this.checked('girl')}`}
+                        Icon={girlIcon}
+                      />
                     </label>
                   </div>
                 </div>
-                <FormattedMessage id="general|placeholder|dob">
-                  {text => <p className="mt5 mb2 white">{text}:</p>}
-                </FormattedMessage>
-                <DatePicker
-                  selected={this.state.dob}
-                  onChange={this.handleChange}
-                  dateFormat="DD/MM/YYYY"
-                  showMonthDropdown
-                  showYearDropdown
-                  dropdownMode="select"
-                  className="w-100 white-text"
-                />
-                <span className="white-input mt5 form-green">
+
+                <div className="flex mt4 ">
+                  <Svg
+                    className="ml3"
+                    width="25pt"
+                    height="25pt"
+                    fill="white"
+                    Icon={calendarIcon}
+                  />
+                  <FormattedMessage id="general|placeholder|dob">
+                    {text => <span className="white ml3">{text}:</span>}
+                  </FormattedMessage>
+                  <DatePicker
+                    selected={this.state.dob}
+                    onChange={this.handleChange}
+                    dateFormat="DD/MM/YYYY"
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode="select"
+                    className="w-100 white-text bn lh-copy ml3 mb0"
+                    popperModifiers={{
+                      flip: {
+                        behavior: ['bottom'], // don't allow it to flip to be above
+                      },
+                    }}
+                  />
+                </div>
+                <span className="white-input flex mt4  form-green">
+                  <Svg
+                    className="ml3"
+                    width="25pt"
+                    height="25pt"
+                    fill="white"
+                    Icon={schoolIcon}
+                  />
                   <ReactAutocomplete
-                    wrapperStyle={{ width: '100%', display: 'block' }}
+                    wrapperStyle={{
+                      width: '100%',
+                      display: 'block',
+                      marginLeft: '1rem',
+                    }}
                     inputProps={{
+                      defaultValue: child ? child.school : '',
                       placeholder: formatMessage({
                         id: 'general|placeholder|school',
                       }),
@@ -211,7 +308,8 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                         className="f7"
                         key={item.id}
                         style={{
-                          backgroundColor: 'transparent',
+                          backgroundColor: 'white',
+                          color: '#014404',
                         }}
                       >
                         {item.label}
@@ -227,12 +325,17 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                     }
                   />
                 </span>
-                <button
-                  className="loginNext fw7 ph3 mt6 ttu di pv3 bn shadow-5"
-                  type="submit"
-                >
-                  <FormattedMessage id="general|button|save" />
-                </button>
+                <textarea
+                  className="mt4 ml3 pa1 h4 bg-transparent b--white"
+                  value={values.information}
+                  name="information"
+                  onChange={event => {
+                    setFieldValue('information', event.target.value);
+                  }}
+                  placeholder={formatMessage({
+                    id: 'content|childrenform|information',
+                  })}
+                />
               </Form>
             )}
           </Formik>
@@ -241,6 +344,14 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
     );
   }
 }
+export const mapDispatchToProps = (
+  dispatch: Dispatch<AnyAction>,
+): IChildModalDispatchToProps => ({
+  apiThunk: bindActionCreators(apiThunk, dispatch),
+});
 
 const injectIntlChildModal = injectIntl(ChildModal);
-export default connect(null)(injectIntlChildModal);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(injectIntlChildModal);
