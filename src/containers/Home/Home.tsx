@@ -21,7 +21,7 @@ export class Home extends React.Component<
           className="mt6 w-30"
           src={require('../../styles/assets/kidappi-logo.png')}
         /> */}
-        {/* <a className="kidappi white mt5 tc w-100">Kidappi</a> */}
+        <a className="kidappi white mt5 tc w-100">Kidappi</a>
         <button
           onClick={this.pushToSignIn}
           className="loginNext fw7 mt5 ttu di pv3 bn shadow-5"
