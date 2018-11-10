@@ -10,8 +10,8 @@ export const postUserData = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      // baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
-      baseURL: 'http://localhost:4000/graphql',
+      baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
@@ -28,8 +28,8 @@ export const updateUser = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      // baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
-      baseURL: 'http://localhost:4000/graphql',
+      baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
@@ -49,8 +49,8 @@ export const updateChild = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      // baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
-      baseURL: 'http://localhost:4000/graphql',
+      baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
@@ -71,7 +71,7 @@ export const removeChild = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      baseURL: 'http://localhost:4000/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
@@ -91,7 +91,7 @@ export const getUserData = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      baseURL: 'http://localhost:4000/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {
@@ -112,7 +112,7 @@ export const getViewedUserData = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
-      baseURL: 'http://localhost:4000/graphql',
+      // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
     if (response && response.status === 404) {

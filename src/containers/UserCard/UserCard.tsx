@@ -52,7 +52,7 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
 
     return (
       <>
-        <header className="flex w-100 bg-white fixed fw7 pt3-ns">
+        <header className="flex w-100 pt2 bg-white fixed fw7 pt3-ns">
           <div
             onClick={() =>
               this.props.history.push(
