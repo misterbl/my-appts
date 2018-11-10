@@ -141,8 +141,10 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
       <div>
         <button
           className={`${
-            !child ? 'loginNext mv4' : 'bg-transparent mt2'
-          } fw7 ph3 ttu di pv3 bn shadow-5`}
+            !child
+              ? 'w-100 bn fixed left-0 bottom-0 green-bg pv3 white'
+              : 'bg-transparent mt2 fw7 ph3 ttu di pv3 bn shadow-5'
+          }`}
           onClick={this.openModal}
         >
           {child ? (
@@ -163,7 +165,10 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <button className="ml2 mt2 f3 white" onClick={this.closeModal}>
+          <button
+            className="ml2 mt2 f3 white bn bg-transparent"
+            onClick={this.closeModal}
+          >
             x
           </button>
           <Formik
@@ -179,7 +184,7 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
             {({ values, setFieldValue }) => (
               <Form className="placeholder-white white mh4 ttc flex flex-column mt3">
                 <button
-                  className="ttu absolute white top-1 right-1"
+                  className="ttu absolute white top-1 right-1 bn bg-transparent"
                   type="submit"
                 >
                   <FormattedMessage id="general|button|ok" />

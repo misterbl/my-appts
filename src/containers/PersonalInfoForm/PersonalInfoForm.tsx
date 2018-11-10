@@ -52,7 +52,6 @@ export class PersonalInfoForm extends React.Component<
   onSubmit = (event: any) => {
     const { firstName, lastName } = event;
     const { user } = this.props;
-
     let address: string | null;
     if (this.state.address === '') {
       address = user && user.address;
@@ -75,7 +74,20 @@ export class PersonalInfoForm extends React.Component<
   handlePlaceSelect = async () => {
     this.setState({ addressError: false });
     const addressObject = await this.autocomplete.getPlace();
-    this.setState({ address: addressObject.formatted_address });
+    const address = addressObject.formatted_address;
+    const lat = addressObject.geometry.location.lat();
+    const lng = addressObject.geometry.location.lng();
+    // @ts-ignore
+    const { _id } = this.props.user;
+
+    this.props.apiThunk.updateUser(
+      QUERIES({
+        _id,
+        address,
+        lat,
+        lng,
+      }).UPDATE_LOCATION,
+    );
   };
 
   checkAddressError = (e: any) => {
@@ -133,10 +145,9 @@ export class PersonalInfoForm extends React.Component<
       intl: { formatMessage },
       user,
     } = this.props;
-    console.log(this);
 
     return (
-      <div className="flex flex-column ph7-ns">
+      <div className="flex flex-column ph5-m ph7-l">
         <div className="flex pv4 mh3 justify-center relative">
           {user && user.avatar ? (
             <img

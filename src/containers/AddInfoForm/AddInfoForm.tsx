@@ -73,7 +73,7 @@ export class AddInfoForm extends React.Component<TAddInfoForm> {
         onSubmit={this.onSubmit}
       >
         {formikProps => (
-          <Form className="profile-form mh4 mt4 flex flex-column ph7-ns">
+          <Form className="profile-form mh4 mt4 flex flex-column ph5-m ph7-l">
             <FormikInput
               {...formikProps}
               values={formikProps.values.profileTitle}
@@ -91,7 +91,7 @@ export class AddInfoForm extends React.Component<TAddInfoForm> {
               <FormattedMessage id="general|placeholder|profileDescription" />
             </label>
             <textarea
-              className="ba b--light-silver h5"
+              className="ba b--light-silver h5 resize-none"
               value={formikProps.values.profileDescription}
               name="profileDescription"
               onChange={event =>

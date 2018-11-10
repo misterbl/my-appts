@@ -67,12 +67,12 @@ export class AboutYouModal extends React.Component<
     } = this.props;
 
     return (
-      <div>
+      <>
         <button
-          className="pa0 w-100 tl  bt-0 bl-0 br-0 bt-0 bg-transparent b--moon-gray mh3 mt4"
+          className="tl pa0 bt-0 bl-0 br-0 bb bt-0 bg-transparent b--moon-gray mh3 mt4"
           onClick={this.openModal}
         >
-          About you
+          <FormattedMessage id="content|personalinfoform|aboutYou" />
         </button>
         <Modal
           className="green-bg"
@@ -81,7 +81,10 @@ export class AboutYouModal extends React.Component<
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <button className="ml2 mt2 f3 white" onClick={this.closeModal}>
+          <button
+            className="ml2 mt2 f3 white bn bg-transparent"
+            onClick={this.closeModal}
+          >
             x
           </button>
           <Formik
@@ -95,7 +98,7 @@ export class AboutYouModal extends React.Component<
             {({ values, setFieldValue }) => (
               <Form className="placeholder-white white mh4 ttc flex flex-column mt3">
                 <button
-                  className="ttu absolute white top-1 right-1"
+                  className="ttu absolute white top-1 right-1 bn bg-transparent"
                   type="submit"
                 >
                   <FormattedMessage id="general|button|ok" />
@@ -189,7 +192,7 @@ export class AboutYouModal extends React.Component<
             )}
           </Formik>
         </Modal>
-      </div>
+      </>
     );
   }
 }

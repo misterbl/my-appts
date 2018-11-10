@@ -12,9 +12,9 @@ import {
   ILoginStateDispatchToProps,
 } from './Login.d';
 import ROUTES from '../../consts/routes';
-import FacebookButton from 'src/components/FacebookButton';
+import FacebookButton from '../../components/FacebookButton';
 import labelColor from '../../utils/labelColor';
-import { QUERIES } from 'src/consts';
+import { QUERIES } from '../../consts';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import ErrorMessage from '../../components/ErrorMessage';
 
@@ -51,7 +51,7 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
     const { formatMessage } = this.props.intl;
 
     return (
-      <div className="flex flex-column vh-100 green-bg ph4 ph7-ns">
+      <div className="flex flex-column vh-100 green-bg ph4 ph7-l ph6-m pt5-ns">
         {/* <a className="kidappi white mt4 tc w-100">Kidappi</a> */}
         <FacebookButton
           className="mt4 shadow-5"

@@ -28,7 +28,7 @@ export class ChildrenForm extends React.Component<IChildrenFormComponent> {
     } = this.props;
 
     return (
-      <div className="mt3 mh3">
+      <div className="mt3 mh3 ph5-m ph7-l">
         <p className="f5 gray mb2">
           <FormattedMessage id="content|childrenform|explanation1" />
         </p>
@@ -39,7 +39,7 @@ export class ChildrenForm extends React.Component<IChildrenFormComponent> {
           {user &&
             user.children &&
             user.children.map((child: any, index: number) => (
-              <div className="relative ma4">
+              <div className="relative ma4" key={`${child.name}${index}`}>
                 <div className="flex flex-column tc">
                   <span className="f5 gray">{child.name || ' '}</span>
                   <ChildModal updating child={child} user={user} />

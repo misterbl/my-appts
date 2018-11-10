@@ -6,6 +6,17 @@ export interface Child {
   school: string;
   information: string;
 }
+
+export interface Slot {
+  beforeSchool: [string];
+  morning: [string];
+  noon: [string];
+  afternoon: [string];
+  afterSchool: [string];
+  evening: [string];
+  night: [string];
+}
+
 export interface IAppState {
   api: {
     userData: {
@@ -17,6 +28,8 @@ export interface IAppState {
       nonSmoker: boolean;
       car: boolean;
       address: string;
+      lat: number;
+      lng: number;
       postCode: string;
       city: string;
       photoURL: string;
@@ -24,7 +37,7 @@ export interface IAppState {
       profileTitle: string;
       profileDescription: string;
       children: [Child];
-      availabilities: string;
+      availability?: Slot;
     } | null;
   };
 }

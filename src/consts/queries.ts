@@ -20,13 +20,15 @@ const queries = (args: any) => ({
       avatar
       email
       address
+      lat
+      lng
       drivingLicense
       nonSmoker
       car
       profileTitle
       profileDescription
       children{id, name, dob, information, school, gender}
-      availabilities
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
   GET_USER_BY_ID: `mutation {
@@ -37,13 +39,15 @@ const queries = (args: any) => ({
       avatar
       email
       address
+      lat
+      lng
       drivingLicense
       nonSmoker
       car
       profileTitle
       profileDescription
       children{id, name, dob, information, school, gender}
-      availabilities
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
   GET_USER_INFO: `mutation {
@@ -74,8 +78,8 @@ const queries = (args: any) => ({
       address
       profileTitle
       profileDescription
-      children{name, dob, information, school, gender}
-      availabilities 
+      children{name, dob, information, school, gender} 
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
   UPDATE_PERSONAL_INFO: `mutation {
@@ -83,21 +87,46 @@ const queries = (args: any) => ({
     args.firstName
   }", lastName: "${args.lastName}", avatar:"${args.avatar}", address: "${
     args.address
-  }") {
+  }" ) {
       _id
       firstName
       lastName
       avatar
       address
+      lat
+      lng
       drivingLicense
       nonSmoker
       car
       profileTitle
       profileDescription
       children{name, dob, information, school, gender}
-      availabilities
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+
     }
   }`,
+  UPDATE_LOCATION: `mutation {
+    updateUser (_id: "${args._id}", address: "${args.address}", lat: "${
+    args.lat
+  }", lng: "${args.lng}" ) {
+      _id
+      firstName
+      lastName
+      avatar
+      address
+      lat
+      lng
+      drivingLicense
+      nonSmoker
+      car
+      profileTitle
+      profileDescription
+      children{name, dob, information, school, gender}
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+
+    }
+  }`,
+
   UPDATE_ABOUT_YOU: `mutation {
     updateUser (_id: "${args._id}", drivingLicense: ${
     args.drivingLicense
@@ -113,7 +142,25 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{name, dob, information, school, gender}
-      availabilities
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+
+    }
+  }`,
+  UPDATE_AVAILABILITY: `mutation {
+    updateUser (_id: "${args._id}", availability: ${JSON.stringify(
+    JSON.stringify(args.availability),
+  )}) {
+      _id
+      firstName
+      lastName
+      avatar
+      address
+      drivingLicense
+      nonSmoker
+      car
+      profileTitle
+      profileDescription
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
   ADD_CHILD: `mutation {
@@ -129,7 +176,6 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{id, name, dob, information, school, gender}
-      availabilities
     }
   }`,
   UPDATE_CHILD: `mutation {
@@ -145,7 +191,7 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{id, name, dob, information, school, gender}
-      availabilities
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
   REMOVE_CHILD: `mutation {
@@ -161,7 +207,6 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{id, name, dob, information, school, gender}
-      availabilities
     }
   }`,
 });

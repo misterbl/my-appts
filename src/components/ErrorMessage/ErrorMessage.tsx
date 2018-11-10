@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { WarningIcon } from 'src/styles/assets';
+import { WarningIcon } from '../../styles/assets';
 import { IErrorMessage } from './ErrorMessage.d';
 
 const ErrorMessage = (props: IErrorMessage) => (

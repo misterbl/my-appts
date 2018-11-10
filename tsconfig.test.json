@@ -1,6 +1,6 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "module": "commonjs"
-  }
+  "displayName": "deploy",
+  "rootDir": "../",
+  "setupTestFrameworkScriptFile": "<rootDir>/config/setup.js",
+  "testMatch": ["**/__tests__/**/*.js"]
 }

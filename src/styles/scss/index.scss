@@ -29,6 +29,20 @@ code {
 .white-text {
   color: white !important;
 }
+.lh-2 {
+  line-height: 2;
+}
+.resize-none {
+  resize: none;
+}
+.elliptical {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 40px/40px;
+  color: white;
+  width: 90px;
+  text-align: center;
+}
 .white-input {
   input {
     background: transparent;

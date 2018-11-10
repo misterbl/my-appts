@@ -17,7 +17,7 @@ module.exports = {
   'general|placeholder|dob': 'Date of birth',
   'general|placeholder|school': 'School',
   'general|placeholder|information': 'Other information',
-  'general|placeholder|availabilities': 'Availabilities',
+  'general|placeholder|availability': 'Availability',
 
   'general|button|next': 'next',
   'general|button|add': 'Add',
@@ -53,20 +53,21 @@ module.exports = {
     'A link has been sent to your email to reset your password',
 
   'content|dashboard|profile': 'Profile',
-
+  'content|dashboard|signOut': 'Sign out',
   'content|profile|editProfile': 'Edit profile',
 
   'content|editprofile|myinfo': 'my Info',
   'content|editprofile|myprofile': 'my profile',
   'content|editprofile|myad': 'my ad',
   'content|editprofile|mychildren': 'my children',
-  'content|editprofile|myavailabilities': 'my availabilities',
+  'content|editprofile|myavailability': 'my availability',
 
   'content|personalinfoform|firstNamerequired': 'A first name is required',
   'content|personalinfoform|lastNamerequired': 'A last name is required',
   'content|personalinfoform|addressrequired': 'An address is required',
   'content|personalinfoform|postcoderequired': 'A post code is required',
   'content|personalinfoform|cityrequired': 'A city is required',
+  'content|personalinfoform|aboutYou': 'About you',
 
   'content|adinfoform|adTitleRequired': 'An ad title is required',
   'content|adinfoform|adDescriptionRequired': 'An ad description is required',
@@ -85,4 +86,29 @@ module.exports = {
     'write here any further information about your child (allergies, food intolerance, hobbies...)',
   'content|childrenform|deleteConfirmation':
     'Are you sure you wish to delete this card for {childName}',
+
+  'content|availabiltyForm|availability': 'Availability',
+  'content|availabiltyForm|selectaAvailability':
+    'Please select your availability',
+  'content|availabilityForm|explanation':
+    'List your availability for child care',
+  'content|availabilityForm|beforeSchool': 'Before school / nursery',
+  'content|availabilityForm|morning': 'Morning',
+  'content|availabilityForm|noon': 'Noon',
+  'content|availabilityForm|afternoon': 'Afternoon',
+  'content|availabilityForm|afterSchool': 'After school / nursery',
+  'content|availabilityForm|evening': 'Evening',
+  'content|availabilityForm|night': 'Night',
+  'content|availabilityForm|mondayInitial': 'M',
+  'content|availabilityForm|tuesdayInitial': 'T',
+  'content|availabilityForm|wednesdayInitial': 'W',
+  'content|availabilityForm|thursdayInitial': 'T',
+  'content|availabilityForm|fridayInitial': 'F',
+  'content|availabilityForm|saturdayInitial': 'S',
+  'content|availabilityForm|sundayInitial': 'S',
+
+  'content|userCard|contact': 'Contact',
+  'content|userCard|hasACar': 'Has a car',
+  'content|userCard|hasDrivingLicence': 'Has a driving licence',
+  'content|userCard|nonSmoker': 'Non-smoker',
 };

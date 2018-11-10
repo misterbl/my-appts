@@ -7,9 +7,9 @@ import { withRouter } from 'react-router-dom';
 import { IPasswordResetComponent, IPasswordReseState } from './PasswordReset.d';
 import ROUTES from '../../consts/routes';
 import labelColor from '../../utils/labelColor';
-import ErrorMessage from 'src/components/ErrorMessage';
+import ErrorMessage from '../../components/ErrorMessage';
 
-class PasswordReset extends React.Component<
+export class PasswordReset extends React.Component<
   IPasswordResetComponent,
   IPasswordReseState
 > {
@@ -21,8 +21,6 @@ class PasswordReset extends React.Component<
   }
 
   onSubmit = (event: any) => {
-    console.log(event);
-
     const { email } = event;
     auth
       .doPasswordReset(email)
@@ -30,7 +28,7 @@ class PasswordReset extends React.Component<
         this.setState({ submitted: true });
       })
       .catch(function(error) {
-        // An error happened.
+        console.log(error);
       });
   };
 
@@ -41,7 +39,7 @@ class PasswordReset extends React.Component<
     return (
       <div className="vh-100 green-bg tc ">
         <p className="kidappi white ma0 pt5 w-100">Kidappi</p>
-        <div className="absolute bottom-2 ph3">
+        <div className="absolute bottom-2 ph3 w-100 ph7-l ph6-m">
           {!submitted && (
             <>
               <p className="tc pb2 white">
@@ -99,8 +97,6 @@ class PasswordReset extends React.Component<
                     >
                       <FormattedMessage id="general|button|send" />
                     </button>
-
-                    {/* {error && <p>{error.message}</p>} */}
                   </Form>
                 )}
               </Formik>

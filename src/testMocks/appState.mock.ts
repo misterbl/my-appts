@@ -11,6 +11,8 @@ const generateAppState = (): IAppState => ({
       nonSmoker: false,
       car: false,
       address: 'address',
+      lat: 1234,
+      lng: 123445,
       postCode: 'postCode',
       city: 'city',
       photoURL: 'photU`rl',
@@ -27,7 +29,7 @@ const generateAppState = (): IAppState => ({
           information: 'childInformation',
         },
       ],
-      availabilities: 'availabilities',
+      availability: undefined,
     },
   },
 });

@@ -1,0 +1,394 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home matches the snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home
+    history={
+        Object {
+            "action": "PUSH",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 123,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "key": "",
+              "pathname": "",
+              "search": "",
+              "state": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+    }
+    location={
+        Object {
+            "hash": "",
+            "key": "",
+            "pathname": "",
+            "search": "",
+            "state": "",
+          }
+    }
+    match={
+        Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "",
+            "url": "",
+          }
+    }
+    pushToRegister={[Function]}
+    pushToSignIn={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <a
+          className="kidappi white mt5 tc w-100"
+>
+          Kidappi
+</a>,
+        <button
+          className="loginNext fw7 mt5 ttu di pv3 bn shadow-5 mh6-l mb4-l"
+          onClick={[Function]}
+>
+          <FormattedMessage
+                    id="general|button|signin"
+                    values={Object {}}
+          />
+</button>,
+        <div
+          className="text--line-through"
+>
+          <span
+                    className="spant3 ma0 tc white text--line-through--text"
+          >
+                    <FormattedMessage
+                              id="general|or"
+                              values={Object {}}
+                    />
+          </span>
+</div>,
+        <button
+          className="loginNext fw7 mt4 mt5-l ttu di pv3 bn shadow-5 mh6-l"
+          onClick={[Function]}
+>
+          <FormattedMessage
+                    id="general|button|register"
+                    values={Object {}}
+          />
+</button>,
+      ],
+      "className": "flex flex-column vh-100 green-bg ph4 ph7-l ph6-m",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Kidappi",
+          "className": "kidappi white mt5 tc w-100",
+        },
+        "ref": null,
+        "rendered": "Kidappi",
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <FormattedMessage
+            id="general|button|signin"
+            values={Object {}}
+/>,
+          "className": "loginNext fw7 mt5 ttu di pv3 bn shadow-5 mh6-l mb4-l",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "id": "general|button|signin",
+            "values": Object {},
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <span
+            className="spant3 ma0 tc white text--line-through--text"
+>
+            <FormattedMessage
+                        id="general|or"
+                        values={Object {}}
+            />
+</span>,
+          "className": "text--line-through",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <FormattedMessage
+              id="general|or"
+              values={Object {}}
+/>,
+            "className": "spant3 ma0 tc white text--line-through--text",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "general|or",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "span",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <FormattedMessage
+            id="general|button|register"
+            values={Object {}}
+/>,
+          "className": "loginNext fw7 mt4 mt5-l ttu di pv3 bn shadow-5 mh6-l",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "id": "general|button|register",
+            "values": Object {},
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <a
+            className="kidappi white mt5 tc w-100"
+>
+            Kidappi
+</a>,
+          <button
+            className="loginNext fw7 mt5 ttu di pv3 bn shadow-5 mh6-l mb4-l"
+            onClick={[Function]}
+>
+            <FormattedMessage
+                        id="general|button|signin"
+                        values={Object {}}
+            />
+</button>,
+          <div
+            className="text--line-through"
+>
+            <span
+                        className="spant3 ma0 tc white text--line-through--text"
+            >
+                        <FormattedMessage
+                                    id="general|or"
+                                    values={Object {}}
+                        />
+            </span>
+</div>,
+          <button
+            className="loginNext fw7 mt4 mt5-l ttu di pv3 bn shadow-5 mh6-l"
+            onClick={[Function]}
+>
+            <FormattedMessage
+                        id="general|button|register"
+                        values={Object {}}
+            />
+</button>,
+        ],
+        "className": "flex flex-column vh-100 green-bg ph4 ph7-l ph6-m",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Kidappi",
+            "className": "kidappi white mt5 tc w-100",
+          },
+          "ref": null,
+          "rendered": "Kidappi",
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <FormattedMessage
+              id="general|button|signin"
+              values={Object {}}
+/>,
+            "className": "loginNext fw7 mt5 ttu di pv3 bn shadow-5 mh6-l mb4-l",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "general|button|signin",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <span
+              className="spant3 ma0 tc white text--line-through--text"
+>
+              <FormattedMessage
+                            id="general|or"
+                            values={Object {}}
+              />
+</span>,
+            "className": "text--line-through",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <FormattedMessage
+                id="general|or"
+                values={Object {}}
+/>,
+              "className": "spant3 ma0 tc white text--line-through--text",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "id": "general|or",
+                "values": Object {},
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "span",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <FormattedMessage
+              id="general|button|register"
+              values={Object {}}
+/>,
+            "className": "loginNext fw7 mt4 mt5-l ttu di pv3 bn shadow-5 mh6-l",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "id": "general|button|register",
+              "values": Object {},
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

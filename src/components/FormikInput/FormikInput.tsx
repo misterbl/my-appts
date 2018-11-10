@@ -18,7 +18,7 @@ const FormikInput = (props: TFormikInput) => {
       </label>
       <input
         className={`${errors ? 'mb0' : 'mb4'}`}
-        value={values}
+        value={values || ''}
         name={name}
         onChange={event => setFieldValue(name, event.target.value)}
         type="text"

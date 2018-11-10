@@ -19,6 +19,8 @@ import deleteIcon from './deleteIcon';
 import drivingLicenseIcon from './drivingLicenseIcon';
 import carIcon from './carIcon';
 import noSmokingIcon from './noSmokingIcon';
+import chevronDownIcon from './chevronDownIcon';
+import signOutIcon from './signOutIcon';
 
 export {
   MessageIcon,
@@ -42,4 +44,6 @@ export {
   drivingLicenseIcon,
   carIcon,
   noSmokingIcon,
+  chevronDownIcon,
+  signOutIcon,
 };

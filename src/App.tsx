@@ -42,21 +42,26 @@ class App extends React.Component<TAppComponent> {
           getData(QUERIES({ email: loggedInUser.email }).GET_USER).then(() =>
             this.render(),
           );
+        } else if (
+          !loggedInUser &&
+          this.props.history.location.pathname !== ROUTES.PASSWORD_RESET
+        ) {
+          return this.props.history.push(ROUTES.INDEX);
         }
       });
     }
   };
-  checkUser = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (
-        !user &&
-        this.props.history.location.pathname !== ROUTES.PASSWORD_RESET
-      ) {
-        return this.props.history.push(ROUTES.INDEX);
-      }
-      this.props.apiActions.saveUserEmail(user && user.email);
-    });
-  };
+  // checkUser = () => {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (
+  //       !user &&
+  //       this.props.history.location.pathname !== ROUTES.PASSWORD_RESET
+  //     ) {
+  //       return this.props.history.push(ROUTES.INDEX);
+  //     }
+  //     this.props.apiActions.saveUserEmail(user && user.email);
+  //   });
+  // };
   render() {
     const {
       user,
@@ -73,7 +78,7 @@ class App extends React.Component<TAppComponent> {
       pathname === PASSWORD_RESET ||
       pathname === EDIT_PROFILE
         ? ''
-        : 'bg-white-10 vh-100 mh3 pb5';
+        : 'bg-white-10 mh3 pb5 ph7-l ph5-m';
 
     return (
       <>
@@ -86,9 +91,9 @@ class App extends React.Component<TAppComponent> {
             <Route path={ROUTES.EDIT_PROFILE} component={EditProfile} />
             <Route path={ROUTES.DASHBOARD} component={DashBoard} />
             <Route path={ROUTES.CARD} component={UserCard} />
-            <Route path={ROUTES.INBOX} component={ChildrenForm} />
-            <Route path={ROUTES.SEARCH} component={DashBoard} />
-            <Route path={ROUTES.FAVOURITE} component={EditProfile} />
+            {/* <Route path={ROUTES.INBOX} component={DashBoard} />
+            <Route path={ROUTES.SEARCH} component={DashBoard} /> */}
+            {/* <Route path={ROUTES.FAVOURITE} component={EditProfile} /> */}
             <Route path={ROUTES.PROFILE} component={UserCard} />
             <Route path={ROUTES.USER_DETAILS} component={PersonalInfoForm} />
             <Route path={ROUTES.CHILDREN} component={ChildrenForm} />
@@ -98,6 +103,7 @@ class App extends React.Component<TAppComponent> {
         {user &&
           pathname.indexOf('card') === -1 &&
           pathname !== ROUTES.SIGN_IN &&
+          pathname !== ROUTES.INDEX &&
           pathname !== ROUTES.REGISTER &&
           pathname !== ROUTES.PASSWORD_RESET &&
           pathname !== ROUTES.CARD &&

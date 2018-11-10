@@ -8,12 +8,13 @@ import Svg from 'src/components/Svg';
 import PersonalInfoForm from '../PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from '../AddInfoForm/AddInfoForm';
 import ChildrenForm from 'src/components/ChildrenForm/ChildrenForm';
+import AvailabilityForm from 'src/components/AvailabilityForm/AvailabilityForm';
 
 export class EditProfile extends React.Component<
   TEditProfile,
   EditProfileState
 > {
-  pagesName = ['myinfo', 'myad', 'mychildren', 'myavailabilities'];
+  pagesName = ['myinfo', 'myad', 'mychildren', 'myavailability'];
   buttonRef = React.createRef<HTMLButtonElement>();
   constructor(props: TEditProfile) {
     super(props);
@@ -49,6 +50,9 @@ export class EditProfile extends React.Component<
       case 'mychildren':
         // @ts-ignore
         return <ChildrenForm submitButton={this.submitButton()} />;
+      case 'myavailability':
+        // @ts-ignore
+        return <AvailabilityForm submitButton={this.submitButton()} />;
       default:
         return <span />;
     }
@@ -77,7 +81,7 @@ export class EditProfile extends React.Component<
               <FormattedMessage id="content|editprofile|myprofile" />
             </span>
           </div>
-          <div className="f6 mt3 flex flex-nowrap justify-between mh2 ph7-ns">
+          <div className="f6 mt3 flex flex-nowrap justify-between mh2 ph5-ns">
             {pagesName.map(tab => (
               <div
                 key={tab}

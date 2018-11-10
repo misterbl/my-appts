@@ -17,7 +17,7 @@ import Svg from 'src/components/Svg';
 import getMatchedRouteParams from 'src/utils/getMatchedRouteParams';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
-// import MaMapWithMarker from '../../components/MapWithMarker/';
+import MapComponent from 'src/components/MapComponent';
 
 export class UserCard extends React.Component<TUserCard, IUserCardState> {
   constructor(props: TUserCard) {
@@ -52,8 +52,8 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
 
     return (
       <>
-        <header className="flex w-100 bg-white fixed fw7">
-          <p
+        <header className="flex w-100 bg-white fixed fw7 pt3-ns">
+          <div
             onClick={() =>
               this.props.history.push(
                 sameUser ? ROUTES.DASHBOARD : ROUTES.SEARCH,
@@ -61,14 +61,14 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
             }
           >
             <Svg Icon={chevronLeftIcon} />
-          </p>
-          <p className="ml4">
+          </div>
+          <span className="ml4">
             {user && user._id === (viewedUser && viewedUser._id) ? (
               <FormattedMessage id="content|appfooter|dashboard" />
             ) : (
               viewedUser && viewedUser.firstName
             )}
-          </p>
+          </span>
         </header>
         <div className="flex pt5">
           {viewedUser && viewedUser.avatar ? (
@@ -89,32 +89,71 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
         <div className="m10 mt30 pb60">
           <h3>{viewedUser && viewedUser.profileTitle}</h3>
           <p>{viewedUser && viewedUser.profileDescription}</p>
-          {/* <p>
-            <FormattedMessage id="general|content|numberKids" />: 2
-          </p> */}
-          {/* TODO Change when api done for children */}
-          {/* <p>{viewedUser && viewedUser.children}</p>
-          <p>{viewedUser && viewedUser.children}</p> */}
+          <p className="flex flex justify-between mt4">
+            <span className="lh-2">
+              <FormattedMessage id="content|userCard|hasACar" />
+            </span>
+            {viewedUser && viewedUser.car ? (
+              <span className="elliptical green-bg">Yes</span>
+            ) : (
+              <span className="elliptical bg-light-green">No</span>
+            )}
+          </p>
+          <p className="flex flex justify-between">
+            <span className="lh-2">
+              <FormattedMessage id="content|userCard|hasDrivingLicence" />
+            </span>
+            {viewedUser && viewedUser.drivingLicense ? (
+              <span className="elliptical green-bg">Yes</span>
+            ) : (
+              <span className="elliptical bg-light-green">No</span>
+            )}
+          </p>
+          <p className="flex flex justify-between">
+            <span className="lh-2">
+              <FormattedMessage id="content|userCard|nonSmoker" />
+            </span>
+            {viewedUser && viewedUser.nonSmoker ? (
+              <span className="elliptical green-bg">Yes</span>
+            ) : (
+              <span className="elliptical bg-light-green">No</span>
+            )}
+          </p>
+          <p className="flex flex justify-between">
+            <span className="lh-2">
+              <FormattedMessage id="general|content|numberKids" />
+            </span>
+            {viewedUser &&
+              viewedUser.children && (
+                <span className="elliptical green-bg">
+                  {viewedUser.children.length}
+                </span>
+              )}
+          </p>
           <p>
             <FormattedMessage id="general|content|location" />
           </p>
         </div>
-        {/* MAPS WILL GO HERE
-        <MaMapWithMarker
-          // @ts-ignore
-          address={
-            viewedUser && `${viewedUser.postCode}, ${viewedUser.city}, UK`
-          }
-        /> */}
-        <footer className="user-card-footer">
-          <div className=" flex flex-column ml10">
-            <span>Exchange</span>
-            <span>Money</span>
-          </div>
-          <button className="mr2 bg-green white fw7 ph4 ttc di pv3 bn-ns">
-            Contact
+
+        <MapComponent
+          lat={viewedUser && viewedUser.lat}
+          lng={viewedUser && viewedUser.lng}
+        />
+        {user && user._id === (viewedUser && viewedUser._id) ? (
+          <button
+            className="w-100 bn fixed left-0 bottom-0 green-bg pv3 white"
+            onClick={() => this.props.history.push(ROUTES.EDIT_PROFILE)}
+          >
+            <FormattedMessage id="content|profile|editProfile" />
           </button>
-        </footer>
+        ) : (
+          <button
+            className="w-100 bn fixed left-0 bottom-0 green-bg pv3 white"
+            onClick={() => this.props.history.push(ROUTES.INBOX)}
+          >
+            <FormattedMessage id="content|userCard|contact" />
+          </button>
+        )}
       </>
     );
   }
