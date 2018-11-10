@@ -71,6 +71,7 @@ export const removeChild = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
+      baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
       // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
@@ -91,6 +92,7 @@ export const getUserData = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
+      baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
       // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
@@ -112,6 +114,7 @@ export const getViewedUserData = (query: any) => async (dispatch: any) => {
   //   const resourceName = REQUEST.GET_FRP_DATA;
   try {
     const response = await Axios.create({
+      baseURL: 'https://kidappi-graphql.herokuapp.com/graphql',
       // baseURL: 'http://localhost:4000/graphql',
       headers: { 'Content-Type': 'application/graphql' },
     }).post('', query);
