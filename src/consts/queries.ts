@@ -85,9 +85,7 @@ const queries = (args: any) => ({
   UPDATE_PERSONAL_INFO: `mutation {
     updateUser (_id: "${args._id}", firstName: "${
     args.firstName
-  }", lastName: "${args.lastName}", avatar:"${args.avatar}", address: "${
-    args.address
-  }" ) {
+  }", lastName: "${args.lastName}", address: "${args.address}" ) {
       _id
       firstName
       lastName

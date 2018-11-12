@@ -60,13 +60,12 @@ export class PersonalInfoForm extends React.Component<
     }
 
     if (this.props.user) {
-      const { _id, avatar } = this.props.user;
+      const { _id } = this.props.user;
       this.props.apiThunk.updateUser(
         QUERIES({
           _id,
           firstName,
           lastName,
-          avatar,
           address,
         }).UPDATE_PERSONAL_INFO,
       );
