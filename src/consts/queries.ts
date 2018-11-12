@@ -180,6 +180,24 @@ const queries = (args: any) => ({
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
+  UPDATE_UNAVAILABILITY: `mutation {
+    updateUser (_id: "${args._id}", unavailability: ${JSON.stringify(
+    args.unavailability,
+  )}) {
+      _id
+      firstName
+      lastName
+      avatar
+      address
+      drivingLicense
+      nonSmoker
+      car
+      profileTitle
+      profileDescription
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+      unavailability
+    }
+  }`,
   ADD_CHILD: `mutation {
     updateUser (_id: "${args._id}", child: ${JSON.stringify(
     JSON.stringify(args.child),

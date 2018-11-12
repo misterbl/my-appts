@@ -30,6 +30,7 @@ const generateAppState = (): IAppState => ({
         },
       ],
       availability: undefined,
+      unavailability: undefined,
     },
   },
 });

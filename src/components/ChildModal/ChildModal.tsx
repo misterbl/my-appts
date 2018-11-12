@@ -265,7 +265,9 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
                     Icon={calendarIcon}
                   />
                   <FormattedMessage id="general|placeholder|dob">
-                    {text => <span className="white ml3">{text}:</span>}
+                    {text => (
+                      <span className="white ml3 lh-copy-ns">{text}:</span>
+                    )}
                   </FormattedMessage>
                   <DatePicker
                     selected={this.state.dob}

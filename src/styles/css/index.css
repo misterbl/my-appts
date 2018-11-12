@@ -55,6 +55,13 @@ code {
   min-width: 25px;
 }
 
+.DayPicker-Day--selected {
+  background-color: #35ad49 !important;
+}
+.DayPicker-Day--today {
+  color: #ff6300 !important;
+}
+
 .white-input input {
   background: transparent;
   border-right: none;

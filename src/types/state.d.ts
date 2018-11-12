@@ -38,6 +38,7 @@ export interface IAppState {
       profileDescription: string;
       children: [Child];
       availability?: Slot;
+      unavailability?: [String];
     } | null;
   };
 }

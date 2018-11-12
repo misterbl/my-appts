@@ -63,7 +63,7 @@ module.exports = {
   'content|editprofile|myprofile': 'mon Profile',
   'content|editprofile|myad': 'mon Annonce',
   'content|editprofile|mychildren': 'mes Enfants',
-  'content|editprofile|myavailabilities': 'mes disponibilités',
+  'content|editprofile|myavailability': 'mes disponibilités',
 
   'content|personalinfoform|firstNamerequired': 'Un prénom est requis',
   'content|personalinfoform|lastNamerequired': 'Un nom de famille est requis',
@@ -113,6 +113,8 @@ module.exports = {
   'content|availabilityForm|fridayInitial': 'V',
   'content|availabilityForm|saturdayInitial': 'S',
   'content|availabilityForm|sundayInitial': 'D',
+  'content|availabilityForm|calendarExplanation':
+    "Sélectionnez la ou les dates auxquelles vous NE SEREZ PAS disponible pour la garde d'enfants",
 
   'content|userCard|contact': 'Contactez {userFirstName}',
   'content|userCard|hasACar': 'A une voiture',

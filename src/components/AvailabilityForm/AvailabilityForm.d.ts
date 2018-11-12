@@ -6,10 +6,16 @@ export interface IAvailabilityFormMapStateToProps {
   user: IAppState['api']['userData'];
 }
 
+export interface IAvailabilityState {
+  selectedDays: any[];
+}
 export interface IAvailabilityFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;
 }
-
-export type IAvailabilityFormComponent = IAvailabilityFormDispatchToProps &
+export interface IAvailabilityFormComponent {
+  submitButton: HTMLButtonElement;
+}
+export type TAvailabilityForm = IAvailabilityFormComponent &
+  IAvailabilityFormDispatchToProps &
   IAvailabilityFormMapStateToProps &
   InjectedIntlProps;

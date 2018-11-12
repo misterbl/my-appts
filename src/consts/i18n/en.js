@@ -114,6 +114,8 @@ module.exports = {
   'content|availabilityForm|fridayInitial': 'F',
   'content|availabilityForm|saturdayInitial': 'S',
   'content|availabilityForm|sundayInitial': 'S',
+  'content|availabilityForm|calendarExplanation':
+    "Please select the dates you WON'T be available for child care",
 
   'content|userCard|contact': 'Contact {userFirstName}',
   'content|userCard|hasACar': 'Has a car',
