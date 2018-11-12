@@ -85,7 +85,7 @@ export class WeekDaysForm extends React.Component<
         {isElementOpen && (
           <div className="flex">
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Monday') ? 'dark-green bg-light-green' : 'white'
               }`}
             >
@@ -102,7 +102,7 @@ export class WeekDaysForm extends React.Component<
               />
             </label>
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Tuesday') ? 'dark-green bg-light-green' : 'white'
               }`}
             >
@@ -120,7 +120,7 @@ export class WeekDaysForm extends React.Component<
               />
             </label>
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Wednesday')
                   ? 'dark-green bg-light-green'
                   : 'white'
@@ -140,7 +140,7 @@ export class WeekDaysForm extends React.Component<
               />
             </label>
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Thursday') ? 'dark-green bg-light-green' : 'white'
               }`}
             >
@@ -158,7 +158,7 @@ export class WeekDaysForm extends React.Component<
               />
             </label>
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Friday') ? 'dark-green bg-light-green' : 'white'
               }`}
             >
@@ -176,7 +176,7 @@ export class WeekDaysForm extends React.Component<
               />
             </label>
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Saturday') ? 'dark-green bg-light-green' : 'white'
               }`}
             >
@@ -194,7 +194,7 @@ export class WeekDaysForm extends React.Component<
               />
             </label>
             <label
-              className={`flex mh2 mt2 br-100 ${
+              className={`flex mh2 mt2 br-100 min-width-25 justify-center ${
                 this.checked('Sunday') ? 'dark-green bg-light-green' : 'white'
               }`}
             >

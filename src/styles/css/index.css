@@ -51,6 +51,10 @@ code {
   text-align: center;
 }
 
+.min-width-25 {
+  min-width: 25px;
+}
+
 .white-input input {
   background: transparent;
   border-right: none;
