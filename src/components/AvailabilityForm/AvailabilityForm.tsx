@@ -42,7 +42,6 @@ export class AvailabilityForm extends React.Component<
   //     locale: e.target.value,
   //   });
   // };
-
   // @ts-ignore
   handleDayClick = (day: any, { selected }) => {
     const { selectedDays } = this.state;
@@ -98,7 +97,9 @@ export class AvailabilityForm extends React.Component<
         </p> */}
           <DayPicker
             className="mt2 ba b--orange w-100 w-70-m"
+            // @ts-ignore
             selectedDays={this.state.selectedDays}
+            // @ts-ignore
             onDayClick={this.handleDayClick}
             localeUtils={MomentLocaleUtils}
             locale={this.props.intl.locale}
