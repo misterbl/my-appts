@@ -33,6 +33,7 @@ module.exports = {
   'content|appfooter|favourite': 'Favourite',
   'content|appfooter|search': 'Search',
   'content|appfooter|booking': 'My bookings',
+
   'general|content|numberKids': 'Number of children',
   'general|content|location': 'Location',
 
@@ -68,6 +69,9 @@ module.exports = {
   'content|personalinfoform|postcoderequired': 'A post code is required',
   'content|personalinfoform|cityrequired': 'A city is required',
   'content|personalinfoform|aboutYou': 'About you',
+  'content|personalinfoform|drivingLicence?': 'Driving Licence?',
+  'content|personalinfoform|accessToACar?': 'Access to a car?',
+  'content|personalinfoform|nonSmoker?': 'Non smoker?',
 
   'content|adinfoform|adTitleRequired': 'An ad title is required',
   'content|adinfoform|adDescriptionRequired': 'An ad description is required',
@@ -81,6 +85,10 @@ module.exports = {
   'content|childfield|child': 'Child',
   'content|childrenform|boy': 'boy',
   'content|childrenform|girl': 'girl',
+  'content|childrenform|months': '{months} months old',
+  'content|childrenform|month': '{months} month old',
+  'content|childrenform|years': '{years} years old',
+  'content|childrenform|year': ' {years} year old',
   'content|childrenform|select': 'Select',
   'content|childrenform|information':
     'write here any further information about your child (allergies, food intolerance, hobbies...)',
@@ -89,7 +97,7 @@ module.exports = {
 
   'content|availabiltyForm|availability': 'Availability',
   'content|availabiltyForm|selectaAvailability':
-    'Please select your availability',
+    'Please select your availability for child care',
   'content|availabilityForm|explanation':
     'List your availability for child care',
   'content|availabilityForm|beforeSchool': 'Before school / nursery',
@@ -107,7 +115,7 @@ module.exports = {
   'content|availabilityForm|saturdayInitial': 'S',
   'content|availabilityForm|sundayInitial': 'S',
 
-  'content|userCard|contact': 'Contact',
+  'content|userCard|contact': 'Contact {userFirstName}',
   'content|userCard|hasACar': 'Has a car',
   'content|userCard|hasDrivingLicence': 'Has a driving licence',
   'content|userCard|nonSmoker': 'Non-smoker',

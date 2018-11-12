@@ -131,7 +131,9 @@ export class AboutYouModal extends React.Component<
                       id: 'general|placeholder|firstName',
                     })}
                   />
-                  <span className="ml3 lh-copy">Driving license?</span>
+                  <span className="ml3 lh-copy">
+                    <FormattedMessage id="content|personalinfoform|drivingLicence?" />
+                  </span>
                 </label>
                 <label
                   className={`flex ml3 mt4 ${
@@ -157,7 +159,9 @@ export class AboutYouModal extends React.Component<
                       id: 'general|placeholder|firstName',
                     })}
                   />
-                  <span className="ml3 lh-copy">Car?</span>
+                  <span className="ml3 lh-copy">
+                    <FormattedMessage id="content|personalinfoform|accessToACar?" />
+                  </span>
                 </label>
                 <div>
                   <label
@@ -184,7 +188,9 @@ export class AboutYouModal extends React.Component<
                         id: 'general|placeholder|firstName',
                       })}
                     />
-                    <span className="ml3 lh-copy">Smoking?</span>
+                    <span className="ml3 lh-copy">
+                      <FormattedMessage id="content|personalinfoform|nonSmoker?" />
+                    </span>
                   </label>
                   <div>Accept money or just child care</div>
                 </div>

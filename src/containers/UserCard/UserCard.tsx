@@ -17,7 +17,7 @@ import Svg from 'src/components/Svg';
 import getMatchedRouteParams from 'src/utils/getMatchedRouteParams';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
-import MapComponent from 'src/components/MapComponent';
+// import MapComponent from 'src/components/MapComponent';
 
 export class UserCard extends React.Component<TUserCard, IUserCardState> {
   constructor(props: TUserCard) {
@@ -135,10 +135,10 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
           </p>
         </div>
 
-        <MapComponent
+        {/* <MapComponent
           lat={viewedUser && viewedUser.lat}
           lng={viewedUser && viewedUser.lng}
-        />
+        /> */}
         {user && user._id === (viewedUser && viewedUser._id) ? (
           <button
             className="w-100 bn fixed left-0 bottom-0 green-bg pv3 white"
@@ -151,7 +151,14 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
             className="w-100 bn fixed left-0 bottom-0 green-bg pv3 white"
             onClick={() => this.props.history.push(ROUTES.INBOX)}
           >
-            <FormattedMessage id="content|userCard|contact" />
+            <FormattedMessage
+              id="content|userCard|contact"
+              values={{
+                userFirstName: (
+                  <strong>{viewedUser && viewedUser.firstName}</strong>
+                ),
+              }}
+            />
           </button>
         )}
       </>

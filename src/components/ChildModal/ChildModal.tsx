@@ -143,13 +143,13 @@ export class ChildModal extends React.Component<TChildModal, IChildModalState> {
           className={`${
             !child
               ? 'w-100 bn fixed left-0 bottom-0 green-bg pv3 white'
-              : 'bg-transparent mt2 fw7 ph3 ttu di pv3 bn shadow-5'
+              : 'bg-transparent fw7 ttu di pv2 bn'
           }`}
           onClick={this.openModal}
         >
           {child ? (
             <Svg
-              fill="#777777"
+              fill="green"
               width="40pt"
               height="40pt"
               Icon={child.gender === 'girl' ? girlIcon : boyIcon}
