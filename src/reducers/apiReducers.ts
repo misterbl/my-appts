@@ -18,7 +18,7 @@ type State = IAppState['api'];
 
 export const userData = (
   state: State['userData'] = null,
-  { type, data, email }: AnyAction,
+  { type, data, email, file }: AnyAction,
 ): State['userData'] => {
   switch (type) {
     case 'SAVE_USER_EMAIL':
@@ -28,6 +28,11 @@ export const userData = (
       };
     case 'SAVE_USER_DATA':
       return data;
+    case 'SAVE_AVATAR':
+      return {
+        ...(state as any),
+        avatar: file,
+      };
     default:
       return state;
   }

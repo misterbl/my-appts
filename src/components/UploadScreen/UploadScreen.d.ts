@@ -3,9 +3,7 @@ export interface IUploadScreen {
   printcount: number;
   submitDiv: JSX.Element;
   className?: string;
-  filesToBeSent: [];
-  submitFiles: () => void;
-  fileRead: any;
+  submitFiles: (file: any) => {};
 }
 export interface IUploadScreenState {
   filesPreview: [];

@@ -15,13 +15,13 @@ import * as apiThunk from '../../actions/thunks/apiThunk';
 import { IAppState } from 'src/types/state';
 import { getUserData } from 'src/selectors/apiSelectors';
 import Svg from 'src/components/Svg';
-import { AccountIcon } from 'src/styles/assets';
+import { AccountIcon, EditIcon } from 'src/styles/assets';
 import labelColor from '../../utils/labelColor';
 import { QUERIES } from 'src/consts';
 import ErrorMessage from 'src/components/ErrorMessage';
 import FormikInput from 'src/components/FormikInput/FormikInput';
 import AboutYouModal from 'src/components/AboutYouModal/AboutYouModal';
-// import { UploadScreen } from 'src/components/UploadScreen/UploadScreen';
+import { UploadScreen } from 'src/components/UploadScreen/UploadScreen';
 
 export class PersonalInfoForm extends React.Component<
   TPersonalInfoFormComponent,
@@ -58,17 +58,19 @@ export class PersonalInfoForm extends React.Component<
     } else {
       address = this.state.address;
     }
-    // @ts-ignore
-    const { _id, avatar } = this.props.user;
-    this.props.apiThunk.updateUser(
-      QUERIES({
-        _id,
-        firstName,
-        lastName,
-        avatar,
-        address,
-      }).UPDATE_PERSONAL_INFO,
-    );
+
+    if (this.props.user) {
+      const { _id, avatar } = this.props.user;
+      this.props.apiThunk.updateUser(
+        QUERIES({
+          _id,
+          firstName,
+          lastName,
+          avatar,
+          address,
+        }).UPDATE_PERSONAL_INFO,
+      );
+    }
   };
 
   handlePlaceSelect = async () => {
@@ -77,17 +79,18 @@ export class PersonalInfoForm extends React.Component<
     const address = addressObject.formatted_address;
     const lat = addressObject.geometry.location.lat();
     const lng = addressObject.geometry.location.lng();
-    // @ts-ignore
-    const { _id } = this.props.user;
+    if (this.props.user) {
+      const { _id } = this.props.user;
 
-    this.props.apiThunk.updateUser(
-      QUERIES({
-        _id,
-        address,
-        lat,
-        lng,
-      }).UPDATE_LOCATION,
-    );
+      this.props.apiThunk.updateUser(
+        QUERIES({
+          _id,
+          address,
+          lat,
+          lng,
+        }).UPDATE_LOCATION,
+      );
+    }
   };
 
   checkAddressError = (e: any) => {
@@ -97,48 +100,12 @@ export class PersonalInfoForm extends React.Component<
     }
     this.setState({ addressError: false });
   };
-  // handleClick = async () => {
-  //   const reader = new FileReader();
-  //   await reader.addEventListener(
-  //     'load',
-  //     () => {
-  //       this.setState({ avatar: reader.result });
-  //     },
-  //     false,
-  //   );
-  // if(this.state.filesToBeSent.length > 0){
-  // reader.readAsDataURL(this.state.filesToBeSent[0]);}
-  // @ts-ignore
-  //   console.log(this.state);
-  // };
 
-  // submitFiles = async () => {
-  //   console.log(3);
-
-  //   console.log(this.state.avatar[0]);
-  //   console.log(4);
-
-  //   const avatar = this.state.filesToBeSent;
-  //   const {
-  //     // @ts-ignore
-  //     _id,
-  //     // @ts-ignore
-  //     firstName,
-  //     // @ts-ignore
-  //     lastName,
-  //     // @ts-ignore
-  //     address,
-  //     // @ts-ignore
-  //     postCode,
-  //     // @ts-ignore
-  //     city,
-  //   } = this.props.user;
-
-  //   this.props.apiThunk.updateUser(
-  //     QUERIES({ _id, avatar, firstName, lastName, address, postCode, city })
-  //       .UPDATE_PERSONAL_INFO,
-  //   );
-  // };
+  submitFiles = async (file: any) => {
+    if (this.props.user) {
+      this.props.apiThunk.uploadFile(this.props.user._id, file);
+    }
+  };
 
   render() {
     const {
@@ -158,29 +125,21 @@ export class PersonalInfoForm extends React.Component<
           ) : (
             <Svg Icon={AccountIcon} width="4rem" height="4rem" />
           )}
-          {/* <Svg
+          <Svg
             className="absolute mt4 pr5"
             Icon={EditIcon}
             width="20pt"
             height="20pt"
             fill="black"
-          /> */}
-          {/* <UploadScreen
-            fileRead={this.state.avatar}
-            submitFiles={this.submitFiles}
-            filesToBeSent={this.state.filesToBeSent}
+          />
+          <UploadScreen
+            submitFiles={(file: any) => this.submitFiles(file)}
             className="absolute mt4 pr5"
             printcount={1}
             submitDiv={
-              <Svg
-                handleClick={() => this.handleClick()}
-                Icon={EditIcon}
-                width="20pt"
-                height="20pt"
-                fill="black"
-              />
+              <Svg Icon={EditIcon} width="20pt" height="20pt" fill="black" />
             }
-          /> */}
+          />
         </div>
         {user && (
           <Formik

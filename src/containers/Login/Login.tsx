@@ -52,7 +52,7 @@ export class Login extends React.Component<ILoginComponent, ILoginState> {
 
     return (
       <div className="flex flex-column vh-100 green-bg ph4 ph7-l ph6-m pt5-ns">
-        {/* <a className="kidappi white mt4 tc w-100">Kidappi</a> */}
+        <a className="kidappi white mt4 tc w-100">Kidappi</a>
         <FacebookButton
           className="mt4 shadow-5"
           onClick={() => this.faceBookLogin()}

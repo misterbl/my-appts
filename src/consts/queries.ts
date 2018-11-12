@@ -105,6 +105,25 @@ const queries = (args: any) => ({
 
     }
   }`,
+  UPDATE_AVATAR: `mutation {
+    updateUser (_id: "${args._id}", avatar:"${args.avatar}" ) {
+      _id
+      firstName
+      lastName
+      avatar
+      address
+      lat
+      lng
+      drivingLicense
+      nonSmoker
+      car
+      profileTitle
+      profileDescription
+      children{name, dob, information, school, gender}
+      availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+
+    }
+  }`,
   UPDATE_LOCATION: `mutation {
     updateUser (_id: "${args._id}", address: "${args.address}", lat: "${
     args.lat
