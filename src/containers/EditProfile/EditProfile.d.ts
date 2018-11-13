@@ -3,7 +3,7 @@ import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 import { ActionCreatorsMapObject } from 'redux';
 import { RefObject } from 'react';
-import { IAppState } from 'src/types/state';
+import { IAppState } from '../../types/state';
 
 export interface IEditProfileState {
   selected: string;

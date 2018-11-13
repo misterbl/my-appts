@@ -14,8 +14,8 @@ import * as apiThunk from '../../actions/thunks/apiThunk';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as ReactAutocomplete from 'react-autocomplete';
-import { getSchools } from 'src/actions/thunks/getSchools';
-import { QUERIES } from 'src/consts';
+import { getSchools } from '../../actions/thunks/getSchools';
+import { QUERIES } from '../../consts';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
 import Svg from '../Svg';
 import {
@@ -24,7 +24,7 @@ import {
   calendarIcon,
   schoolIcon,
   nameIcon,
-} from 'src/styles/assets';
+} from '../../styles/assets';
 
 const customStyles = {
   content: {

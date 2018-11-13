@@ -2,7 +2,7 @@ import { FormikProps } from 'formik';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 import { ActionCreatorsMapObject } from 'redux';
-import { IAppState } from 'src/types/state';
+import { IAppState } from '../../types/state';
 
 export interface IRegisterFormData {
   email?: string;

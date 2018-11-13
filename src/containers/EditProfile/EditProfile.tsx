@@ -7,14 +7,14 @@ import {
   IEditProfileMapStateToProps,
 } from './EditProfile.d';
 import { ROUTES } from '../../consts';
-import { chevronLeftIcon } from 'src/styles/assets';
-import Svg from 'src/components/Svg';
+import { chevronLeftIcon } from '../../styles/assets';
+import Svg from '../../components/Svg';
 import PersonalInfoForm from '../PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from '../AddInfoForm/AddInfoForm';
-import ChildrenForm from 'src/components/ChildrenForm/ChildrenForm';
-import AvailabilityForm from 'src/components/AvailabilityForm/AvailabilityForm';
-import { IAppState } from 'src/types/state';
-import { getUserData } from 'src/selectors/apiSelectors';
+import ChildrenForm from '../../components/ChildrenForm/ChildrenForm';
+import AvailabilityForm from '../../components/AvailabilityForm/AvailabilityForm';
+import { IAppState } from '../../types/state';
+import { getUserData } from '../../selectors/apiSelectors';
 import { connect } from 'react-redux';
 
 export class EditProfile extends React.Component<

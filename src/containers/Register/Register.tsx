@@ -17,9 +17,9 @@ import {
 import { ROUTES, QUERIES } from '../../consts';
 import * as apiThunk from '../../actions/thunks/apiThunk';
 import labelColor from '../../utils/labelColor';
-import { IAppState } from 'src/types/state';
-import { getUserData } from 'src/selectors/apiSelectors';
-import FacebookButton from 'src/components/FacebookButton';
+import { IAppState } from '../../types/state';
+import { getUserData } from '../../selectors/apiSelectors';
+import FacebookButton from '../../components/FacebookButton';
 import ErrorMessage from '../../components/ErrorMessage';
 
 export class Register extends React.Component<

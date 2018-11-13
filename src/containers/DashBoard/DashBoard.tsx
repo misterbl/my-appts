@@ -2,13 +2,17 @@ import * as React from 'react';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { TDashBoard, IDashBoardMapStateToProps } from './DashBoard.d';
-import Svg from 'src/components/Svg';
-import { AccountIcon, chevronRigthIcon, signOutIcon } from 'src/styles/assets';
+import Svg from '../../components/Svg';
+import {
+  AccountIcon,
+  chevronRigthIcon,
+  signOutIcon,
+} from '../../styles/assets';
 import { auth } from '../../firebase';
-import { IAppState } from 'src/types/state';
-import { getUserData } from 'src/selectors/apiSelectors';
+import { IAppState } from '../../types/state';
+import { getUserData } from '../../selectors//apiSelectors';
 import { connect } from 'react-redux';
-import { ROUTES } from 'src/consts';
+import { ROUTES } from '../../consts';
 
 export class DashBoard extends React.Component<TDashBoard> {
   signOut = async () => {

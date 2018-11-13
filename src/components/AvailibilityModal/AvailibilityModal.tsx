@@ -12,16 +12,16 @@ import {
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-// import { QUERIES } from 'src/consts';
+// import { QUERIES } from '../../consts';
 // import { Dispatch, AnyAction, bindActionCreators } from 'redux';
 // import Svg from '../Svg';
-// import { drivingLicenseIcon, carIcon, noSmokingIcon } from 'src/styles/assets';
-// import { QUERIES } from 'src/consts';
+// import { drivingLicenseIcon, carIcon, noSmokingIcon } from '../../styles/assets';
+// import { QUERIES } from '../../consts';
 // import Svg from '../Svg';
-// import { chevronDownIcon, chevronRigthIcon } from 'src/styles/assets';
+// import { chevronDownIcon, chevronRigthIcon } from '../../styles/assets';
 import WeekDaysForm from '../WeekDaysForm';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
-import { QUERIES } from 'src/consts';
+import { QUERIES } from '../../consts';
 
 const customStyles = {
   content: {

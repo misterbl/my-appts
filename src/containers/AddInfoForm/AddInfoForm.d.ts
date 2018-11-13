@@ -1,4 +1,4 @@
-import { IAppState } from 'src/types/state';
+import { IAppState } from '../../types/state';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
 import { ActionCreatorsMapObject } from 'redux';

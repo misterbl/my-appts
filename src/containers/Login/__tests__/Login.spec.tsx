@@ -3,13 +3,17 @@ import { shallow } from 'enzyme';
 import formikRenderMock from '../../../testMocks/formikRender.mock';
 import historyMock from '../../../testMocks/history.mock';
 import { Login } from '../Login';
-import 'regenerator-runtime/runtime';
-import { configure } from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-16';
-import { auth } from '../../../firebase';
-configure({ adapter: new Adapter() });
 
-jest.mock('../../../firebase/');
+import { auth } from '../../../firebase';
+
+// jest.mock('../../../firebase', () =>
+//   jest.fn().mockReturnValue({
+//     auth: {
+//       doSignInWithEmailAndPassword: jest.fn(),
+//       doFacebookSignIn: jest.fn(),
+//     },
+//   }),
+// );
 
 describe('Login', () => {
   const props = {
@@ -34,6 +38,7 @@ describe('Login', () => {
       url: '',
     },
     onSubmit: jest.fn(),
+    faceBookLogin: jest.fn(),
   };
   // @ts-ignore
   const wrapper = shallow(<Login {...props} />);
@@ -46,14 +51,13 @@ describe('Login', () => {
   it('calls getUserData on Facebook button click', async () => {
     const facebookButton = wrapper.find('FacebookButton');
     await facebookButton.simulate('click');
-    expect(props.apiThunk.getUserData).toHaveBeenCalled();
+    expect(props.faceBookLogin()).toHaveBeenCalled();
   });
   it('should render a Formik element', () => {
     expect(wrapper.find('Formik').length).toBe(1);
   });
 
-  xit('should call onSubmit on form submit', () => {
-    (auth.doSignInWithEmailAndPassword as jest.Mock).mockReturnValueOnce('');
+  it('should call onSubmit on form submit', () => {
     const {
       values: { email, password },
       onSubmit,

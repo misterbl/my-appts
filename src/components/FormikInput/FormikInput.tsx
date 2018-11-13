@@ -1,5 +1,5 @@
 import * as React from 'react';
-import labelColor from 'src/utils/labelColor';
+import labelColor from '../../utils/labelColor';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import ErrorMessage from '../ErrorMessage';
 import { TFormikInput } from './FormikInput.d';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dropzone from 'react-dropzone';
 // import { RaisedButton } from 'material-ui';
 import { IUploadScreen, IUploadScreenState } from './UploadScreen.d';
-import { QUERIES } from 'src/consts';
+import { QUERIES } from '../../consts';
 
 export class UploadScreen extends React.Component<
   IUploadScreen,

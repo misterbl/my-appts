@@ -9,15 +9,15 @@ import {
   IAvailabilityState,
 } from './AvailabilityForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-import { getUserData } from 'src/selectors/apiSelectors';
+import { getUserData } from '../../selectors/apiSelectors';
 import { AvailibilityModal } from '../AvailibilityModal/AvailibilityModal';
-import { IAppState } from 'src/types/state';
+import { IAppState } from '../../types/state';
 
 import MomentLocaleUtils from 'react-day-picker/moment';
 import DayPicker from 'react-day-picker';
 import 'moment/locale/fr';
 import 'react-day-picker/lib/style.css';
-import { QUERIES } from 'src/consts';
+import { QUERIES } from '../../consts';
 import { Formik, Form } from 'formik';
 // http://react-day-picker.js.org/examples/localization-moment
 

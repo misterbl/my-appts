@@ -4,7 +4,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { IAccountComponent, IAccountMapStateToProps } from './Profile.d';
 import { getUserData } from '../../selectors/apiSelectors';
-import { IAppState } from 'src/types/state';
+import { IAppState } from '../../types/state';
 import ROUTES from '../../consts/routes';
 import Svg from '../../components/Svg';
 import { AccountIcon, EditIcon } from '../../styles/assets';

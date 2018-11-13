@@ -8,12 +8,12 @@ import {
   IChildrenFormMapStateToProps,
 } from './ChildrenForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-import { getUserData } from 'src/selectors/apiSelectors';
-import { QUERIES } from 'src/consts';
+import { getUserData } from '../../selectors/apiSelectors';
+import { QUERIES } from '../../consts';
 import ChildModal from '../ChildModal/ChildModal';
-import { Child, IAppState } from 'src/types/state';
+import { Child, IAppState } from '../../types/state';
 import Svg from '../Svg';
-import { deleteIcon } from 'src/styles/assets';
+import { deleteIcon } from '../../styles/assets';
 import * as moment from 'moment';
 
 export class ChildrenForm extends React.Component<IChildrenFormComponent> {

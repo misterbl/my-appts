@@ -11,13 +11,13 @@ import {
   IUserCardState,
   IUserCardMapStateToProps,
 } from './UserCard.d';
-import { QUERIES, ROUTES } from 'src/consts';
-import { AccountIcon, chevronLeftIcon } from 'src/styles/assets';
-import Svg from 'src/components/Svg';
-import getMatchedRouteParams from 'src/utils/getMatchedRouteParams';
-import { IAppState } from 'src/types/state';
-import { getUserData } from 'src/selectors/apiSelectors';
-import MapComponent from 'src/components/MapComponent';
+import { QUERIES, ROUTES } from '../../consts';
+import { AccountIcon, chevronLeftIcon } from '../../styles/assets';
+import Svg from '../../components/Svg';
+import getMatchedRouteParams from '../..//utils/getMatchedRouteParams';
+import { IAppState } from '../..//types/state';
+import { getUserData } from '../../selectors/apiSelectors';
+import MapComponent from '../../components/MapComponent';
 
 export class UserCard extends React.Component<TUserCard, IUserCardState> {
   constructor(props: TUserCard) {

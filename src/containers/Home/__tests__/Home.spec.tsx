@@ -7,8 +7,6 @@ import { configure } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 import { ROUTES } from '../../../consts';
 
-configure({ adapter: new Adapter() });
-
 describe('Home', () => {
   const props = {
     history: historyMock,

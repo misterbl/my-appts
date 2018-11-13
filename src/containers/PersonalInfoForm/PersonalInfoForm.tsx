@@ -12,16 +12,16 @@ import {
   IPersonalInfoFormState,
 } from './PersonalInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-import { IAppState } from 'src/types/state';
-import { getUserData } from 'src/selectors/apiSelectors';
-import Svg from 'src/components/Svg';
-import { AccountIcon, EditIcon } from 'src/styles/assets';
+import { IAppState } from '../../types/state';
+import { getUserData } from '../../selectors/apiSelectors';
+import Svg from '../../components/Svg';
+import { AccountIcon, EditIcon } from '../../styles/assets';
 import labelColor from '../../utils/labelColor';
-import { QUERIES } from 'src/consts';
-import ErrorMessage from 'src/components/ErrorMessage';
-import FormikInput from 'src/components/FormikInput/FormikInput';
-import AboutYouModal from 'src/components/AboutYouModal/AboutYouModal';
-import { UploadScreen } from 'src/components/UploadScreen/UploadScreen';
+import { QUERIES } from '../../consts';
+import ErrorMessage from '../../components/ErrorMessage';
+import FormikInput from '../../components/FormikInput/FormikInput';
+import AboutYouModal from '../../components/AboutYouModal/AboutYouModal';
+import { UploadScreen } from '../../components/UploadScreen/UploadScreen';
 
 export class PersonalInfoForm extends React.Component<
   TPersonalInfoFormComponent,

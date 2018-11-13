@@ -11,11 +11,11 @@ import {
   IAddInfoFormMapStateToProps,
 } from './AddInfoForm.d';
 import * as apiThunk from '../../actions/thunks/apiThunk';
-import { IAppState } from 'src/types/state';
-import { getUserData } from 'src/selectors/apiSelectors';
-import { QUERIES } from 'src/consts';
-import FormikInput from 'src/components/FormikInput/FormikInput';
-import labelColor from 'src/utils/labelColor';
+import { IAppState } from '../../types/state';
+import { getUserData } from '../../selectors/apiSelectors';
+import { QUERIES } from '../../consts';
+import FormikInput from '../../components/FormikInput/FormikInput';
+import labelColor from '../../utils/labelColor';
 
 export class AddInfoForm extends React.Component<TAddInfoForm> {
   onSubmit = async (event: any) => {

@@ -1,7 +1,7 @@
 import { ActionCreatorsMapObject } from 'redux';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import { InjectedIntlProps } from 'react-intl';
-import { IAppState } from 'src/types/state';
+import { IAppState } from '../../types/state';
 
 export interface UserCardDispatchToProps {
   apiActions: ActionCreatorsMapObject;
