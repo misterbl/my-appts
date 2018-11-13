@@ -12,10 +12,9 @@ import * as apiThunk from '../../actions/thunks/apiThunk';
 import { getUserData } from 'src/selectors/apiSelectors';
 import { AvailibilityModal } from '../AvailibilityModal/AvailibilityModal';
 import { IAppState } from 'src/types/state';
-// @ts-ignore
-import DayPicker, { DateUtils } from 'react-day-picker';
-import MomentLocaleUtils from 'react-day-picker/moment';
 
+import MomentLocaleUtils from 'react-day-picker/moment';
+import DayPicker from 'react-day-picker';
 import 'moment/locale/fr';
 import 'react-day-picker/lib/style.css';
 import { QUERIES } from 'src/consts';
@@ -35,24 +34,20 @@ export class AvailabilityForm extends React.Component<
 
     this.state = {
       selectedDays: (this.props.user && this.props.user.unavailability) || [],
+      selectedDay: undefined,
     };
   }
-  // handleSelectChange = (e: any) => {
-  //   this.setState({
-  //     locale: e.target.value,
-  //   });
-  // };
-  // @ts-ignore
-  handleDayClick = (day: any, { selected }) => {
+
+  handleDayClick = (day: any) => {
     const { selectedDays } = this.state;
-    if (selected) {
-      const selectedIndex = selectedDays.findIndex((selectedDay: any) =>
-        DateUtils.isSameDay(selectedDay, day),
-      );
+    const selectedIndex = selectedDays.indexOf(day.toString());
+
+    if (selectedIndex > -1) {
       selectedDays.splice(selectedIndex, 1);
-    } else {
-      selectedDays.push(day);
+      this.setState({ selectedDays });
+      return;
     }
+    selectedDays.push(day.toString());
     this.setState({ selectedDays });
   };
 
@@ -71,7 +66,6 @@ export class AvailabilityForm extends React.Component<
 
   render() {
     const { user } = this.props;
-    console.log(this.props);
 
     return (
       <div className="mt3 mh3 ph5-m ph7-l">
@@ -97,13 +91,12 @@ export class AvailabilityForm extends React.Component<
         </p> */}
           <DayPicker
             className="mt2 ba b--orange w-100 w-70-m"
-            // @ts-ignore
-            selectedDays={this.state.selectedDays}
-            // @ts-ignore
+            selectedDays={this.state.selectedDays.map(
+              (date: any) => new Date(date),
+            )}
             onDayClick={this.handleDayClick}
             localeUtils={MomentLocaleUtils}
             locale={this.props.intl.locale}
-            modifiersStyles={modifiersStyles}
           />
           <Formik initialValues={{}} onSubmit={this.onSubmit}>
             <Form>{this.props.submitButton}</Form>

@@ -29,6 +29,7 @@ const queries = (args: any) => ({
       profileDescription
       children{id, name, dob, information, school, gender}
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+      unavailability
     }
   }`,
   GET_USER_BY_ID: `mutation {
@@ -79,6 +80,7 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{name, dob, information, school, gender} 
+      unavailability
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
@@ -99,6 +101,7 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{name, dob, information, school, gender}
+      unavailability
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
 
     }
@@ -139,6 +142,7 @@ const queries = (args: any) => ({
       profileTitle
       profileDescription
       children{name, dob, information, school, gender}
+      unavailability
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
 
     }
@@ -160,6 +164,7 @@ const queries = (args: any) => ({
       profileDescription
       children{name, dob, information, school, gender}
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+      unavailability
 
     }
   }`,
@@ -177,6 +182,7 @@ const queries = (args: any) => ({
       car
       profileTitle
       profileDescription
+      unavailability
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
     }
   }`,
@@ -227,6 +233,7 @@ const queries = (args: any) => ({
       profileDescription
       children{id, name, dob, information, school, gender}
       availability{beforeSchool, morning, noon, afternoon, afterSchool, evening, night}
+      unavailability
     }
   }`,
   REMOVE_CHILD: `mutation {

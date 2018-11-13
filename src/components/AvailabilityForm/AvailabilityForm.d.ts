@@ -8,6 +8,7 @@ export interface IAvailabilityFormMapStateToProps {
 
 export interface IAvailabilityState {
   selectedDays: any[];
+  selectedDay: any;
 }
 export interface IAvailabilityFormDispatchToProps {
   apiThunk: ActionCreatorsMapObject;

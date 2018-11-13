@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
-import { TEditProfile, EditProfileState } from './EditProfile.d';
+import {
+  TEditProfile,
+  IEditProfileState,
+  IEditProfileMapStateToProps,
+} from './EditProfile.d';
 import { ROUTES } from '../../consts';
 import { chevronLeftIcon } from 'src/styles/assets';
 import Svg from 'src/components/Svg';
@@ -9,10 +13,13 @@ import PersonalInfoForm from '../PersonalInfoForm/PersonalInfoForm';
 import AddInfoForm from '../AddInfoForm/AddInfoForm';
 import ChildrenForm from 'src/components/ChildrenForm/ChildrenForm';
 import AvailabilityForm from 'src/components/AvailabilityForm/AvailabilityForm';
+import { IAppState } from 'src/types/state';
+import { getUserData } from 'src/selectors/apiSelectors';
+import { connect } from 'react-redux';
 
 export class EditProfile extends React.Component<
   TEditProfile,
-  EditProfileState
+  IEditProfileState
 > {
   pagesName = ['myinfo', 'myad', 'mychildren', 'myavailability'];
   buttonRef = React.createRef<HTMLButtonElement>();
@@ -69,12 +76,16 @@ export class EditProfile extends React.Component<
       handleClick,
       renderPage,
     } = this;
+
     return (
       <>
         <header className="green-bg pt3 shadow-3">
           <div
             className="flex ma0 ph5-ns"
-            onClick={() => push(ROUTES.DASHBOARD)}
+            onClick={() => {
+              this.submitForm();
+              push(`${this.props.user && this.props.user._id}/card`);
+            }}
           >
             <Svg fill="white" Icon={chevronLeftIcon} />
             <span className="white ml3 ttc">
@@ -103,5 +114,10 @@ export class EditProfile extends React.Component<
   }
 }
 
+export const mapStateToProps = (
+  state: IAppState,
+): IEditProfileMapStateToProps => ({
+  user: getUserData(state),
+});
 const injectIntlEditProfile = injectIntl(EditProfile);
-export default withRouter(injectIntlEditProfile);
+export default withRouter(connect(mapStateToProps)(injectIntlEditProfile));

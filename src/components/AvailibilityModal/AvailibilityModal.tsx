@@ -61,9 +61,6 @@ export class AvailibilityModal extends React.Component<
     this.setState({ modalIsOpen: false });
   };
   onSubmit = async (event: any) => {
-    console.log(event);
-
-    // const { drivingLicense, car, nonSmoker } = event;
     if (this.props.user && event) {
       const { _id } = this.props.user;
       this.props.apiThunk.updateUser(
@@ -99,7 +96,6 @@ export class AvailibilityModal extends React.Component<
   render() {
     if (this.props.user) {
       const { user } = this.props;
-      console.log(this.props.user.availability);
     }
     return (
       <div>

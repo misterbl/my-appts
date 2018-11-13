@@ -55,6 +55,7 @@ module.exports = {
 
   'content|dashboard|profile': 'Profile',
   'content|dashboard|signOut': 'Sign out',
+
   'content|profile|editProfile': 'Edit profile',
 
   'content|editprofile|myinfo': 'my Info',

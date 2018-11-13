@@ -2,8 +2,8 @@
 module.exports = {
   'general|or': 'ou',
   'general|placeholder|email': 'Email',
-  'general|placeholder|firstname': 'Prénom',
-  'general|placeholder|lastname': 'Nom de famille',
+  'general|placeholder|firstName': 'Prénom',
+  'general|placeholder|lastName': 'Nom de famille',
   'general|placeholder|password': 'Mot de passe',
   'general|placeholder|confirmpassword': 'Confirmez votre mot de passe',
 
@@ -54,9 +54,8 @@ module.exports = {
     'Un lien a été envoyé à votre adresse email pour réinitialiser votre mot de passe',
 
   'content|dashboard|profile': 'Profile',
-
-  'content|profile|editProfile': 'Modifier le profil',
   'content|dashboard|signOut': 'Déconnectez vous',
+
   'content|profile|editProfile': 'Modifiez votre profil',
 
   'content|editprofile|myinfo': 'mes Infos',
@@ -88,6 +87,10 @@ module.exports = {
   'content|childfield|child': 'Enfant',
   'content|childrenform|boy': 'garçon',
   'content|childrenform|girl': 'fille',
+  'content|childrenform|months': '{months} mois',
+  'content|childrenform|month': '{months} mois',
+  'content|childrenform|years': '{years} ans',
+  'content|childrenform|year': ' {years} an',
   'content|childrenform|select': 'Sélectionnez',
   'content|childrenform|information':
     'écrivez ici toute information complémentaire concernant votre enfant (allergies, intolérance alimentaire, loisirs…)',
