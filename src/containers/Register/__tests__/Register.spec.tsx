@@ -2,23 +2,24 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 import formikRenderMock from '../../../testMocks/formikRender.mock';
 import historyMock from '../../../testMocks/history.mock';
-import { Login, LoginForm } from '../Login';
+import { Register, RegisterForm } from '../Register';
 
 import { auth } from '../../../firebase';
 // import * as firebase from 'firebase/app';
 import { ROUTES } from '../../../consts';
 import IntlMock from '../../../testMocks/intl.mock';
+import generateAppState from '../../../testMocks/appState.mock';
 
 jest.mock('../../../firebase', () => ({
   auth: {
-    doSignInWithEmailAndPassword: jest
+    doCreateUserWithEmailAndPassword: jest
       .fn()
       .mockReturnValue(Promise.resolve({})),
     doFacebookSignIn: jest.fn().mockReturnValue(Promise.resolve({})),
   },
 }));
 
-describe('Login', () => {
+describe('Register', () => {
   const props = {
     values: {
       email: 'emailTest',
@@ -31,7 +32,7 @@ describe('Login', () => {
       email: '',
       password: '',
     },
-    apiThunk: { getUserData: jest.fn() },
+    apiThunk: { getUserData: jest.fn(), postUserData: jest.fn() },
     intl: IntlMock,
     history: historyMock,
     location: historyMock.location,
@@ -42,10 +43,10 @@ describe('Login', () => {
       url: '',
     },
     onSubmit: jest.fn(),
-    faceBookLogin: jest.fn(),
+    faceBookRegister: jest.fn(),
   };
   // @ts-ignore
-  const wrapper = shallow(<Login {...props} />);
+  const wrapper = shallow(<Register {...props} />);
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
@@ -72,40 +73,44 @@ describe('Login', () => {
     expect(wrapper.find('Formik').length).toBe(1);
   });
 
-  it('should call doSignInWithEmailAndPassword on form submit', () => {
+  it('should call doCreateUserWithEmailAndPassword on form submit', () => {
     const {
       values: { email, password },
     } = props;
     const formik = wrapper.find('Formik');
     formik.simulate('submit', { email, password });
-    expect(auth.doSignInWithEmailAndPassword).toHaveBeenCalled();
+    expect(auth.doCreateUserWithEmailAndPassword).toHaveBeenCalled();
   });
   describe('Errors', () => {
-    const newProps = { ...props, wrongAuth: false };
-    const loginForm = shallow(<LoginForm {...newProps} />);
+    const newProps = {
+      ...props,
+      userExists: false,
+      user: generateAppState().api.userData,
+    };
+    const registerForm = shallow(<RegisterForm {...newProps} />);
     it('it shows an error message for email when there is an error', () => {
-      loginForm.setProps({
+      registerForm.setProps({
         errors: { email: 'emailError' },
         touched: { email: true },
       });
-      const errroMessage = loginForm.find('ErrorMessage');
+      const errroMessage = registerForm.find('ErrorMessage');
       expect(errroMessage.length).toBe(1);
     });
     it('it shows an error message for password when there is an error', () => {
-      loginForm.setProps({
+      registerForm.setProps({
         errors: { password: 'passwordError' },
         touched: { password: true },
       });
-      const errroMessage = loginForm.find('ErrorMessage');
+      const errroMessage = registerForm.find('ErrorMessage');
       expect(errroMessage.length).toBe(1);
     });
-    it('it shows an error message for wrongAuth when there is an error', () => {
-      loginForm.setProps({
+    it('it shows an error message for userExists when there is an error', () => {
+      registerForm.setProps({
         errors: {},
         touched: {},
-        wrongAuth: true,
+        userExists: true,
       });
-      const errroMessage = loginForm.find('ErrorMessage');
+      const errroMessage = registerForm.find('ErrorMessage');
       expect(errroMessage.length).toBe(1);
     });
   });

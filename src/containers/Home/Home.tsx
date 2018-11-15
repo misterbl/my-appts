@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 import { RouteComponentProps, StaticContext } from 'react-router';
 import ROUTES from '../../consts/routes';
-
+import children from '../../styles/assets/children.png';
 export class Home extends React.Component<
   RouteComponentProps<any, StaticContext>
 > {
@@ -16,15 +16,16 @@ export class Home extends React.Component<
   };
   render() {
     return (
-      <div className="flex flex-column vh-100 green-bg ph4 ph7-l ph6-m">
+      <div className="flex flex-column vh-100 ph4 ph7-l ph6-m">
         {/* <img
           className="mt6 w-30"
           src={require('../../styles/assets/kidappi-logo.png')}
         /> */}
-        <a className="kidappi white mt5 tc w-100">Kidappi</a>
+        <a className="kidappi orange green-bg pa3 mt4 tc w-100">Kidappi</a>
+        <img src={children} className="o-20 mt5" />
         <button
           onClick={this.pushToSignIn}
-          className="loginNext fw7 mt5 ttu di pv3 bn shadow-5 mh6-l mb4-l"
+          className="loginNext fw7 ttu di pv3 bn shadow-5 mh6-l mb4-l mt5"
         >
           <FormattedMessage id="general|button|signin" />
         </button>
@@ -35,7 +36,7 @@ export class Home extends React.Component<
         </div>
         <button
           onClick={this.pushToRegister}
-          className="loginNext fw7 mt4 mt5-l ttu di pv3 bn shadow-5 mh6-l"
+          className="loginNext fw7 mt2 mt5-l ttu di pv3 bn shadow-5 mh6-l"
         >
           <FormattedMessage id="general|button|register" />
         </button>

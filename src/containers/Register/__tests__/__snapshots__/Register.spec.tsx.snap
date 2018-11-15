@@ -1,17 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login matches the snapshot 1`] = `
+exports[`Register matches the snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Login
+  Symbol(enzyme.__unrendered__): <Register
     apiThunk={
         Object {
             "getUserData": [Function],
+            "postUserData": [Function],
           }
     }
     dirty={false}
     errors={Object {}}
-    faceBookLogin={[Function]}
+    faceBookRegister={[Function]}
     handleBlur={[Function]}
     handleChange={[Function]}
     handleReset={[Function]}
@@ -145,7 +146,7 @@ ShallowWrapper {
           className="tc white f4"
 >
           <FormattedMessage
-                    id="content|login|loginwithemail"
+                    id="content|regiter|registerwithemail"
                     values={Object {}}
           />
 </p>,
@@ -338,7 +339,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": <FormattedMessage
-            id="content|login|loginwithemail"
+            id="content|regiter|registerwithemail"
             values={Object {}}
 />,
           "className": "tc white f4",
@@ -349,7 +350,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "id": "content|login|loginwithemail",
+            "id": "content|regiter|registerwithemail",
             "values": Object {},
           },
           "ref": null,
@@ -507,7 +508,7 @@ ShallowWrapper {
             className="tc white f4"
 >
             <FormattedMessage
-                        id="content|login|loginwithemail"
+                        id="content|regiter|registerwithemail"
                         values={Object {}}
             />
 </p>,
@@ -700,7 +701,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": <FormattedMessage
-              id="content|login|loginwithemail"
+              id="content|regiter|registerwithemail"
               values={Object {}}
 />,
             "className": "tc white f4",
@@ -711,7 +712,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "id": "content|login|loginwithemail",
+              "id": "content|regiter|registerwithemail",
               "values": Object {},
             },
             "ref": null,

@@ -6,8 +6,7 @@ import { IAppState } from '../../types/state';
 
 export interface IRegisterFormData {
   email?: string;
-  passwordOne?: string;
-  passwordTwo?: string;
+  password?: string;
 }
 
 export interface IRegisterFormDispatchToProps {

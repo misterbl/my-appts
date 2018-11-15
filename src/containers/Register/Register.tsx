@@ -22,6 +22,94 @@ import { getUserData } from '../../selectors/apiSelectors';
 import FacebookButton from '../../components/FacebookButton';
 import ErrorMessage from '../../components/ErrorMessage';
 
+export const RegisterForm = (props: IRegisterComponent & IRegisterState) => {
+  const {
+    values,
+    isSubmitting,
+    setFieldValue,
+    touched,
+    errors,
+    intl: { formatMessage },
+    userExists,
+  } = props;
+  return (
+    <Form
+      autoComplete="off"
+      className="form-green flex flex-column white-input "
+    >
+      <label
+        className={`${labelColor(values.email, 'white', 'o-0')} f6`}
+        htmlFor="email"
+      >
+        <FormattedMessage id="general|placeholder|email" />
+      </label>
+      <input
+        autoComplete="new-email"
+        value={values.email}
+        name="email"
+        onChange={event => setFieldValue('email', event.target.value)}
+        type="text"
+        placeholder={formatMessage({
+          id: 'general|placeholder|email',
+        })}
+      />
+      {touched.email &&
+        errors.email && (
+          <ErrorMessage
+            fill="#cce281"
+            className="green-error"
+            error={errors.email}
+          />
+        )}
+      <label
+        className={`${labelColor(values.password, 'white', 'o-0')} f6 mt4`}
+        htmlFor="password"
+      >
+        <FormattedMessage id="general|placeholder|password" />
+      </label>
+      <input
+        value={values.password}
+        name="password"
+        onChange={event => setFieldValue('password', event.target.value)}
+        type="password"
+        placeholder={formatMessage({
+          id: 'general|placeholder|password',
+        })}
+      />
+      {touched.password &&
+        errors.password && (
+          <ErrorMessage
+            fill="#cce281"
+            className="green-error"
+            error={errors.password}
+          />
+        )}
+      <a className="mv4 white tc no-underline" href={ROUTES.PASSWORD_RESET}>
+        {userExists && (
+          <>
+            <ErrorMessage
+              fill="#cce281"
+              className="green-error pb3 tl"
+              error={formatMessage({
+                id: 'content|register|userExists',
+              })}
+            />
+            <strong>
+              <FormattedMessage id="content|login|forgotpassword" />
+            </strong>
+          </>
+        )}
+      </a>
+      <button
+        className="loginNext fw7 ph3 ttu di pv3 bn shadow-5"
+        type="submit"
+        disabled={isSubmitting}
+      >
+        <FormattedMessage id="general|button|register" />
+      </button>
+    </Form>
+  );
+};
 export class Register extends React.Component<
   IRegisterComponent,
   IRegisterState
@@ -59,13 +147,7 @@ export class Register extends React.Component<
     this.createUserInDb(fbUser && fbUser.email, fbUser && fbUser.photoURL);
   };
 
-  signOut = () => {
-    auth.doSignOut();
-  };
-
   render() {
-    console.log(this.state);
-
     const { formatMessage } = this.props.intl;
     return (
       <div className="flex flex-column vh-100 green-bg ph4 ph7-l ph6-m pt5-ns">
@@ -96,95 +178,16 @@ export class Register extends React.Component<
               .min(6),
           })}
           onSubmit={this.onSubmit}
-        >
-          {({ values, isSubmitting, setFieldValue, touched, errors }) => (
-            <Form
-              autoComplete="off"
-              className="form-green flex flex-column white-input "
-            >
-              <label
-                className={`${labelColor(values.email, 'white', 'o-0')} f6`}
-                htmlFor="email"
-              >
-                <FormattedMessage id="general|placeholder|email" />
-              </label>
-              <input
-                autoComplete="new-email"
-                value={values.email}
-                name="email"
-                onChange={event => setFieldValue('email', event.target.value)}
-                type="text"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|email',
-                })}
+          render={
+            /* istanbul ignore next */ formikProps => (
+              <RegisterForm
+                {...formikProps}
+                {...this.props}
+                userExists={this.state.userExists}
               />
-              {touched.email &&
-                errors.email && (
-                  <ErrorMessage
-                    fill="#cce281"
-                    className="green-error"
-                    error={errors.email}
-                  />
-                )}
-              <label
-                className={`${labelColor(
-                  values.password,
-                  'white',
-                  'o-0',
-                )} f6 mt4`}
-                htmlFor="password"
-              >
-                <FormattedMessage id="general|placeholder|password" />
-              </label>
-              <input
-                value={values.password}
-                name="password"
-                onChange={event =>
-                  setFieldValue('password', event.target.value)
-                }
-                type="password"
-                placeholder={formatMessage({
-                  id: 'general|placeholder|password',
-                })}
-              />
-              {touched.password &&
-                errors.password && (
-                  <ErrorMessage
-                    fill="#cce281"
-                    className="green-error"
-                    error={errors.password}
-                  />
-                )}
-              <a
-                className="mv4 white tc no-underline"
-                href={ROUTES.PASSWORD_RESET}
-              >
-                {this.state.userExists && (
-                  <>
-                    <ErrorMessage
-                      fill="#cce281"
-                      className="green-error pb3 tl"
-                      error={formatMessage({
-                        id: 'content|register|userExists',
-                      })}
-                    />
-                    <strong>
-                      <FormattedMessage id="content|login|forgotpassword" />
-                    </strong>
-                  </>
-                )}
-              </a>
-              <button
-                className="loginNext fw7 ph3 ttu di pv3 bn shadow-5"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                <FormattedMessage id="general|button|register" />
-              </button>
-            </Form>
-          )}
-        </Formik>
-        <div onClick={this.signOut}>signOut</div>
+            )
+          }
+        />
       </div>
     );
   }

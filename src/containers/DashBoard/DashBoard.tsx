@@ -31,6 +31,7 @@ export class DashBoard extends React.Component<TDashBoard> {
               }
               className="flex flex-column pt4 ph5-m"
             >
+              u
               <div className="h3 br2 mt4 flex justify-center items-center shadow-4 pa3 ba b--moon-gray">
                 <div className="flex ml3 justify-between w-100">
                   <span className="flex">
@@ -42,6 +43,7 @@ export class DashBoard extends React.Component<TDashBoard> {
               </div>
             </div>
             <div
+              id="signOut"
               onClick={() => this.signOut()}
               className="flex flex-column pt4 ph5-m"
             >

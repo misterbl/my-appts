@@ -9,6 +9,51 @@ import ROUTES from '../../consts/routes';
 import labelColor from '../../utils/labelColor';
 import ErrorMessage from '../../components/ErrorMessage';
 
+export const PasswordResetForm = (props: IPasswordResetComponent) => {
+  const {
+    values,
+    isSubmitting,
+    setFieldValue,
+    touched,
+    errors,
+    intl: { formatMessage },
+  } = props;
+  return (
+    <Form className="form-green flex flex-column white-input ">
+      <label
+        className={`${labelColor(values.email, 'white', 'o-0')} tl f6`}
+        htmlFor="email"
+      >
+        <FormattedMessage id="general|placeholder|email" />
+      </label>
+      <input
+        autoComplete="new-email"
+        value={values.email}
+        name="email"
+        onChange={event => setFieldValue('email', event.target.value)}
+        type="text"
+        placeholder={formatMessage({
+          id: 'general|placeholder|email',
+        })}
+      />
+      {touched.email &&
+        errors.email && (
+          <ErrorMessage
+            fill="#cce281"
+            className="green-error"
+            error={errors.email}
+          />
+        )}
+      <button
+        className="loginNext fw7 ph3 ttu di pv3 mv5 bn shadow-5"
+        type="submit"
+        disabled={isSubmitting}
+      >
+        <FormattedMessage id="general|button|send" />
+      </button>
+    </Form>
+  );
+};
 export class PasswordReset extends React.Component<
   IPasswordResetComponent,
   IPasswordReseState
@@ -57,49 +102,12 @@ export class PasswordReset extends React.Component<
                     ),
                 })}
                 onSubmit={this.onSubmit}
-              >
-                {({ values, isSubmitting, setFieldValue, touched, errors }) => (
-                  <Form className="form-green flex flex-column white-input ">
-                    <label
-                      className={`${labelColor(
-                        values.email,
-                        'white',
-                        'o-0',
-                      )} tl f6`}
-                      htmlFor="email"
-                    >
-                      <FormattedMessage id="general|placeholder|email" />
-                    </label>
-                    <input
-                      autoComplete="new-email"
-                      value={values.email}
-                      name="email"
-                      onChange={event =>
-                        setFieldValue('email', event.target.value)
-                      }
-                      type="text"
-                      placeholder={formatMessage({
-                        id: 'general|placeholder|email',
-                      })}
-                    />
-                    {touched.email &&
-                      errors.email && (
-                        <ErrorMessage
-                          fill="#cce281"
-                          className="green-error"
-                          error={errors.email}
-                        />
-                      )}
-                    <button
-                      className="loginNext fw7 ph3 ttu di pv3 mv5 bn shadow-5"
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      <FormattedMessage id="general|button|send" />
-                    </button>
-                  </Form>
-                )}
-              </Formik>
+                render={
+                  /* istanbul ignore next */ formikProps => (
+                    <PasswordResetForm {...formikProps} {...this.props} />
+                  )
+                }
+              />
             </>
           )}
 

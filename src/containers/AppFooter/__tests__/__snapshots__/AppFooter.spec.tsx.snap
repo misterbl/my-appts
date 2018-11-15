@@ -1,0 +1,399 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppFooter matches the snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AppFooter
+    history={
+        Object {
+            "action": "PUSH",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 123,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "key": "",
+              "pathname": "",
+              "search": "",
+              "state": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+    }
+    intl={
+        Object {
+            "defaultFormats": "",
+            "defaultLocale": "",
+            "formatDate": [Function],
+            "formatHTMLMessage": [Function],
+            "formatMessage": [Function],
+            "formatNumber": [Function],
+            "formatPlural": [Function],
+            "formatRelative": [Function],
+            "formatTime": [Function],
+            "formats": "",
+            "locale": "",
+            "messages": Object {},
+            "now": [Function],
+          }
+    }
+    location={
+        Object {
+            "hash": "",
+            "key": "",
+            "pathname": "",
+            "search": "",
+            "state": "",
+          }
+    }
+    match={
+        Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "",
+            "url": "",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <Svg
+          Icon={[Function]}
+          fill={undefined}
+          handleClick={[Function]}
+          name={
+                    <FormattedMessage
+                              id="content|appfooter|inbox"
+                              values={Object {}}
+                    />
+          }
+/>,
+        <Svg
+          Icon={[Function]}
+          fill={undefined}
+          handleClick={[Function]}
+          name={
+                    <FormattedMessage
+                              id="content|appfooter|dashboard"
+                              values={Object {}}
+                    />
+          }
+/>,
+        <Svg
+          Icon={[Function]}
+          fill={undefined}
+          handleClick={[Function]}
+          name={
+                    <FormattedMessage
+                              id="content|appfooter|favourite"
+                              values={Object {}}
+                    />
+          }
+/>,
+        <Svg
+          Icon={[Function]}
+          fill={undefined}
+          handleClick={[Function]}
+          name={
+                    <FormattedMessage
+                              id="content|appfooter|search"
+                              values={Object {}}
+                    />
+          }
+/>,
+        <Svg
+          Icon={[Function]}
+          fill={undefined}
+          handleClick={[Function]}
+          name={
+                    <FormattedMessage
+                              id="content|appfooter|booking"
+                              values={Object {}}
+                    />
+          }
+/>,
+      ],
+      "className": "flex bg-white justify-around fixed w-100 bottom-0 pv2 ph3 shadow-1",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": "/inbox",
+        "nodeType": "function",
+        "props": Object {
+          "Icon": [Function],
+          "fill": undefined,
+          "handleClick": [Function],
+          "name": <FormattedMessage
+            id="content|appfooter|inbox"
+            values={Object {}}
+/>,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "/dashboard",
+        "nodeType": "function",
+        "props": Object {
+          "Icon": [Function],
+          "fill": undefined,
+          "handleClick": [Function],
+          "name": <FormattedMessage
+            id="content|appfooter|dashboard"
+            values={Object {}}
+/>,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "/favourite",
+        "nodeType": "function",
+        "props": Object {
+          "Icon": [Function],
+          "fill": undefined,
+          "handleClick": [Function],
+          "name": <FormattedMessage
+            id="content|appfooter|favourite"
+            values={Object {}}
+/>,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "/search",
+        "nodeType": "function",
+        "props": Object {
+          "Icon": [Function],
+          "fill": undefined,
+          "handleClick": [Function],
+          "name": <FormattedMessage
+            id="content|appfooter|search"
+            values={Object {}}
+/>,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": "/booking",
+        "nodeType": "function",
+        "props": Object {
+          "Icon": [Function],
+          "fill": undefined,
+          "handleClick": [Function],
+          "name": <FormattedMessage
+            id="content|appfooter|booking"
+            values={Object {}}
+/>,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <Svg
+            Icon={[Function]}
+            fill={undefined}
+            handleClick={[Function]}
+            name={
+                        <FormattedMessage
+                                    id="content|appfooter|inbox"
+                                    values={Object {}}
+                        />
+            }
+/>,
+          <Svg
+            Icon={[Function]}
+            fill={undefined}
+            handleClick={[Function]}
+            name={
+                        <FormattedMessage
+                                    id="content|appfooter|dashboard"
+                                    values={Object {}}
+                        />
+            }
+/>,
+          <Svg
+            Icon={[Function]}
+            fill={undefined}
+            handleClick={[Function]}
+            name={
+                        <FormattedMessage
+                                    id="content|appfooter|favourite"
+                                    values={Object {}}
+                        />
+            }
+/>,
+          <Svg
+            Icon={[Function]}
+            fill={undefined}
+            handleClick={[Function]}
+            name={
+                        <FormattedMessage
+                                    id="content|appfooter|search"
+                                    values={Object {}}
+                        />
+            }
+/>,
+          <Svg
+            Icon={[Function]}
+            fill={undefined}
+            handleClick={[Function]}
+            name={
+                        <FormattedMessage
+                                    id="content|appfooter|booking"
+                                    values={Object {}}
+                        />
+            }
+/>,
+        ],
+        "className": "flex bg-white justify-around fixed w-100 bottom-0 pv2 ph3 shadow-1",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": "/inbox",
+          "nodeType": "function",
+          "props": Object {
+            "Icon": [Function],
+            "fill": undefined,
+            "handleClick": [Function],
+            "name": <FormattedMessage
+              id="content|appfooter|inbox"
+              values={Object {}}
+/>,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "/dashboard",
+          "nodeType": "function",
+          "props": Object {
+            "Icon": [Function],
+            "fill": undefined,
+            "handleClick": [Function],
+            "name": <FormattedMessage
+              id="content|appfooter|dashboard"
+              values={Object {}}
+/>,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "/favourite",
+          "nodeType": "function",
+          "props": Object {
+            "Icon": [Function],
+            "fill": undefined,
+            "handleClick": [Function],
+            "name": <FormattedMessage
+              id="content|appfooter|favourite"
+              values={Object {}}
+/>,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "/search",
+          "nodeType": "function",
+          "props": Object {
+            "Icon": [Function],
+            "fill": undefined,
+            "handleClick": [Function],
+            "name": <FormattedMessage
+              id="content|appfooter|search"
+              values={Object {}}
+/>,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": "/booking",
+          "nodeType": "function",
+          "props": Object {
+            "Icon": [Function],
+            "fill": undefined,
+            "handleClick": [Function],
+            "name": <FormattedMessage
+              id="content|appfooter|booking"
+              values={Object {}}
+/>,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

@@ -87,8 +87,8 @@ export class EditProfile extends React.Component<
               push(`${this.props.user && this.props.user._id}/card`);
             }}
           >
-            <Svg fill="white" Icon={chevronLeftIcon} />
-            <span className="white ml3 ttc">
+            <Svg fill="#FF6300" Icon={chevronLeftIcon} />
+            <span className="orange ml3 ttc">
               <FormattedMessage id="content|editprofile|myprofile" />
             </span>
           </div>
@@ -97,7 +97,7 @@ export class EditProfile extends React.Component<
               <div
                 key={tab}
                 onClick={() => handleClick(tab)}
-                className={`white pb2 f7 ttu ${
+                className={`orange pb2 f7 ttu ${
                   selected === tab ? 'bb b--orange' : ''
                 }`}
               >

@@ -141,14 +141,14 @@ export class UserCard extends React.Component<TUserCard, IUserCardState> {
         />
         {user && user._id === (viewedUser && viewedUser._id) ? (
           <button
-            className="w-100 bn fixed left-0 bottom-0 green-bg pv3 white"
+            className="w-100 bn fixed left-0 bottom-0 green-bg pv3 orange"
             onClick={() => this.props.history.push(ROUTES.EDIT_PROFILE)}
           >
             <FormattedMessage id="content|profile|editProfile" />
           </button>
         ) : (
           <button
-            className="w-100 bn fixed left-0 bottom-0 green-bg pv3 white"
+            className="w-100 bn fixed left-0 bottom-0 green-bg pv3 orange"
             onClick={() => this.props.history.push(ROUTES.INBOX)}
           >
             <FormattedMessage

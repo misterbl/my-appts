@@ -8,5 +8,6 @@ const ErrorMessage = (props: IErrorMessage) => (
     <span className="ml2">{props.error}</span>
   </span>
 );
+ErrorMessage.displayName = 'ErrorMessage';
 
 export default ErrorMessage;

@@ -1,3 +1,5 @@
+import { FormikErrors } from 'formik';
+
 export default {
   touched: {},
   errors: {},
@@ -13,7 +15,7 @@ export default {
   setFieldValue: () => undefined,
   setFieldError: () => undefined,
   setFieldTouched: () => undefined,
-  validateForm: 8,
+  validateForm: async (): Promise<FormikErrors<any>> => ({}),
   resetForm: () => undefined,
   submitForm: () => undefined,
   setFormikState: () => undefined,

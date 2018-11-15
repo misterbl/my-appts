@@ -1,0 +1,389 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddInfoForm matches the snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AddInfo
+    apiThunk={
+        Object {
+            "updateUser": [Function],
+          }
+    }
+    dirty={false}
+    errors={Object {}}
+    faceBookAddInfoForm={[Function]}
+    handleBlur={[Function]}
+    handleChange={[Function]}
+    handleReset={[Function]}
+    handleSubmit={[Function]}
+    history={
+        Object {
+            "action": "PUSH",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 123,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "key": "",
+              "pathname": "",
+              "search": "",
+              "state": "",
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+    }
+    initialValues={
+        Object {
+            "profileDescription": "",
+            "profileTitle": "",
+          }
+    }
+    intl={
+        Object {
+            "defaultFormats": "",
+            "defaultLocale": "",
+            "formatDate": [Function],
+            "formatHTMLMessage": [Function],
+            "formatMessage": [Function],
+            "formatNumber": [Function],
+            "formatPlural": [Function],
+            "formatRelative": [Function],
+            "formatTime": [Function],
+            "formats": "",
+            "locale": "",
+            "messages": Object {},
+            "now": [Function],
+          }
+    }
+    isSubmitting={false}
+    isValid={false}
+    isValidating={false}
+    location={
+        Object {
+            "hash": "",
+            "key": "",
+            "pathname": "",
+            "search": "",
+            "state": "",
+          }
+    }
+    match={
+        Object {
+            "isExact": true,
+            "params": Object {},
+            "path": "",
+            "url": "",
+          }
+    }
+    onSubmit={[Function]}
+    registerField={[Function]}
+    resetForm={[Function]}
+    setError={[Function]}
+    setErrors={[Function]}
+    setFieldError={[Function]}
+    setFieldTouched={[Function]}
+    setFieldValue={[Function]}
+    setFormikState={[Function]}
+    setStatus={[Function]}
+    setSubmitting={[Function]}
+    setTouched={[Function]}
+    setValues={[Function]}
+    submitCount={0}
+    submitForm={[Function]}
+    touched={Object {}}
+    unregisterField={[Function]}
+    user={
+        Object {
+            "_id": "id",
+            "address": "address",
+            "availability": undefined,
+            "avatar": "avatar",
+            "car": false,
+            "children": Array [
+              Object {
+                "dob": 122322,
+                "gender": "boy",
+                "id": "childId",
+                "information": "childInformation",
+                "name": "childName",
+                "school": "school",
+              },
+            ],
+            "city": "city",
+            "drivingLicense": false,
+            "email": "email",
+            "firstName": "firstName",
+            "lastName": "lastName",
+            "lat": 1234,
+            "lng": 123445,
+            "nonSmoker": false,
+            "photoURL": "photU\`rl",
+            "postCode": "postCode",
+            "profileDescription": "profileDescription",
+            "profileTitle": "profileTitle",
+            "unavailability": undefined,
+          }
+    }
+    validateField={[Function]}
+    validateForm={[Function]}
+    values={
+        Object {
+            "profileDescription": "profileDescriptionTest",
+            "profileTitle": "profileTitleTest",
+          }
+    }
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "enableReinitialize": false,
+      "initialValues": Object {
+        "profileDescription": "profileDescription",
+        "profileTitle": "profileTitle",
+      },
+      "isInitialValid": false,
+      "onSubmit": [Function],
+      "render": [Function],
+      "validateOnBlur": true,
+      "validateOnChange": true,
+      "validationSchema": ObjectSchema {
+        "_blacklist": RefSet {
+          "list": Set {},
+          "refs": Map {},
+        },
+        "_conditions": Array [],
+        "_defaultDefault": [Function],
+        "_deps": Array [],
+        "_excludedEdges": Array [],
+        "_exclusive": Object {},
+        "_mutate": false,
+        "_nodes": Array [
+          "profileDescription",
+          "profileTitle",
+        ],
+        "_options": Object {
+          "abortEarly": true,
+          "recursive": true,
+        },
+        "_type": "object",
+        "_typeError": [Function],
+        "_whitelist": RefSet {
+          "list": Set {},
+          "refs": Map {},
+        },
+        "fields": Object {
+          "profileDescription": StringSchema {
+            "_blacklist": RefSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_conditions": Array [],
+            "_deps": Array [],
+            "_exclusive": Object {
+              "required": false,
+            },
+            "_mutate": false,
+            "_options": Object {
+              "abortEarly": true,
+              "recursive": true,
+            },
+            "_type": "string",
+            "_typeError": [Function],
+            "_whitelist": RefSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+          },
+          "profileTitle": StringSchema {
+            "_blacklist": RefSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "_conditions": Array [],
+            "_deps": Array [],
+            "_exclusive": Object {
+              "required": false,
+            },
+            "_mutate": false,
+            "_options": Object {
+              "abortEarly": true,
+              "recursive": true,
+            },
+            "_type": "string",
+            "_typeError": [Function],
+            "_whitelist": RefSet {
+              "list": Set {},
+              "refs": Map {},
+            },
+            "tests": Array [
+              [Function],
+              [Function],
+            ],
+            "transforms": Array [
+              [Function],
+            ],
+          },
+        },
+        "tests": Array [],
+        "transforms": Array [
+          [Function],
+        ],
+      },
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "enableReinitialize": false,
+        "initialValues": Object {
+          "profileDescription": "profileDescription",
+          "profileTitle": "profileTitle",
+        },
+        "isInitialValid": false,
+        "onSubmit": [Function],
+        "render": [Function],
+        "validateOnBlur": true,
+        "validateOnChange": true,
+        "validationSchema": ObjectSchema {
+          "_blacklist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "_conditions": Array [],
+          "_defaultDefault": [Function],
+          "_deps": Array [],
+          "_excludedEdges": Array [],
+          "_exclusive": Object {},
+          "_mutate": false,
+          "_nodes": Array [
+            "profileDescription",
+            "profileTitle",
+          ],
+          "_options": Object {
+            "abortEarly": true,
+            "recursive": true,
+          },
+          "_type": "object",
+          "_typeError": [Function],
+          "_whitelist": RefSet {
+            "list": Set {},
+            "refs": Map {},
+          },
+          "fields": Object {
+            "profileDescription": StringSchema {
+              "_blacklist": RefSet {
+                "list": Set {},
+                "refs": Map {},
+              },
+              "_conditions": Array [],
+              "_deps": Array [],
+              "_exclusive": Object {
+                "required": false,
+              },
+              "_mutate": false,
+              "_options": Object {
+                "abortEarly": true,
+                "recursive": true,
+              },
+              "_type": "string",
+              "_typeError": [Function],
+              "_whitelist": RefSet {
+                "list": Set {},
+                "refs": Map {},
+              },
+              "tests": Array [
+                [Function],
+                [Function],
+              ],
+              "transforms": Array [
+                [Function],
+              ],
+            },
+            "profileTitle": StringSchema {
+              "_blacklist": RefSet {
+                "list": Set {},
+                "refs": Map {},
+              },
+              "_conditions": Array [],
+              "_deps": Array [],
+              "_exclusive": Object {
+                "required": false,
+              },
+              "_mutate": false,
+              "_options": Object {
+                "abortEarly": true,
+                "recursive": true,
+              },
+              "_type": "string",
+              "_typeError": [Function],
+              "_whitelist": RefSet {
+                "list": Set {},
+                "refs": Map {},
+              },
+              "tests": Array [
+                [Function],
+                [Function],
+              ],
+              "transforms": Array [
+                [Function],
+              ],
+            },
+          },
+          "tests": Array [],
+          "transforms": Array [
+            [Function],
+          ],
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

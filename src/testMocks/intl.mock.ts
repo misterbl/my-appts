@@ -1,39 +1,39 @@
-// import {
-//   DateSource,
-//   FormattedDate,
-//   FormattedMessage,
-//   FormattedNumber,
-//   FormattedPlural,
-//   FormattedRelative,
-//   FormattedTime,
-//   InjectedIntl,
-// } from 'react-intl';
+import {
+  DateSource,
+  FormattedDate,
+  FormattedMessage,
+  FormattedNumber,
+  FormattedPlural,
+  FormattedRelative,
+  FormattedTime,
+  InjectedIntl,
+} from 'react-intl';
 
-// export const IntlMock: InjectedIntl = {
-//   formatDate: (_value: DateSource, _options?: FormattedDate.PropsBase) => '',
-//   formatTime: (_value: DateSource, _options?: FormattedTime.PropsBase) => '',
-//   formatRelative: (
-//     _value: DateSource,
-//     _options?: FormattedRelative.PropsBase & {
-//       now?: any; // tslint:disable-line:no-any
-//     },
-//   ) => '',
-//   formatNumber: (_value: number, _options?: FormattedNumber.PropsBase) => '',
-//   formatPlural: (_value: number, _options?: FormattedPlural.Base) => 'zero',
-//   formatMessage: (
-//     messageDescriptor: FormattedMessage.MessageDescriptor,
-//     _values?: { [key: string]: string | number | boolean | Date | null },
-//   ) => messageDescriptor.id,
-//   formatHTMLMessage: (
-//     _messageDescriptor: FormattedMessage.MessageDescriptor,
-//     _values?: { [key: string]: string | number | boolean | Date | null },
-//   ) => '',
-//   locale: '',
-//   formats: '',
-//   messages: {},
-//   defaultLocale: '',
-//   defaultFormats: '',
-//   now: () => 0,
-// };
+export const IntlMock: InjectedIntl = {
+  formatDate: (value: DateSource, options?: FormattedDate.PropsBase) => '',
+  formatTime: (value: DateSource, options?: FormattedTime.PropsBase) => '',
+  formatRelative: (
+    value: DateSource,
+    options?: FormattedRelative.PropsBase & {
+      now?: any; // tslint:disable-line:no-any
+    },
+  ) => '',
+  formatNumber: (value: number, options?: FormattedNumber.PropsBase) => '',
+  formatPlural: (value: number, options?: FormattedPlural.Base) => 'zero',
+  formatMessage: (
+    messageDescriptor: FormattedMessage.MessageDescriptor,
+    values?: { [key: string]: string | number | boolean | Date | null },
+  ) => messageDescriptor.id,
+  formatHTMLMessage: (
+    messageDescriptor: FormattedMessage.MessageDescriptor,
+    values?: { [key: string]: string | number | boolean | Date | null },
+  ) => '',
+  locale: '',
+  formats: '',
+  messages: {},
+  defaultLocale: '',
+  defaultFormats: '',
+  now: () => 0,
+};
 
-// export default IntlMock;
+export default IntlMock;

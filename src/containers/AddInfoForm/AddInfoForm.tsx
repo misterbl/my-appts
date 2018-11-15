@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikProps } from 'formik';
+
 import { bindActionCreators, Dispatch, AnyAction } from 'redux';
 import { connect } from 'react-redux';
 import { injectIntl, FormattedMessage } from 'react-intl';
@@ -17,9 +18,48 @@ import { QUERIES } from '../../consts';
 import FormikInput from '../../components/FormikInput/FormikInput';
 import labelColor from '../../utils/labelColor';
 
-export class AddInfoForm extends React.Component<TAddInfoForm> {
+export const AddInfoForm = (props: TAddInfoForm) => {
+  const {
+    values,
+    setFieldValue,
+    errors,
+    intl: { formatMessage },
+    submitButton,
+  } = props;
+  return (
+    <Form className="profile-form mh4 mt4 flex flex-column ph5-m ph7-l">
+      <FormikInput
+        {...props}
+        values={values.profileTitle}
+        errors={errors.profileTitle}
+        setFieldValue={setFieldValue}
+        name="profileTitle"
+      />
+
+      <label
+        className={`${labelColor(values.profileDescription)} f6`}
+        htmlFor="profileDescription"
+      >
+        <FormattedMessage id="general|placeholder|profileDescription" />
+      </label>
+      <textarea
+        className="ba b--light-silver h5 resize-none"
+        value={values.profileDescription}
+        name="profileDescription"
+        onChange={event =>
+          setFieldValue('profileDescription', event.target.value)
+        }
+        placeholder={formatMessage({
+          id: 'general|placeholder|profileDescription',
+        })}
+      />
+
+      {submitButton}
+    </Form>
+  );
+};
+export class AddInfo extends React.Component<TAddInfoForm> {
   onSubmit = async (event: any) => {
-    console.log(event);
     const {
       profileTitle: eventProfileTitle,
       profileDescription: eventProfileDescription,
@@ -38,8 +78,6 @@ export class AddInfoForm extends React.Component<TAddInfoForm> {
       event.profileDescription === 'undefined'
         ? user && user.profileDescription
         : eventProfileDescription;
-    console.log(profileTitle, profileDescription);
-
     await this.props.apiThunk.updateUser(
       QUERIES({ _id, profileTitle, profileDescription }).UPDATE_AD_INFO,
     );
@@ -71,44 +109,12 @@ export class AddInfoForm extends React.Component<TAddInfoForm> {
           ),
         })}
         onSubmit={this.onSubmit}
-      >
-        {formikProps => (
-          <Form className="profile-form mh4 mt4 flex flex-column ph5-m ph7-l">
-            <FormikInput
-              {...formikProps}
-              values={formikProps.values.profileTitle}
-              errors={formikProps.errors.profileTitle}
-              setFieldValue={formikProps.setFieldValue}
-              name="profileTitle"
-            />
-
-            <label
-              className={`${labelColor(
-                formikProps.values.profileDescription,
-              )} f6`}
-              htmlFor="profileDescription"
-            >
-              <FormattedMessage id="general|placeholder|profileDescription" />
-            </label>
-            <textarea
-              className="ba b--light-silver h5 resize-none"
-              value={formikProps.values.profileDescription}
-              name="profileDescription"
-              onChange={event =>
-                formikProps.setFieldValue(
-                  'profileDescription',
-                  event.target.value,
-                )
-              }
-              placeholder={formatMessage({
-                id: 'general|placeholder|profileDescription',
-              })}
-            />
-
-            {this.props.submitButton}
-          </Form>
-        )}
-      </Formik>
+        render={
+          /* istanbul ignore next */ formikProps => (
+            <AddInfoForm {...formikProps} {...this.props} />
+          )
+        }
+      />
     );
   }
 }
@@ -125,7 +131,7 @@ export const mapDispatchToProps = (
   apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 
-const injectIntlAddInfoForm = injectIntl(AddInfoForm);
+const injectIntlAddInfoForm = injectIntl(AddInfo);
 export default withRouter(
   connect(
     mapStateToProps,
