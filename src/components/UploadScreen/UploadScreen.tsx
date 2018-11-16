@@ -26,7 +26,7 @@ export class UploadScreen extends React.Component<
     const reader = new FileReader();
     reader.onload = (event: any) => {
       if (event && event.target && event.target.result) {
-        this.props.submitFiles(event.target.result);
+        this.props.onSubmit(event.target.result);
       }
     };
     reader.readAsDataURL(file);
@@ -43,7 +43,7 @@ export class UploadScreen extends React.Component<
     //     console.log(1);
 
     //     await this.props.fileRead.push(reader);
-    //     this.props.submitFiles();
+    //     this.props.onSubmit();
     //     console.log(2);
     //   },
     //   false,
@@ -56,7 +56,7 @@ export class UploadScreen extends React.Component<
     // console.log('url', url);
 
     // await this.props.fileRead.push(reader.result);
-    // this.props.submitFiles();
+    // this.props.onSubmit();
     // @ts-ignore
     // for (const i; i <= filesToBeSent.length; i++) {
     //   filesPreview.push(

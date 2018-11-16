@@ -18,8 +18,6 @@ export interface IPersonalInfoFormMapStateToProps {
 }
 
 export interface IPersonalInfoFormState {
-  currentUser: IAppState['api']['userData'];
-  filesToBeSent: [];
   avatar: any;
   address: string;
   addressError: boolean;

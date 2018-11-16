@@ -30,4 +30,5 @@ const FormikInput = (props: TFormikInput) => {
     </>
   );
 };
+
 export default injectIntl(FormikInput);

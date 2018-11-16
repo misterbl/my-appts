@@ -22,31 +22,44 @@ import ErrorMessage from '../../components/ErrorMessage';
 import FormikInput from '../../components/FormikInput/FormikInput';
 import AboutYouModal from '../../components/AboutYouModal/AboutYouModal';
 import { UploadScreen } from '../../components/UploadScreen/UploadScreen';
+import autocomplete from '../../utils/autocomplete';
 
-export class PersonalInfoForm extends React.Component<
+export const PersonalInfoForm = (props: TPersonalInfoFormComponent) => {
+  const { values, errors, setFieldValue, submitButton } = props;
+  return (
+    <Form className="profile-form mh3 flex flex-column">
+      <FormikInput
+        {...props}
+        values={values.firstName}
+        errors={errors.firstName}
+        name="firstName"
+      />
+      <FormikInput
+        {...props}
+        values={values.lastName}
+        errors={errors.lastName}
+        name="lastName"
+      />
+      {submitButton}
+    </Form>
+  );
+};
+export class PersonalInfo extends React.Component<
   TPersonalInfoFormComponent,
   IPersonalInfoFormState
 > {
-  autocomplete: any;
   constructor(props: TPersonalInfoFormComponent) {
     super(props);
     const { user } = this.props;
     this.state = {
-      currentUser: user,
       address: (user && user.address) || '',
       addressError: false,
-      filesToBeSent: [],
       avatar: [],
     };
   }
 
   componentDidMount() {
-    this.autocomplete = new google.maps.places.Autocomplete(
-      // @ts-ignore
-      document.getElementById('autocomplete'),
-      {},
-    );
-    this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+    autocomplete.addListener('place_changed', this.handlePlaceSelect);
   }
 
   onSubmit = (event: any) => {
@@ -74,7 +87,7 @@ export class PersonalInfoForm extends React.Component<
 
   handlePlaceSelect = async () => {
     this.setState({ addressError: false });
-    const addressObject = await this.autocomplete.getPlace();
+    const addressObject = await autocomplete.getPlace();
     const address = addressObject.formatted_address;
     const lat = addressObject.geometry.location.lat();
     const lng = addressObject.geometry.location.lng();
@@ -132,7 +145,7 @@ export class PersonalInfoForm extends React.Component<
             fill="black"
           />
           <UploadScreen
-            submitFiles={(file: any) => this.submitFiles(file)}
+            onSubmit={(file: any) => this.submitFiles(file)}
             className="absolute mt4 pr5"
             printcount={1}
             submitDiv={
@@ -160,27 +173,12 @@ export class PersonalInfoForm extends React.Component<
               ),
             })}
             onSubmit={this.onSubmit}
-          >
-            {formikProps => (
-              <Form className="profile-form mh3 flex flex-column">
-                <FormikInput
-                  {...formikProps}
-                  values={formikProps.values.firstName}
-                  errors={formikProps.errors.firstName}
-                  setFieldValue={formikProps.setFieldValue}
-                  name="firstName"
-                />
-                <FormikInput
-                  {...formikProps}
-                  values={formikProps.values.lastName}
-                  errors={formikProps.errors.lastName}
-                  setFieldValue={formikProps.setFieldValue}
-                  name="lastName"
-                />
-                {this.props.submitButton}
-              </Form>
-            )}
-          </Formik>
+            render={
+              /* istanbul ignore next */ formikProps => (
+                <PersonalInfoForm {...formikProps} {...this.props} />
+              )
+            }
+          />
         )}
         <form
           onSubmit={(e: any) => e.preventDefault()}
@@ -234,7 +232,7 @@ export const mapDispatchToProps = (
   apiThunk: bindActionCreators(apiThunk, dispatch),
 });
 
-const injectIntlPersonalInfoForm = injectIntl(PersonalInfoForm);
+const injectIntlPersonalInfoForm = injectIntl(PersonalInfo);
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
